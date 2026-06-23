@@ -1,26 +1,52 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #F5F0EA;
+  --foreground: #2C2C2C;
+
+  --brand-gold:       #C9A347;
+  --brand-gold-dark:  #A8862A;
+  --brand-sage:       #7A8E7C;
+  --brand-cream-dark: #EDE8E1;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background:  var(--background);
+  --color-foreground:  var(--foreground);
+  --color-gold:        var(--brand-gold);
+  --color-gold-dark:   var(--brand-gold-dark);
+  --color-sage:        var(--brand-sage);
+  --color-cream-dark:  var(--brand-cream-dark);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d6d3d1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #a8a29e; }
+
+/* Smooth transitions for interactive elements */
+@layer utilities {
+  .transition-smooth { transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+}
+
+/* Gold accent line */
+.accent-line {
+  background: linear-gradient(90deg, #A8862A, #C9A347, #A8862A);
 }

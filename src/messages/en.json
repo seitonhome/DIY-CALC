@@ -1,0 +1,1168 @@
+{
+  "locale": "en",
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "calculators": "Calculators",
+    "library": "Library",
+    "simulator": "Simulator",
+    "compare": "Compare",
+    "learn": "Learn",
+    "support": "Support",
+    "settings": "Settings",
+    "admin": "Admin",
+    "logout": "Sign out",
+    "login": "Sign in",
+    "register": "Register",
+    "langSwitch": "ES"
+  },
+  "landing": {
+    "hero": {
+      "badge": "Professional tool for DIY makers",
+      "title": "DIY CALC PRO",
+      "subtitle": "The professional calculator for makers who want to produce, price, and sell with precision.",
+      "cta": "Access the calculator",
+      "ctaDemo": "View demo",
+      "ctaSub": "Over 500 entrepreneurs already calculate with precision"
+    },
+    "problem": {
+      "title": "Selling more does not always mean earning more",
+      "subtitle": "Many makers end up losing money without realizing it",
+      "items": [
+        { "title": "They estimate by intuition", "desc": "They guess costs without real data and set prices without technical basis." },
+        { "title": "They forget critical variables", "desc": "Waste, packaging, labor, time, and commissions are never included." },
+        { "title": "They sell at a loss", "desc": "Even as sales grow, the real margin is negative or invisible." }
+      ]
+    },
+    "solution": {
+      "title": "DIY Calc Pro changes that",
+      "subtitle": "Calculate every critical variable with real precision",
+      "items": [
+        "Calculate exact materials for any formula or recipe",
+        "Include waste, packaging, labor, and commissions",
+        "Get suggested prices based on your real costs",
+        "Save your formulas and compare scenarios",
+        "Export cost and production sheets as professional PDFs"
+      ]
+    },
+    "categories": {
+      "title": "A calculator for every material",
+      "subtitle": "Specialized logic per category — not generic calculations",
+      "items": [
+        { "name": "Candles", "desc": "Wax, fragrance, wick, molds, waste, and pricing." },
+        { "name": "Epoxy resin", "desc": "Mix ratio, layers, pigments, molds, and coverage." },
+        { "name": "Artisan soap", "desc": "Saponification, oils, SAP index, and curing time." },
+        { "name": "Decorative concrete", "desc": "Mix, pigments, sealant, and drying time." },
+        { "name": "Plaster & gypsum", "desc": "Water/plaster ratio, release agent, and setting time." },
+        { "name": "Multi-material", "desc": "Combine multiple materials in one product or set." }
+      ]
+    },
+    "benefits": {
+      "title": "Everything you need to professionalize your production",
+      "items": [
+        { "title": "Precise formulas", "desc": "Calculate exact quantities of each material before you produce." },
+        { "title": "Zero hidden losses", "desc": "Include all the variables that are usually forgotten." },
+        { "title": "Profitable prices", "desc": "Set prices based on data, not intuition." },
+        { "title": "Save your recipes", "desc": "Formula library with versions and comparisons." },
+        { "title": "Compare scenarios", "desc": "Evaluate materials, suppliers, and pricing strategies." },
+        { "title": "Export results", "desc": "Professional PDF with technical and cost sheets." },
+        { "title": "Complete library", "desc": "Register materials and molds, control your inventory." },
+        { "title": "Multi-material", "desc": "Create sets and combined products with integrated costs." }
+      ]
+    },
+    "howItWorks": {
+      "title": "How it works",
+      "steps": [
+        { "step": "1", "title": "Choose your category", "desc": "Candles, resin, soap, concrete, plaster, or multi-material." },
+        { "step": "2", "title": "Enter your data", "desc": "Materials, quantities, costs, mold, and production variables." },
+        { "step": "3", "title": "Get results", "desc": "Real cost, suggested price, margin, and automatic recommendations." },
+        { "step": "4", "title": "Save and export", "desc": "Save the formula, export the PDF, and make data-driven decisions." }
+      ]
+    },
+    "forWho": {
+      "title": "Who is DIY Calc Pro for?",
+      "items": [
+        { "title": "DIY entrepreneurs", "desc": "Who want to know their real cost before setting prices." },
+        { "title": "Artisan brands", "desc": "That need to systematize production and cost management." },
+        { "title": "Content creators", "desc": "Who teach DIY and need to share formulas with precision." },
+        { "title": "Online and physical stores", "desc": "Selling on marketplaces who need safe profit margins." }
+      ]
+    },
+    "pricing": {
+      "title": "Full access to DIY Calc Pro",
+      "subtitle": "One-time payment. No subscription. No usage limits.",
+      "badge": "Launch offer",
+      "price": "$47",
+      "priceSub": "USD · One-time payment",
+      "features": [
+        "All specialized calculators",
+        "Multi-material calculator",
+        "Materials, molds, and formulas library",
+        "Price and scenario simulator",
+        "Professional PDF export",
+        "Lifetime access",
+        "Updates included",
+        "Email support"
+      ],
+      "cta": "Get access now",
+      "guarantee": "30-day satisfaction guarantee"
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "items": [
+        {
+          "q": "Do I need technical knowledge to use it?",
+          "a": "No. The app is designed for any maker to use without technical background. It includes explanatory tooltips for every field."
+        },
+        {
+          "q": "Does it work for any type of candle or resin?",
+          "a": "Yes. Each calculator includes multiple types, shapes, and material-specific variables."
+        },
+        {
+          "q": "Can I use the combined product calculator?",
+          "a": "Yes, the multi-material module lets you combine any category into a single product or set."
+        },
+        {
+          "q": "How does activation work?",
+          "a": "You receive an activation code when you purchase. Enter it in your account and get full access immediately."
+        },
+        {
+          "q": "Can I export my calculations?",
+          "a": "Yes. You can export technical and cost sheets as a professional PDF, ready to print or share."
+        },
+        {
+          "q": "Is it available in Spanish?",
+          "a": "Yes. The entire app — calculators, exports, and dashboard — is available in both Spanish and English."
+        }
+      ]
+    },
+    "finalCta": {
+      "title": "Start calculating with precision today",
+      "subtitle": "Turn your creativity into a measurable and profitable business.",
+      "cta": "Access DIY Calc Pro",
+      "sub": "Immediate access · One-time payment · No subscription"
+    },
+    "footer": {
+      "brand": "DIY Calc Pro by Seiton Home",
+      "links": {
+        "privacy": "Privacy",
+        "terms": "Terms",
+        "support": "Support",
+        "apps": "More Seiton Home apps"
+      },
+      "copy": "© 2025 Seiton Home. All rights reserved."
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Sign in",
+      "subtitle": "Access your DIY Calc Pro account",
+      "email": "Email address",
+      "password": "Password",
+      "forgot": "Forgot your password?",
+      "submit": "Sign in",
+      "noAccount": "Don't have an account?",
+      "register": "Register here",
+      "demo": "Try demo mode",
+      "loading": "Signing in..."
+    },
+    "register": {
+      "title": "Create account",
+      "subtitle": "Join DIY Calc Pro and start calculating with precision",
+      "name": "Full name",
+      "email": "Email address",
+      "password": "Password",
+      "confirm": "Confirm password",
+      "submit": "Create account",
+      "hasAccount": "Already have an account?",
+      "login": "Sign in here",
+      "loading": "Creating account...",
+      "success": "Account created. Check your email to confirm."
+    },
+    "activate": {
+      "title": "Activate license",
+      "subtitle": "Enter your activation code to access DIY Calc Pro",
+      "code": "Activation code",
+      "codePlaceholder": "XXXX-XXXX-XXXX-XXXX",
+      "submit": "Activate now",
+      "loading": "Activating...",
+      "success": "License activated! Welcome to DIY Calc Pro.",
+      "skip": "Use demo mode for now",
+      "noCode": "Don't have a code?",
+      "buy": "Get full access"
+    },
+    "email": "Email address",
+    "backToLogin": "Back to sign in",
+    "forgotPassword": {
+      "title": "Forgot password",
+      "subtitle": "Enter your email and we'll send you a link to reset your password.",
+      "send": "Send link",
+      "emailSent": "Email sent",
+      "checkInbox": "Check your inbox and follow the instructions in the email."
+    },
+    "errors": {
+      "invalidEmail": "Invalid email address",
+      "required": "This field is required",
+      "minPassword": "Password must be at least 8 characters",
+      "passwordMatch": "Passwords do not match",
+      "invalidCode": "Invalid or already used activation code",
+      "expiredCode": "This code has expired",
+      "genericError": "An error occurred. Please try again.",
+      "invalidCredentials": "Incorrect email or password"
+    }
+  },
+  "dashboard": {
+    "greeting": "Hello, {name}",
+    "subtitle": "Here's your activity summary",
+    "demoWarning": "You are in demo mode. Activate your license for full access.",
+    "activateLicense": "Activate license",
+    "stats": {
+      "products": "Products",
+      "formulas": "Saved formulas",
+      "materials": "Materials",
+      "avgCost": "Avg. cost/unit",
+      "avgMargin": "Avg. margin",
+      "mostProfitable": "Most profitable",
+      "leastProfitable": "Least profitable",
+      "totalCalcs": "Calculations done"
+    },
+    "quickAccess": {
+      "title": "Quick access",
+      "newCalc": "New calculation",
+      "candles": "Candles",
+      "resin": "Resin",
+      "soap": "Soap",
+      "concrete": "Concrete",
+      "plaster": "Plaster",
+      "multi": "Multi-material"
+    },
+    "recentCalcs": {
+      "title": "Recent calculations",
+      "empty": "You haven't done any calculations yet. Start with a calculator.",
+      "startCalc": "Make my first calculation",
+      "viewAll": "View all",
+      "date": "Date",
+      "type": "Type",
+      "product": "Product",
+      "cost": "Cost",
+      "margin": "Margin"
+    },
+    "alerts": {
+      "title": "Smart alerts",
+      "lowMargin": "You have {count} products with margin below the recommended minimum.",
+      "highWaste": "Waste in {product} is affecting your profitability.",
+      "noMaterials": "Register your materials to get more accurate costs.",
+      "noFormulas": "Save your first formulas to compare scenarios."
+    },
+    "profitChart": {
+      "title": "Profitability by product",
+      "empty": "Create products to see your profitability chart."
+    }
+  },
+  "calculators": {
+    "common": {
+      "units": "Units to produce",
+      "batchSize": "Batch size",
+      "wastePct": "Estimated waste (%)",
+      "laborCost": "Labor cost (per hour)",
+      "laborHours": "Production hours",
+      "energyCost": "Energy cost",
+      "packagingCost": "Packaging cost",
+      "labelCost": "Label",
+      "boxCost": "Box",
+      "shippingCost": "Shipping cost",
+      "taxPct": "Taxes (%)",
+      "platformFeePct": "Platform commission (%)",
+      "affiliateFeePct": "Affiliate commission (%)",
+      "desiredMarginPct": "Desired margin (%)",
+      "calculate": "Calculate",
+      "calculating": "Calculating...",
+      "reset": "Reset",
+      "save": "Save formula",
+      "export": "Export PDF",
+      "saved": "Saved ✓",
+      "results": "Results",
+      "noResults": "Enter data to see results",
+      "productName": "Product name",
+      "notes": "Additional notes",
+      "currency": "Currency",
+      "weightUnit": "Weight unit",
+      "volumeUnit": "Volume unit",
+      "tooltips": {
+        "wastePct": "Percentage of material lost during production. Typically between 2% and 10%.",
+        "laborCost": "How much your hour of work is worth. Don't give it away for free.",
+        "energyCost": "Electricity, gas, or other energy used in production.",
+        "desiredMarginPct": "Profit percentage you want to maintain on the sale price.",
+        "platformFeePct": "Commission charged by the platform where you sell (Etsy, Amazon, etc.)."
+      }
+    },
+    "results": {
+      "title": "Calculation Results",
+      "totalMaterialCost": "Total material cost",
+      "totalProductionCost": "Total production cost",
+      "costPerUnit": "Cost per unit",
+      "costPerBatch": "Cost per batch",
+      "suggestedPrice": "Suggested sale price",
+      "wholesalePrice": "Wholesale price",
+      "grossMargin": "Gross margin",
+      "netMargin": "Net margin",
+      "profitPerUnit": "Profit per unit",
+      "profitPerBatch": "Profit per batch",
+      "breakEven": "Break-even point",
+      "breakEvenUnits": "Units to recover investment",
+      "profitability": "Profitability",
+      "riskLevel": "Risk level",
+      "riskLow": "Low",
+      "riskMedium": "Medium",
+      "riskHigh": "High",
+      "recommendation": "Recommendation",
+      "costDistribution": "Cost distribution",
+      "mostExpensive": "Most expensive material",
+      "productionTime": "Estimated production time"
+    },
+    "recommendations": {
+      "lowMargin": "Your margin is below the recommended minimum (20%). Review your costs or adjust the price.",
+      "highWaste": "Waste is significantly affecting your profitability. Consider optimizing your process.",
+      "highPackaging": "Packaging represents a high percentage of total cost. Evaluate alternatives.",
+      "noLabor": "Your labor cost is not being included correctly. Add your hourly rate.",
+      "bulkSaving": "You could improve your margin by buying materials in bulk.",
+      "healthyMargin": "Your margin is healthy. This product is ready to sell.",
+      "notMarketplace": "This product looks profitable for direct sales, but not for marketplace sales.",
+      "setRecommend": "This product may perform better as part of a set.",
+      "minWholesale": "The suggested wholesale price should not go below {price}.",
+      "reviewBeforeSell": "This product needs review before selling."
+    },
+    "candles": {
+      "title": "Candle Calculator",
+      "subtitle": "Precisely calculate formulas for artisan candles",
+      "candleType": "Candle type",
+      "types": {
+        "glass": "Container candle",
+        "molded": "Molded candle",
+        "decorative": "Decorative candle",
+        "pillar": "Pillar candle",
+        "waxMelt": "Wax melt",
+        "tealight": "Tealight candle",
+        "votive": "Votive candle",
+        "sculptural": "Sculptural candle",
+        "multilayer": "Multilayer candle",
+        "embeds": "Embed candle",
+        "aromatic": "Scented candle",
+        "unscented": "Unscented candle"
+      },
+      "moldShape": "Mold shape",
+      "shapes": {
+        "cylinder": "Cylinder",
+        "cube": "Cube",
+        "rectangular": "Rectangular",
+        "sphere": "Sphere",
+        "hemisphere": "Hemisphere",
+        "pyramid": "Pyramid",
+        "cone": "Cone",
+        "hexagonal": "Hexagonal",
+        "irregular": "Irregular",
+        "custom": "Custom"
+      },
+      "dimensions": {
+        "title": "Mold dimensions",
+        "diameter": "Diameter (cm)",
+        "height": "Height (cm)",
+        "width": "Width (cm)",
+        "length": "Length (cm)",
+        "radius": "Radius (cm)",
+        "volume": "Volume (ml)",
+        "capacity": "Mold volume (ml)",
+        "fillPct": "Fill percentage (%)",
+        "targetWeight": "Target weight (g)",
+        "density": "Estimated density (g/ml)"
+      },
+      "wax": {
+        "title": "Main wax",
+        "type": "Wax type",
+        "types": {
+          "soy": "Soy Wax — container (464, GB464)",
+          "soyPillar": "Soy Wax — pillar/votive (415, CB-135)",
+          "coconut": "Pure Coconut Wax (76°F)",
+          "coconutApricot": "Coconut-Apricot Blend (Coconut 83, CX)",
+          "palm": "Palm Wax (pillar)",
+          "paraffin": "Standard Paraffin (MP 52–54 °C)",
+          "moldWax": "Mold Wax / Pillar Paraffin (MP 60–68 °C)",
+          "beeswax": "Pure Beeswax (natural)",
+          "gel": "Translucent Gel Wax",
+          "soyParaffin": "Soy-Paraffin Blend (50:50 or 60:40)",
+          "custom": "Custom Wax / Own blend"
+        },
+        "costPerKg": "Cost per kg of wax",
+        "mixPct": "Blend percentage (%)"
+      },
+      "fragrance": {
+        "title": "Fragrance",
+        "loadPct": "Fragrance load (%)",
+        "costPerKg": "Cost per kg of fragrance",
+        "warning": "Maximum recommended fragrance load is {max}% for {waxType}. Exceeding this may cause bleeding or burning issues.",
+        "tooltipLoad": "Fragrance percentage relative to total wax weight. Typically between 6% and 12%."
+      },
+      "colorant": {
+        "title": "Colorant",
+        "type": "Colorant type",
+        "costPerUnit": "Cost per unit",
+        "amount": "Amount (g or drops)",
+        "tooltipAmount": "Use approximately 0.5g–1g per 450g of wax for solid colorants."
+      },
+      "additives": {
+        "title": "Additives",
+        "stearicAcid": "Stearin (stearic acid)",
+        "stearicHint": "Hardens wax, improves opacity and mold release. Essential for mold wax.",
+        "stearicPct": "Stearin % of wax weight",
+        "stearicPctHint": "Recommended range: 5–15%. Over 20% makes candles brittle.",
+        "stearicWarnNone": "Mold wax requires stearin to hold its shape. Add at least 5%.",
+        "stearicWarnLow": "Under 5% may not provide enough hardness for a free-standing candle.",
+        "stearicWarnHigh": "Over 20% may make the candle too brittle and prone to cracking.",
+        "moldWaxInfo": "Mold wax — High-melting-point paraffin (58–68°C) for pillar, figure, and free-standing candles. ALWAYS requires a second pour.",
+        "vybar": "Vybar",
+        "vybarType": "Vybar type",
+        "vybarTypes": {
+          "103": "Vybar 103 — paraffin pillar",
+          "260": "Vybar 260 — soft wax blends"
+        },
+        "vybarHint": "Ideal range: 0.5–1% of wax weight. Over 1.5% reduces scent throw.",
+        "vybarWarnHigh": "Vybar above 1.5% can significantly reduce fragrance throw.",
+        "vybarWarnLow": "Below 0.5%, Vybar's effect is minimal.",
+        "vybar103Desc": "For molded paraffin candles. Hardens, reduces mottling, improves surface.",
+        "vybar260Desc": "For soft wax blends (soy, coconut). Better fragrance retention.",
+        "uvInhibitor": "UV inhibitor",
+        "uvHint": "Prevents yellowing of white candles. Use: 0.1–0.5% of wax weight.",
+        "hardener": "Hardener",
+        "other": "Other additives",
+        "costPerUnit": "Cost per unit",
+        "amount": "Amount (g)",
+        "costPerKg": "Cost per kg"
+      },
+      "wick": {
+        "title": "Wick",
+        "type": "Wick type",
+        "types": {
+          "cotton": "Cotton",
+          "wood": "Wood",
+          "double": "Double wick",
+          "triple": "Triple wick"
+        },
+        "costPerUnit": "Cost per wick"
+      },
+      "curingTime": "Curing time (hours)",
+      "productionTime": "Production time (min/unit)",
+      "warnings": {
+        "highFragrance": "Fragrance load is too high. May cause burning or bleeding issues.",
+        "highWaste": "Waste is too high. Review your production process."
+      }
+    },
+    "resin": {
+      "title": "Epoxy Resin Calculator",
+      "subtitle": "Calculate mix, pigments, and costs for resin projects",
+      "projectType": "Project type",
+      "types": {
+        "table": "Table",
+        "tray": "Tray",
+        "coaster": "Coaster",
+        "jewelry": "Jewelry",
+        "decorative": "Decorative molds",
+        "artwork": "Artwork",
+        "clock": "Clock",
+        "coating": "Surface coating",
+        "encapsulation": "Encapsulation",
+        "geode": "Geode",
+        "river": "River table",
+        "repair": "Repair",
+        "artistic": "Artistic piece",
+        "combined": "Combined product"
+      },
+      "resinType": "Resin type",
+      "mixRatio": "Mix ratio",
+      "ratios": {
+        "1:1": "1:1",
+        "2:1": "2:1",
+        "3:1": "3:1",
+        "custom": "Custom"
+      },
+      "partA": "Part A (%)",
+      "partB": "Part B (%)",
+      "costPerKgA": "Cost per kg of Part A",
+      "costPerKgB": "Cost per kg of Part B",
+      "density": "Resin density (g/ml)",
+      "moldVolume": "Mold volume (ml)",
+      "coverageArea": "Coverage area (cm²)",
+      "thickness": "Thickness (mm)",
+      "layers": "Number of layers",
+      "timeBetweenLayers": "Time between layers (hours)",
+      "pigments": {
+        "title": "Pigments and accessories",
+        "micas": "Micas",
+        "alcoholInks": "Alcohol inks",
+        "glitter": "Glitter",
+        "goldLeaf": "Gold leaf",
+        "stones": "Stones and crystals",
+        "inclusions": "Inclusions",
+        "costPerUnit": "Cost per unit",
+        "amount": "Amount (g)"
+      },
+      "finishing": {
+        "title": "Finishing",
+        "sealant": "Sealant",
+        "sandpaper": "Sandpaper",
+        "polish": "Polish",
+        "varnish": "Varnish"
+      },
+      "curingTime": "Curing time (hours)",
+      "heatGun": "Heat gun / torch",
+      "mixLoss": "Mix loss (%)",
+      "tooltips": {
+        "mixRatio": "The ratio indicates how much Part A per Part B. For example 2:1 means 2 parts A for every 1 part B.",
+        "mixLoss": "Percentage of resin lost during mixing and application. Typically 3–8%.",
+        "density": "Typical epoxy resin density: 1.1 g/ml. May vary by manufacturer."
+      }
+    },
+    "soap": {
+      "title": "Artisan Soap Calculator",
+      "subtitle": "Glycerin, lye soap, solid shampoo, salt bar, milk soap — exact proportions for every method",
+      "soapType": "Soap type",
+      "types": {
+        "meltPour": "Glycerin Block (no lye, easy)",
+        "clearGlycerin": "Clear Glycerin (crystal / jelly)",
+        "goatMilk": "Goat Milk Glycerin Base",
+        "exfoliating": "Glycerin with Exfoliant (oats, coffee, salt…)",
+        "coldProcess": "Handmade Soap with Lye (cold process)",
+        "hotProcess": "Cooked Handmade Soap (hot process)",
+        "milkSoap": "Milk Soap (goat, coconut or oat milk)",
+        "liquid": "Liquid Soap (with KOH potassium lye)",
+        "castile": "Castile Soap (100% olive oil)",
+        "saltBar": "Sea Salt Bar (with lye)",
+        "syndet": "Solid Shampoo / No-lye Bar (syndet)",
+        "shampooBar": "Solid Shampoo Glycerin (no lye)",
+        "shampooBarCP": "Solid Shampoo with Lye (cold process)"
+      },
+      "base": {
+        "title": "Soap base",
+        "type": "Base type",
+        "costPerKg": "Cost per kg",
+        "amount": "Amount (g)"
+      },
+      "saponification": {
+        "title": "Saponification (cold/hot process)",
+        "safetyWarning": "⚠️ SAFETY: Sodium hydroxide (NaOH) and potassium hydroxide (KOH, for liquid soap) are highly corrosive. Always wear gloves and goggles, work in a ventilated area. ALWAYS add lye to water (or to cold milk), NEVER the reverse. Do not breathe the fumes.",
+        "oils": "Oils and butters",
+        "addOil": "Add oil",
+        "olivePct": "Olive oil (%)",
+        "coconutPct": "Coconut oil (%)",
+        "palmPct": "Palm oil (%)",
+        "sheaPct": "Shea butter (%)",
+        "cocoacPct": "Cocoa butter (%)",
+        "otherOils": "Other oils (%)",
+        "superfattPct": "Superfat (%)",
+        "lyeConcentration": "Lye concentration (%)",
+        "waterAmount": "Water amount (g)",
+        "lyeAmount": "Sodium hydroxide amount (g)",
+        "sapIndex": "SAP index",
+        "calculatedLye": "Calculated lye (NaOH / KOH)",
+        "tooltipSuperfat": "Superfat (2–8%) leaves free oils in the soap for skin softness. Higher superfat = softer soap but less cleansing.",
+        "tooltipLye": "Automatically calculated using the saponification index of each oil."
+      },
+      "additives": {
+        "title": "Additives and extras",
+        "exfoliants": "Exfoliants",
+        "fragrance": "Fragrance",
+        "essentialOil": "Essential oil",
+        "colorants": "Colorants",
+        "extras": "Other additives"
+      },
+      "curingTime": "Curing time (days)",
+      "packaging": "Packaging",
+      "label": "Label"
+    },
+    "concrete": {
+      "title": "Decorative Concrete Calculator",
+      "subtitle": "Mix, pieces, and costing for artisan concrete products",
+      "projectType": "Product type",
+      "types": {
+        "tray": "Tray",
+        "planter": "Planter",
+        "candleHolder": "Candle holder",
+        "base": "Decorative base",
+        "sculpture": "Sculpture",
+        "bowl": "Bowl",
+        "lamp": "Lamp",
+        "table": "Small table",
+        "combined": "Combined piece",
+        "custom": "Custom mold"
+      },
+      "mixType": "Mix type",
+      "mixTypes": {
+        "cement": "Cement",
+        "concrete": "Concrete",
+        "microcement": "Microcement",
+        "mortar": "Mortar",
+        "whiteCement": "White cement",
+        "artisan": "Artisan blend"
+      },
+      "mix": {
+        "title": "Mix composition",
+        "cement": "Cement",
+        "sand": "Sand",
+        "water": "Water",
+        "cementRatio": "Cement ratio (%)",
+        "sandRatio": "Sand ratio (%)",
+        "waterCementRatio": "Water/cement ratio",
+        "costPerKg": "Cost per kg",
+        "tooltipWater": "The ideal water/cement ratio is 0.4–0.5. More water weakens the mix.",
+        "warnings": {
+          "tooMuchWater": "Water amount is too high. This may weaken the mix and cause cracking.",
+          "tooLittleWater": "Too little water may make the mix difficult to work with and affect curing."
+        }
+      },
+      "additives": {
+        "title": "Additives and finishing",
+        "pigment": "Pigments",
+        "sealant": "Sealant",
+        "fibers": "Reinforcing fibers",
+        "plasticizer": "Plasticizer",
+        "waterproofing": "Waterproofing agent",
+        "mold": "Mold",
+        "releaseAgent": "Release agent",
+        "sandpaper": "Sandpaper",
+        "polish": "Polish"
+      },
+      "dryingTime": "Drying time (hours)",
+      "finalWeight": "Estimated final weight (kg)"
+    },
+    "plaster": {
+      "title": "Plaster & Gypsum Calculator",
+      "subtitle": "Precise mix calculation, costs, and timing for plaster products",
+      "projectType": "Project type",
+      "types": {
+        "figure": "Decorative figure",
+        "tray": "Tray",
+        "candleHolder": "Candle holder",
+        "aromatic": "Aromatic piece",
+        "diffuser": "Diffuser",
+        "sculpture": "Sculpture",
+        "decorative": "Decorative mold",
+        "keepsake": "Keepsake",
+        "painted": "Painted product",
+        "sealed": "Sealed product"
+      },
+      "plasterType": "Plaster type",
+      "plasterTypes": {
+        "standard": "Standard plaster",
+        "escayola": "Gypsum / Escayola",
+        "ceramic": "Ceramic plaster",
+        "stone": "Stone plaster",
+        "premium": "Premium plaster"
+      },
+      "mix": {
+        "title": "Plaster mix",
+        "plasterAmount": "Plaster amount (g)",
+        "waterAmount": "Water amount (g)",
+        "waterPlasterRatio": "Water/plaster ratio",
+        "costPerKg": "Cost per kg of plaster",
+        "tooltipRatio": "Typical ratio is 0.6–0.8 parts water per 1 part plaster. Gypsum: 0.5–0.7.",
+        "calculatedWater": "Calculated water"
+      },
+      "additives": {
+        "title": "Additives and finishing",
+        "pigment": "Pigments",
+        "fragrance": "Fragrance (if applicable)",
+        "sealant": "Sealant",
+        "paint": "Paint",
+        "varnish": "Varnish",
+        "mold": "Mold",
+        "releaseAgent": "Release agent",
+        "sandpaper": "Sandpaper"
+      },
+      "dryingTime": "Setting/drying time (minutes)",
+      "finalWeight": "Final weight (g)",
+      "comparison": {
+        "title": "Plaster comparison",
+        "standard": "Standard plaster",
+        "premium": "Premium plaster",
+        "costDiff": "Cost difference",
+        "qualityNote": "Premium plaster offers better whiteness, strength, and surface detail."
+      }
+    },
+    "multi": {
+      "title": "Multi-Material Calculator",
+      "subtitle": "Create combined products or sets with multiple materials",
+      "description": "Combine different material categories in a single product. Ideal for gift sets, DIY kits, and multi-component products.",
+      "addComponent": "Add component",
+      "component": "Component",
+      "componentType": "Material type",
+      "componentName": "Component name",
+      "componentCost": "Component cost",
+      "componentTime": "Production time (min)",
+      "componentWaste": "Waste (%)",
+      "removeComponent": "Remove",
+      "examples": {
+        "title": "Examples of combined products",
+        "items": [
+          "Candle on a concrete base",
+          "Plaster diffuser set + oil",
+          "Resin tray + candle holder",
+          "Kit: soap + candle + concrete holder"
+        ]
+      },
+      "analysis": {
+        "title": "Per-component analysis",
+        "costShare": "Share of total cost",
+        "mostExpensive": "Most expensive component",
+        "mostTimeConsuming": "Most time-consuming component",
+        "costDistribution": "Cost distribution",
+        "recommendation": "Set recommendation"
+      }
+    }
+  },
+  "library": {
+    "materials": {
+      "title": "Materials Library",
+      "subtitle": "Register and manage all your materials with up-to-date costs",
+      "add": "Add material",
+      "edit": "Edit",
+      "delete": "Delete",
+      "fields": {
+        "name": "Material name",
+        "category": "Category",
+        "purchaseUnit": "Purchase unit",
+        "purchaseQty": "Quantity purchased",
+        "pricePaid": "Price paid",
+        "supplier": "Supplier",
+        "purchaseDate": "Purchase date",
+        "costPerGram": "Cost per gram",
+        "costPerMl": "Cost per ml",
+        "costPerUnit": "Cost per unit",
+        "stock": "Available stock",
+        "wastePct": "Estimated waste (%)",
+        "notes": "Notes",
+        "photo": "Photo"
+      },
+      "categories": {
+        "waxes": "Waxes",
+        "fragrances": "Fragrances",
+        "colorants": "Colorants",
+        "additives": "Additives",
+        "resins": "Resins",
+        "hardeners": "Hardeners",
+        "pigments": "Pigments",
+        "micas": "Micas",
+        "soapBases": "Soap bases",
+        "oils": "Oils",
+        "butters": "Butters",
+        "cement": "Cement",
+        "plaster": "Plaster",
+        "sand": "Sand",
+        "sealants": "Sealants",
+        "packaging": "Packaging",
+        "labels": "Labels",
+        "accessories": "Accessories",
+        "tools": "Consumable tools",
+        "other": "Other"
+      },
+      "empty": "You haven't registered any materials yet. Add your first material to start calculating real costs.",
+      "search": "Search material...",
+      "filter": "Filter by category"
+    },
+    "molds": {
+      "title": "Molds Library",
+      "subtitle": "Register your molds, calculate amortization and volumes",
+      "add": "Add mold",
+      "edit": "Edit mold",
+      "shapes": {
+        "cylinder": "Cylinder",
+        "cube": "Cube",
+        "rectangular": "Rectangular",
+        "sphere": "Sphere",
+        "hemisphere": "Hemisphere",
+        "cone": "Cone",
+        "pyramid": "Pyramid",
+        "hexagonal": "Hexagonal",
+        "irregular": "Irregular"
+      },
+      "materials": {
+        "silicone": "Silicone",
+        "polycarbonate": "Polycarbonate",
+        "wood": "Wood",
+        "metal": "Metal",
+        "plastic": "Plastic",
+        "other": "Other"
+      },
+      "fields": {
+        "name": "Mold name",
+        "shape": "Shape",
+        "material": "Mold material",
+        "height": "Height (cm)",
+        "diameter": "Diameter (cm)",
+        "width": "Width (cm)",
+        "length": "Length (cm)",
+        "cost": "Mold cost ($)",
+        "estimatedVolume": "Estimated volume",
+        "volume": "Volume (ml)",
+        "category": "Category",
+        "dimensions": "Dimensions",
+        "capacity": "Capacity",
+        "moldMaterial": "Mold material",
+        "cavities": "Number of cavities",
+        "moldCost": "Mold cost",
+        "estimatedUses": "Estimated uses",
+        "amortizedCost": "Amortized cost per use",
+        "notes": "Notes",
+        "photo": "Photo"
+      },
+      "amortization": {
+        "title": "Mold amortization",
+        "formula": "Mold cost ÷ estimated uses = cost per use",
+        "costPerUse": "Cost per use"
+      },
+      "empty": "You haven't registered any molds yet. Add your first mold to include amortization in calculations.",
+      "search": "Search mold..."
+    },
+    "formulas": {
+      "title": "Formula Library",
+      "subtitle": "Save, version, and compare your best formulas",
+      "add": "New formula",
+      "duplicate": "Duplicate",
+      "compare": "Compare",
+      "fields": {
+        "name": "Formula name",
+        "category": "Category",
+        "version": "Version",
+        "createdAt": "Created at",
+        "updatedAt": "Last modified",
+        "notes": "Notes",
+        "materials": "Materials & ingredients"
+      },
+      "noMaterials": "This formula has no detailed materials registered.",
+      "empty": "You haven't saved any formulas yet. Run a calculation and save it as a formula.",
+      "search": "Search formula..."
+    }
+  },
+  "simulator": {
+    "title": "Price Simulator",
+    "subtitle": "Simulate different pricing scenarios and find the most profitable one",
+    "baseCost": "Base cost per unit",
+    "salePrice": "Sale price",
+    "discount": "Discount (%)",
+    "wholesalePrice": "Wholesale price",
+    "marketplaceFee": "Marketplace fee (%)",
+    "hotmartFee": "Hotmart fee (%)",
+    "gatewayFee": "Payment gateway fee (%)",
+    "affiliateFee": "Affiliate fee (%)",
+    "shippingCost": "Shipping cost",
+    "taxes": "Taxes (%)",
+    "premiumPackaging": "Premium packaging",
+    "promotion2x1": "Buy 1 Get 1 promo",
+    "volumeDiscount": "Volume discount (%)",
+    "minMargin": "Minimum desired margin (%)",
+    "results": {
+      "minProfitable": "Minimum profitable price",
+      "recommended": "Recommended price",
+      "premium": "Premium price",
+      "safeWholesale": "Safe wholesale price",
+      "promoWithoutLoss": "Promo price without loss",
+      "minUnitsToRecover": "Minimum units to recover investment"
+    }
+  },
+  "compare": {
+    "title": "Scenario Comparator",
+    "subtitle": "Compare formulas, materials, prices, and strategies side by side",
+    "addScenario": "Add scenario",
+    "compare": "Compare now",
+    "fields": {
+      "directCosts": "Direct costs (materials)",
+      "laborHours": "Production hours",
+      "laborCostPerHour": "Labor cost/hour",
+      "packagingCost": "Packaging",
+      "wastePct": "Waste (%)",
+      "platformFeePct": "Platform fee (%)",
+      "margin": "Desired margin (%)",
+      "units": "Units"
+    },
+    "results": {
+      "table": "Comparison table",
+      "chart": "Comparison chart",
+      "metric": "Metric"
+    },
+    "scenarios": {
+      "formulaAvsB": "Formula A vs Formula B",
+      "cheapVsPremium": "Budget vs premium material",
+      "retailVsWholesale": "Retail vs wholesale",
+      "directVsMarketplace": "Direct sales vs marketplace",
+      "singleVsSet": "Single product vs set",
+      "smallVsBatch": "Small run vs batch"
+    },
+    "metrics": {
+      "cost": "Cost",
+      "margin": "Margin",
+      "price": "Price",
+      "profit": "Profit",
+      "profitability": "Profitability"
+    }
+  },
+  "learn": {
+    "title": "Learn to Price",
+    "subtitle": "Mini guides for DIY entrepreneurs who want to professionalize their business",
+    "articles": {
+      "grossMargin": {
+        "title": "What gross margin means",
+        "summary": "Gross margin measures how much you earn before subtracting operating expenses.",
+        "content": "Gross margin is the difference between your selling price and the direct cost of production. It is expressed as a percentage. A 50% gross margin means that for every $100 sold, $50 covers materials and $50 remains to cover other expenses and generate profit."
+      },
+      "netMargin": {
+        "title": "What net margin means",
+        "summary": "Net margin is what you actually earn after all expenses.",
+        "content": "Net margin includes all costs: materials, labor, packaging, commissions, taxes, shipping, and operating expenses. It is the most honest indicator of your business's real profitability."
+      },
+      "waste": {
+        "title": "How to calculate waste",
+        "summary": "Waste is the material lost during production.",
+        "content": "Waste includes what spills, what doesn't fit in the mold, material that hardens before use, or products that fail quality checks. If you make 100 candles but 5 aren't perfect, your waste rate is 5%. Always include it in your costs."
+      },
+      "labor": {
+        "title": "How to include labor",
+        "summary": "Your time has value. Don't give it away for free.",
+        "content": "Define how much your hour of work is worth. Multiply that value by the hours you dedicate to each product. Include preparation, production, finishing, and packaging. If you don't include labor, you're not seeing the real cost."
+      },
+      "wholesale": {
+        "title": "How to calculate wholesale pricing",
+        "summary": "Wholesale price must cover costs and maintain a minimum margin.",
+        "content": "Wholesale price is typically double your production cost. But if your costs include labor and all expenses, the multiplier may be different. Use DIY Calc Pro to simulate it with your real numbers."
+      },
+      "profitability": {
+        "title": "How to know if a product is profitable",
+        "summary": "A product is profitable when it generates margin after ALL costs.",
+        "content": "A profitable product covers: materials, labor, packaging, commissions, shipping, waste, and still leaves a positive net margin. If any of these variables are missing, your profitability calculation is incomplete."
+      },
+      "multiplier": {
+        "title": "Why you should not price only by multiplying by 2 or 3",
+        "summary": "The 2x or 3x rule ignores critical variables that affect your profitability.",
+        "content": "Multiplying material cost by 2 or 3 is the most common and most dangerous method. It omits labor, waste, packaging, commissions, and time. In many cases, a product that 'looks' profitable this way generates losses when all variables are included."
+      },
+      "sets": {
+        "title": "How to price sets",
+        "summary": "A set must cover the costs of all components plus presentation packaging.",
+        "content": "When creating a set, add up the cost of each individual component, add the special set packaging, the extra assembly time, and a margin that justifies the perceived value. A well-priced set can have better margins than each piece sold separately."
+      },
+      "custom": {
+        "title": "How to price custom products",
+        "summary": "Customization has additional value that you should charge for.",
+        "content": "A custom product takes more time, involves risk of error, and has less resale potential if returned. Add a customization surcharge (typically 20–30% over the base price) and include client consultation time."
+      }
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "currency": "Currency",
+    "units": "Unit system",
+    "unitsMetric": "Metric (kg, cm, ml)",
+    "unitsImperial": "Imperial (lb, in, oz)",
+    "theme": "Theme",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "themeSystem": "System",
+    "profile": "Profile",
+    "name": "Name",
+    "email": "Email",
+    "password": "Change password",
+    "save": "Save changes",
+    "saved": "Changes saved",
+    "license": {
+      "title": "License",
+      "status": "Status",
+      "active": "Active",
+      "expired": "Expired",
+      "demo": "Demo",
+      "activatedAt": "Activated on",
+      "upgrade": "Upgrade to premium"
+    }
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "tabs": {
+      "users": "Users",
+      "licenses": "Licenses",
+      "codes": "Codes",
+      "stats": "Statistics"
+    },
+    "users": {
+      "title": "Registered users",
+      "email": "Email",
+      "name": "Name",
+      "license": "License",
+      "language": "Language",
+      "calcs": "Calculations",
+      "joinedAt": "Joined"
+    },
+    "codes": {
+      "title": "Activation codes",
+      "generate": "Generate codes",
+      "quantity": "Quantity",
+      "code": "Code",
+      "status": "Status",
+      "used": "Used",
+      "unused": "Unused",
+      "blocked": "Blocked",
+      "usedBy": "Used by",
+      "usedAt": "Used at",
+      "block": "Block",
+      "copyAll": "Copy all",
+      "import": "Import"
+    },
+    "stats": {
+      "title": "General statistics",
+      "totalUsers": "Total users",
+      "activeUsers": "Active users",
+      "totalCalcs": "Total calculations",
+      "mostUsedCalc": "Most used calculator",
+      "byCategory": "By category"
+    }
+  },
+  "export": {
+    "title": "Export results",
+    "pdf": "Export PDF",
+    "csv": "Export CSV",
+    "print": "Print",
+    "filename": "diy-calc-pro-result",
+    "pdfTitle": "DIY Calc Pro — Cost Sheet",
+    "brand": "DIY Calc Pro by Seiton Home",
+    "generatedAt": "Generated on",
+    "product": "Product",
+    "category": "Category",
+    "formula": "Formula",
+    "materials": "Materials",
+    "costs": "Costs",
+    "suggestedPrice": "Suggested price",
+    "margin": "Margin",
+    "notes": "Notes",
+    "language": "Document language"
+  },
+  "errors": {
+    "generic": "An unexpected error occurred. Please try again.",
+    "notFound": "Page not found",
+    "unauthorized": "Unauthorized access",
+    "licenseRequired": "This feature requires an active license",
+    "networkError": "Connection error. Check your internet.",
+    "saveError": "Could not save. Please try again.",
+    "loadError": "Could not load data."
+  },
+  "common": {
+    "loading": "Loading...",
+    "saving": "Saving...",
+    "saved": "Saved",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "new": "New",
+    "create": "Create",
+    "update": "Update",
+    "add": "Add",
+    "remove": "Remove",
+    "yes": "Yes",
+    "no": "No",
+    "or": "or",
+    "and": "and",
+    "of": "of",
+    "per": "per",
+    "total": "Total",
+    "subtotal": "Subtotal",
+    "optional": "Optional",
+    "required": "Required",
+    "currency": "$",
+    "noData": "No data available",
+    "empty": "Nothing here yet."
+  },
+  "geometry": {
+    "title": "Volume calculator",
+    "shape": "Mold shape",
+    "cylinder": "Cylinder",
+    "cube": "Cube",
+    "rectangular": "Rectangular prism",
+    "sphere": "Sphere",
+    "hemisphere": "Hemisphere",
+    "cone": "Cone",
+    "pyramid": "Pyramid",
+    "hexagonal": "Hexagon",
+    "irregular": "Irregular (water method)",
+    "diameter": "Diameter (cm)",
+    "radius": "Radius (cm)",
+    "height": "Height (cm)",
+    "width": "Width (cm)",
+    "length": "Length (cm)",
+    "side": "Side (cm)",
+    "calculatedVolume": "Calculated volume",
+    "irregularMethod": {
+      "title": "Method for irregular molds",
+      "step1": "1. Fill the mold completely with water.",
+      "step2": "2. Weigh or measure the water that fits in the mold.",
+      "step3": "3. Enter the water amount here (1 ml = 1 g of water).",
+      "waterAmount": "Water amount (ml / g)",
+      "result": "Approximate mold volume"
+    }
+  },
+  "support": {
+    "title": "Support",
+    "subtitle": "We're here to help. Write to us or open a ticket and we'll get back to you within 24–48 business hours.",
+    "contact": {
+      "title": "Contact channels",
+      "emailLabel": "Support email",
+      "emailValue": "servicioalcliente@seitonhome.com",
+      "emailDesc": "Write to us for questions, bug reports, or technical support.",
+      "emailAction": "Send email",
+      "ticketLabel": "Ticket portal",
+      "ticketDesc": "Submit your request and track its status in real time.",
+      "ticketAction": "Open a ticket",
+      "responseTime": "Average response time: 24–48 business hours (Monday to Friday)"
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "items": [
+        {
+          "q": "How do I activate my license after purchasing?",
+          "a": "After purchase you'll receive an email with your activation code (format XXXX-XXXX-XXXX-XXXX). Sign in to the app, go to the Activate license section, enter the code and press Activate. Access is granted immediately."
+        },
+        {
+          "q": "I purchased but didn't receive my activation code",
+          "a": "Check your spam or junk folder. If it's not there within 15 minutes, email us at servicioalcliente@seitonhome.com with your purchase confirmation and we'll send the code manually."
+        },
+        {
+          "q": "Can I use the app on multiple devices?",
+          "a": "Yes. With your account you can sign in from any computer, tablet, or phone with internet access. The license is per user, not per device."
+        },
+        {
+          "q": "Does the app work without an internet connection?",
+          "a": "No. DIY Calc Pro requires internet to load and save your calculations, materials, and formulas. Data is stored in the cloud so it's available on any device."
+        },
+        {
+          "q": "How do I export my calculations to PDF?",
+          "a": "In each calculator, once you get results, you'll see the Export PDF button. It generates a professional cost sheet with all the calculation data, ready to print or share."
+        },
+        {
+          "q": "Do future updates cost extra?",
+          "a": "No. It's a one-time payment that includes all future updates at no additional cost."
+        },
+        {
+          "q": "How do I change the app language?",
+          "a": "At the bottom of the sidebar you'll find the language selector. You can switch between Spanish and English at any time and the change applies to the entire app immediately."
+        },
+        {
+          "q": "Does the app sell lye, wax, or resin?",
+          "a": "No. DIY Calc Pro is a calculation tool — it tells you how much of each material you need. You source the materials from your usual local supplier."
+        }
+      ]
+    }
+  }
+}

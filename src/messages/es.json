@@ -1,0 +1,1168 @@
+{
+  "locale": "es",
+  "nav": {
+    "home": "Inicio",
+    "dashboard": "Panel",
+    "calculators": "Calculadoras",
+    "library": "Biblioteca",
+    "simulator": "Simulador",
+    "compare": "Comparar",
+    "learn": "Aprende",
+    "support": "Soporte",
+    "settings": "Configuración",
+    "admin": "Admin",
+    "logout": "Cerrar sesión",
+    "login": "Iniciar sesión",
+    "register": "Registrarse",
+    "langSwitch": "EN"
+  },
+  "landing": {
+    "hero": {
+      "badge": "Herramienta profesional para creadores DIY",
+      "title": "DIY CALC PRO",
+      "subtitle": "La calculadora profesional para creadores que quieren producir, costear y vender con precisión.",
+      "cta": "Acceder a la calculadora",
+      "ctaDemo": "Ver demo",
+      "ctaSub": "Más de 500 emprendedores ya calculan con precisión"
+    },
+    "problem": {
+      "title": "Vender mucho no siempre significa ganar más",
+      "subtitle": "Muchos creadores terminan perdiendo dinero sin saberlo",
+      "items": [
+        { "title": "Calculan a ojo", "desc": "Estiman costos sin datos reales y fijan precios sin base técnica." },
+        { "title": "Olvidan variables críticas", "desc": "Merma, empaque, mano de obra, tiempo y comisiones no se incluyen." },
+        { "title": "Venden con pérdida", "desc": "Aunque las ventas crecen, el margen real es negativo o invisible." }
+      ]
+    },
+    "solution": {
+      "title": "DIY Calc Pro cambia eso",
+      "subtitle": "Calcula cada variable crítica con precisión real",
+      "items": [
+        "Calcula materiales exactos para cualquier fórmula o receta",
+        "Incluye merma, empaque, mano de obra y comisiones",
+        "Sugiere precios rentables basados en tus costos reales",
+        "Guarda tus fórmulas y compara escenarios",
+        "Exporta fichas de costos y producción en PDF"
+      ]
+    },
+    "categories": {
+      "title": "Una calculadora para cada material",
+      "subtitle": "Lógica especializada por categoría, no cálculos genéricos",
+      "items": [
+        { "name": "Velas artesanales", "desc": "Cera, fragancia, pabilo, moldes, merma y precio." },
+        { "name": "Resina epóxica", "desc": "Ratio de mezcla, capas, pigmentos, moldes y cobertura." },
+        { "name": "Jabón artesanal", "desc": "Saponificación, aceites, índice SAP y curado." },
+        { "name": "Concreto decorativo", "desc": "Mezcla, pigmentos, sellador y tiempo de secado." },
+        { "name": "Yeso y escayola", "desc": "Ratio agua/yeso, desmoldante y tiempo de fraguado." },
+        { "name": "Multimaterial", "desc": "Combina varios materiales en un solo producto o set." }
+      ]
+    },
+    "benefits": {
+      "title": "Todo lo que necesitas para profesionalizar tu producción",
+      "items": [
+        { "title": "Fórmulas precisas", "desc": "Calcula cantidades exactas de cada material antes de producir." },
+        { "title": "Cero pérdidas ocultas", "desc": "Incluye todas las variables que normalmente se olvidan." },
+        { "title": "Precios rentables", "desc": "Define precios basados en datos, no en intuición." },
+        { "title": "Guarda tus recetas", "desc": "Biblioteca de fórmulas con versiones y comparaciones." },
+        { "title": "Compara escenarios", "desc": "Evalúa materiales, proveedores y estrategias de precio." },
+        { "title": "Exporta resultados", "desc": "PDF profesional con ficha técnica y de costos." },
+        { "title": "Biblioteca completa", "desc": "Registra materiales, moldes y controla tu inventario." },
+        { "title": "Multimaterial", "desc": "Crea sets y productos combinados con costos integrados." }
+      ]
+    },
+    "howItWorks": {
+      "title": "Cómo funciona",
+      "steps": [
+        { "step": "1", "title": "Elige tu categoría", "desc": "Velas, resina, jabón, concreto, yeso o multimaterial." },
+        { "step": "2", "title": "Ingresa tus datos", "desc": "Materiales, cantidades, costos, molde y variables de producción." },
+        { "step": "3", "title": "Obtén resultados", "desc": "Costo real, precio sugerido, margen y recomendaciones automáticas." },
+        { "step": "4", "title": "Guarda y exporta", "desc": "Guarda la fórmula, exporta el PDF y toma decisiones con datos." }
+      ]
+    },
+    "forWho": {
+      "title": "¿Para quién es DIY Calc Pro?",
+      "items": [
+        { "title": "Emprendedores DIY", "desc": "Que quieren conocer su costo real antes de fijar precios." },
+        { "title": "Marcas artesanales", "desc": "Que necesitan sistematizar su producción y costeo." },
+        { "title": "Creadores de contenido", "desc": "Que enseñan DIY y necesitan compartir fórmulas con precisión." },
+        { "title": "Tiendas físicas y online", "desc": "Que venden en marketplace y necesitan márgenes seguros." }
+      ]
+    },
+    "pricing": {
+      "title": "Acceso completo a DIY Calc Pro",
+      "subtitle": "Pago único. Sin suscripción. Sin límites de uso.",
+      "badge": "Oferta de lanzamiento",
+      "price": "$47",
+      "priceSub": "USD · Pago único",
+      "features": [
+        "Todas las calculadoras especializadas",
+        "Calculadora multimaterial",
+        "Biblioteca de materiales, moldes y fórmulas",
+        "Simulador de precios y escenarios",
+        "Exportación PDF profesional",
+        "Acceso de por vida",
+        "Actualizaciones incluidas",
+        "Soporte por email"
+      ],
+      "cta": "Obtener acceso ahora",
+      "guarantee": "30 días de garantía de satisfacción"
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "items": [
+        {
+          "q": "¿Necesito conocimientos técnicos para usarla?",
+          "a": "No. La app está diseñada para que cualquier creador pueda usarla sin formación técnica. Incluye tooltips explicativos en cada campo."
+        },
+        {
+          "q": "¿Funciona para cualquier tipo de vela o resina?",
+          "a": "Sí. Cada calculadora incluye múltiples tipos, formas y variables específicas por material."
+        },
+        {
+          "q": "¿Puedo usar la calculadora de productos combinados?",
+          "a": "Sí, el módulo multimaterial te permite combinar cualquier categoría en un solo producto o set."
+        },
+        {
+          "q": "¿Cómo funciona la activación?",
+          "a": "Recibes un código de activación al comprar. Lo ingresas en tu cuenta y tienes acceso completo de inmediato."
+        },
+        {
+          "q": "¿Puedo exportar mis cálculos?",
+          "a": "Sí. Puedes exportar fichas técnicas y de costos en PDF profesional, listo para imprimir o compartir."
+        },
+        {
+          "q": "¿Está disponible en inglés?",
+          "a": "Sí. La app completa, incluyendo calculadoras, exportaciones y panel, está disponible en español e inglés."
+        }
+      ]
+    },
+    "finalCta": {
+      "title": "Empieza a calcular con precisión hoy",
+      "subtitle": "Convierte tu creatividad en un negocio medible y rentable.",
+      "cta": "Acceder a DIY Calc Pro",
+      "sub": "Acceso inmediato · Pago único · Sin suscripción"
+    },
+    "footer": {
+      "brand": "DIY Calc Pro by Seiton Home",
+      "links": {
+        "privacy": "Privacidad",
+        "terms": "Términos",
+        "support": "Soporte",
+        "apps": "Más apps de Seiton Home"
+      },
+      "copy": "© 2025 Seiton Home. Todos los derechos reservados."
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Iniciar sesión",
+      "subtitle": "Accede a tu cuenta de DIY Calc Pro",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "forgot": "¿Olvidaste tu contraseña?",
+      "submit": "Entrar",
+      "noAccount": "¿No tienes cuenta?",
+      "register": "Regístrate aquí",
+      "demo": "Probar en modo demo",
+      "loading": "Iniciando sesión..."
+    },
+    "register": {
+      "title": "Crear cuenta",
+      "subtitle": "Únete a DIY Calc Pro y empieza a calcular con precisión",
+      "name": "Nombre completo",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "confirm": "Confirmar contraseña",
+      "submit": "Crear cuenta",
+      "hasAccount": "¿Ya tienes cuenta?",
+      "login": "Inicia sesión aquí",
+      "loading": "Creando cuenta...",
+      "success": "Cuenta creada. Revisa tu correo para confirmar."
+    },
+    "activate": {
+      "title": "Activar licencia",
+      "subtitle": "Ingresa tu código de activación para acceder a DIY Calc Pro",
+      "code": "Código de activación",
+      "codePlaceholder": "XXXX-XXXX-XXXX-XXXX",
+      "submit": "Activar ahora",
+      "loading": "Activando...",
+      "success": "¡Licencia activada! Bienvenido a DIY Calc Pro.",
+      "skip": "Usar en modo demo por ahora",
+      "noCode": "¿No tienes código?",
+      "buy": "Obtener acceso completo"
+    },
+    "email": "Correo electrónico",
+    "backToLogin": "Volver al inicio de sesión",
+    "forgotPassword": {
+      "title": "Recuperar contraseña",
+      "subtitle": "Ingresa tu correo y te enviaremos un enlace para restablecer tu contraseña.",
+      "send": "Enviar enlace",
+      "emailSent": "Correo enviado",
+      "checkInbox": "Revisa tu bandeja de entrada y sigue las instrucciones del correo."
+    },
+    "errors": {
+      "invalidEmail": "Correo electrónico inválido",
+      "required": "Este campo es obligatorio",
+      "minPassword": "La contraseña debe tener al menos 8 caracteres",
+      "passwordMatch": "Las contraseñas no coinciden",
+      "invalidCode": "Código de activación inválido o ya utilizado",
+      "expiredCode": "Este código ha expirado",
+      "genericError": "Ocurrió un error. Intenta de nuevo.",
+      "invalidCredentials": "Correo o contraseña incorrectos"
+    }
+  },
+  "dashboard": {
+    "greeting": "Hola, {name}",
+    "subtitle": "Aquí tienes el resumen de tu actividad",
+    "demoWarning": "Estás en modo demo. Activa tu licencia para acceso completo.",
+    "activateLicense": "Activar licencia",
+    "stats": {
+      "products": "Productos",
+      "formulas": "Fórmulas guardadas",
+      "materials": "Materiales",
+      "avgCost": "Costo promedio/unidad",
+      "avgMargin": "Margen promedio",
+      "mostProfitable": "Más rentable",
+      "leastProfitable": "Menos rentable",
+      "totalCalcs": "Cálculos realizados"
+    },
+    "quickAccess": {
+      "title": "Acceso rápido",
+      "newCalc": "Nuevo cálculo",
+      "candles": "Velas",
+      "resin": "Resina",
+      "soap": "Jabón",
+      "concrete": "Concreto",
+      "plaster": "Yeso",
+      "multi": "Multimaterial"
+    },
+    "recentCalcs": {
+      "title": "Últimos cálculos",
+      "empty": "Aún no has realizado cálculos. Empieza con una calculadora.",
+      "startCalc": "Hacer mi primer cálculo",
+      "viewAll": "Ver todos",
+      "date": "Fecha",
+      "type": "Tipo",
+      "product": "Producto",
+      "cost": "Costo",
+      "margin": "Margen"
+    },
+    "alerts": {
+      "title": "Alertas inteligentes",
+      "lowMargin": "Tienes {count} productos con margen por debajo del mínimo recomendado.",
+      "highWaste": "La merma en {product} está afectando tu rentabilidad.",
+      "noMaterials": "Registra tus materiales para obtener costos más precisos.",
+      "noFormulas": "Guarda tus primeras fórmulas para comparar escenarios."
+    },
+    "profitChart": {
+      "title": "Rentabilidad por producto",
+      "empty": "Crea productos para ver tu gráfico de rentabilidad."
+    }
+  },
+  "calculators": {
+    "common": {
+      "units": "Unidades a producir",
+      "batchSize": "Tamaño del lote",
+      "wastePct": "Merma estimada (%)",
+      "laborCost": "Mano de obra (por hora)",
+      "laborHours": "Horas de producción",
+      "energyCost": "Costo energético",
+      "packagingCost": "Costo de empaque",
+      "labelCost": "Etiqueta",
+      "boxCost": "Caja",
+      "shippingCost": "Costo de envío",
+      "taxPct": "Impuestos (%)",
+      "platformFeePct": "Comisión de plataforma (%)",
+      "affiliateFeePct": "Comisión de afiliado (%)",
+      "desiredMarginPct": "Margen deseado (%)",
+      "calculate": "Calcular",
+      "calculating": "Calculando...",
+      "reset": "Reiniciar",
+      "save": "Guardar fórmula",
+      "export": "Exportar PDF",
+      "saved": "Guardado ✓",
+      "results": "Resultados",
+      "noResults": "Ingresa los datos para ver los resultados",
+      "productName": "Nombre del producto",
+      "notes": "Notas adicionales",
+      "currency": "Moneda",
+      "weightUnit": "Unidad de peso",
+      "volumeUnit": "Unidad de volumen",
+      "tooltips": {
+        "wastePct": "Porcentaje de material que se pierde durante la producción. Típicamente entre 2% y 10%.",
+        "laborCost": "Cuánto vale tu hora de trabajo. No lo regales.",
+        "energyCost": "Electricidad, gas u otra energía usada en la producción.",
+        "desiredMarginPct": "Porcentaje de ganancia que quieres mantener sobre el precio de venta.",
+        "platformFeePct": "Comisión que cobra la plataforma donde vendes (Etsy, MercadoLibre, etc.)."
+      }
+    },
+    "results": {
+      "title": "Resultados del cálculo",
+      "totalMaterialCost": "Costo total de materiales",
+      "totalProductionCost": "Costo total de producción",
+      "costPerUnit": "Costo por unidad",
+      "costPerBatch": "Costo por lote",
+      "suggestedPrice": "Precio sugerido de venta",
+      "wholesalePrice": "Precio mayorista",
+      "grossMargin": "Margen bruto",
+      "netMargin": "Margen neto",
+      "profitPerUnit": "Ganancia por unidad",
+      "profitPerBatch": "Ganancia por lote",
+      "breakEven": "Punto de equilibrio",
+      "breakEvenUnits": "Unidades para recuperar inversión",
+      "profitability": "Rentabilidad",
+      "riskLevel": "Nivel de riesgo",
+      "riskLow": "Bajo",
+      "riskMedium": "Medio",
+      "riskHigh": "Alto",
+      "recommendation": "Recomendación",
+      "costDistribution": "Distribución de costos",
+      "mostExpensive": "Material más costoso",
+      "productionTime": "Tiempo estimado de producción"
+    },
+    "recommendations": {
+      "lowMargin": "Tu margen está por debajo del mínimo recomendado (20%). Revisa tus costos o ajusta el precio.",
+      "highWaste": "La merma está afectando demasiado tu rentabilidad. Considera optimizar el proceso.",
+      "highPackaging": "El empaque representa un porcentaje alto del costo total. Evalúa alternativas.",
+      "noLabor": "Tu mano de obra no está siendo incluida correctamente. Añade tu costo por hora.",
+      "bulkSaving": "Podrías mejorar el margen comprando materiales por mayor.",
+      "healthyMargin": "Tu margen es saludable. Este producto está listo para venderse.",
+      "notMarketplace": "Este producto parece rentable para venta directa, pero no para marketplace.",
+      "setRecommend": "Este producto podría funcionar mejor como parte de un set.",
+      "minWholesale": "El precio mayorista sugerido no debería bajar de {price}.",
+      "reviewBeforeSell": "Este producto necesita revisión antes de venderse."
+    },
+    "candles": {
+      "title": "Calculadora de Velas",
+      "subtitle": "Calcula con precisión fórmulas para velas artesanales",
+      "candleType": "Tipo de vela",
+      "types": {
+        "glass": "Vela en vaso",
+        "molded": "Vela moldeada",
+        "decorative": "Vela decorativa",
+        "pillar": "Vela pilar",
+        "waxMelt": "Wax melt",
+        "tealight": "Vela tealight",
+        "votive": "Vela votiva",
+        "sculptural": "Vela escultórica",
+        "multilayer": "Vela multicapa",
+        "embeds": "Vela con embeds",
+        "aromatic": "Vela aromática",
+        "unscented": "Vela sin aroma"
+      },
+      "moldShape": "Forma del molde",
+      "shapes": {
+        "cylinder": "Cilindro",
+        "cube": "Cubo",
+        "rectangular": "Rectangular",
+        "sphere": "Esfera",
+        "hemisphere": "Semiesfera",
+        "pyramid": "Pirámide",
+        "cone": "Cono",
+        "hexagonal": "Hexagonal",
+        "irregular": "Irregular",
+        "custom": "Personalizada"
+      },
+      "dimensions": {
+        "title": "Dimensiones del molde",
+        "diameter": "Diámetro (cm)",
+        "height": "Altura (cm)",
+        "width": "Ancho (cm)",
+        "length": "Largo (cm)",
+        "radius": "Radio (cm)",
+        "volume": "Volumen (ml)",
+        "capacity": "Volumen del molde (ml)",
+        "fillPct": "Porcentaje de llenado (%)",
+        "targetWeight": "Peso final deseado (g)",
+        "density": "Densidad estimada (g/ml)"
+      },
+      "wax": {
+        "title": "Cera principal",
+        "type": "Tipo de cera",
+        "types": {
+          "soy": "Cera de soja — contenedor (464, GB464)",
+          "soyPillar": "Cera de soja — pilar/votive (415, CB-135)",
+          "coconut": "Cera de coco pura (76°F)",
+          "coconutApricot": "Mezcla coco-albaricoque (Coconut 83, CX)",
+          "palm": "Cera de palma (pilar)",
+          "paraffin": "Parafina estándar (MP 52–54 °C)",
+          "moldWax": "Cera de molde / Pillar (MP 60–68 °C)",
+          "beeswax": "Cera de abeja pura (natural)",
+          "gel": "Gel translúcido (mineral oil gel)",
+          "soyParaffin": "Mezcla soya-parafina (50:50 o 60:40)",
+          "custom": "Cera personalizada / Mezcla propia"
+        },
+        "costPerKg": "Costo por kg de cera",
+        "mixPct": "Porcentaje en la mezcla (%)"
+      },
+      "fragrance": {
+        "title": "Fragancia",
+        "loadPct": "Porcentaje de fragancia (%)",
+        "costPerKg": "Costo por kg de fragancia",
+        "warning": "El porcentaje máximo recomendado es {max}% para {waxType}. Superar este límite puede causar sangrado o problemas de quema.",
+        "tooltipLoad": "Porcentaje de fragancia respecto al peso total de la cera. Típicamente entre 6% y 12%."
+      },
+      "colorant": {
+        "title": "Colorante",
+        "type": "Tipo de colorante",
+        "costPerUnit": "Costo por unidad",
+        "amount": "Cantidad (g o gotas)",
+        "tooltipAmount": "Usa aproximadamente 0.5g-1g por 450g de cera para colorantes sólidos."
+      },
+      "additives": {
+        "title": "Aditivos",
+        "stearicAcid": "Estearina (ácido esteárico)",
+        "stearicHint": "Endurece la cera, mejora opacidad y facilita desmolde. Esencial en cera de molde.",
+        "stearicPct": "% estearina del peso de cera",
+        "stearicPctHint": "Rango recomendado: 5–15%. Más del 20% fragiliza la vela.",
+        "stearicWarnNone": "La cera de molde requiere estearina para mantener su forma. Agrega al menos 5%.",
+        "stearicWarnLow": "Menos del 5% puede hacer que la vela no soporte su propio peso.",
+        "stearicWarnHigh": "Más del 20% puede hacer la vela muy frágil y quebradiza.",
+        "moldWaxInfo": "Cera de molde — Parafina de alto punto de fusión (58–68°C) para velas de pie, figuras y pillar. SIEMPRE requiere segunda vertida.",
+        "vybar": "Vybar",
+        "vybarType": "Tipo de Vybar",
+        "vybarTypes": {
+          "103": "Vybar 103 — parafina pillar",
+          "260": "Vybar 260 — mezclas blandas"
+        },
+        "vybarHint": "Rango ideal: 0.5–1% del peso de cera. Más del 1.5% reduce el olor.",
+        "vybarWarnHigh": "Vybar por encima del 1.5% puede reducir significativamente el throw de fragancia.",
+        "vybarWarnLow": "Con menos del 0.5% el efecto del Vybar es mínimo.",
+        "vybar103Desc": "Para velas de molde con parafina. Endurece, reduce motas, mejora superficie.",
+        "vybar260Desc": "Para mezclas de ceras blandas (soya, coco). Mayor retención de fragancia.",
+        "uvInhibitor": "Inhibidor UV",
+        "uvHint": "Previene el amarillamiento de velas blancas. Uso: 0.1–0.5% del peso de cera.",
+        "hardener": "Endurecedor",
+        "other": "Otros aditivos",
+        "costPerUnit": "Costo por unidad",
+        "amount": "Cantidad (g)",
+        "costPerKg": "Costo por kg"
+      },
+      "wick": {
+        "title": "Pabilo",
+        "type": "Tipo de pabilo",
+        "types": {
+          "cotton": "Algodón",
+          "wood": "Madera",
+          "double": "Doble pabilo",
+          "triple": "Triple pabilo"
+        },
+        "costPerUnit": "Costo por pabilo"
+      },
+      "curingTime": "Tiempo de curado (horas)",
+      "productionTime": "Tiempo de producción (min/unidad)",
+      "warnings": {
+        "highFragrance": "Porcentaje de fragancia muy alto. Puede causar problemas de quema o sangrado.",
+        "highWaste": "Merma demasiado alta. Revisa tu proceso de producción."
+      }
+    },
+    "resin": {
+      "title": "Calculadora de Resina Epóxica",
+      "subtitle": "Calcula mezcla, pigmentos y costos para proyectos de resina",
+      "projectType": "Tipo de proyecto",
+      "types": {
+        "table": "Mesa",
+        "tray": "Bandeja",
+        "coaster": "Portavasos",
+        "jewelry": "Joyería",
+        "decorative": "Moldes decorativos",
+        "artwork": "Cuadros",
+        "clock": "Relojes",
+        "coating": "Recubrimiento superficial",
+        "encapsulation": "Encapsulado",
+        "geode": "Geoda",
+        "river": "Río de resina",
+        "repair": "Reparación",
+        "artistic": "Pieza artística",
+        "combined": "Producto combinado"
+      },
+      "resinType": "Tipo de resina",
+      "mixRatio": "Relación de mezcla",
+      "ratios": {
+        "1:1": "1:1",
+        "2:1": "2:1",
+        "3:1": "3:1",
+        "custom": "Personalizada"
+      },
+      "partA": "Parte A (%)",
+      "partB": "Parte B (%)",
+      "costPerKgA": "Costo por kg de Parte A",
+      "costPerKgB": "Costo por kg de Parte B",
+      "density": "Densidad de la resina (g/ml)",
+      "moldVolume": "Volumen del molde (ml)",
+      "coverageArea": "Área de cobertura (cm²)",
+      "thickness": "Espesor (mm)",
+      "layers": "Número de capas",
+      "timeBetweenLayers": "Tiempo entre capas (horas)",
+      "pigments": {
+        "title": "Pigmentos y accesorios",
+        "micas": "Micas",
+        "alcoholInks": "Alcohol inks",
+        "glitter": "Escarcha / Glitter",
+        "goldLeaf": "Hoja de oro",
+        "stones": "Piedras y cristales",
+        "inclusions": "Incrustaciones",
+        "costPerUnit": "Costo por unidad",
+        "amount": "Cantidad (g)"
+      },
+      "finishing": {
+        "title": "Acabado",
+        "sealant": "Sellador",
+        "sandpaper": "Lija",
+        "polish": "Pulimento",
+        "varnish": "Barniz"
+      },
+      "curingTime": "Tiempo de curado (horas)",
+      "heatGun": "Soplete / pistola de calor",
+      "mixLoss": "Pérdida por mezcla (%)",
+      "tooltips": {
+        "mixRatio": "La relación indica cuánta parte A por cuánta parte B. Por ejemplo 2:1 significa 2 partes A por 1 parte B.",
+        "mixLoss": "Porcentaje de resina que se pierde en el proceso de mezcla y aplicación. Típicamente 3-8%.",
+        "density": "Densidad típica de resina epóxica: 1.1 g/ml. Puede variar según el fabricante."
+      }
+    },
+    "soap": {
+      "title": "Calculadora de Jabón Artesanal",
+      "subtitle": "Glicerina, jabón con sosa, champú sólido, sal marina, leche — todo con proporciones exactas",
+      "soapType": "Tipo de jabón",
+      "types": {
+        "meltPour": "Glicerina en bloque (sin sosa, fácil)",
+        "clearGlycerin": "Glicerina transparente (cristal / jelly)",
+        "goatMilk": "Glicerina leche de cabra",
+        "exfoliating": "Glicerina con exfoliante (avena, café, sal…)",
+        "coldProcess": "Jabón artesanal con sosa (proceso frío)",
+        "hotProcess": "Jabón artesanal cocinado (proceso caliente)",
+        "milkSoap": "Jabón de leche (leche de cabra, coco o avena)",
+        "liquid": "Jabón líquido (con sosa potásica KOH)",
+        "castile": "Jabón de Castilla (solo aceite de oliva)",
+        "saltBar": "Jabón de sal marina (con sosa)",
+        "syndet": "Champú sólido / barra sin sosa (syndet)",
+        "shampooBar": "Champú sólido glicerina (sin sosa)",
+        "shampooBarCP": "Champú sólido con sosa (proceso frío)"
+      },
+      "base": {
+        "title": "Base de jabón",
+        "type": "Tipo de base",
+        "costPerKg": "Costo por kg",
+        "amount": "Cantidad (g)"
+      },
+      "saponification": {
+        "title": "Saponificación (cold/hot process)",
+        "safetyWarning": "⚠️ SEGURIDAD: La sosa cáustica (NaOH) y la sosa potásica (KOH para jabón líquido) son materiales altamente corrosivos. Usa guantes y gafas, trabaja en área ventilada. SIEMPRE agrega la sosa al agua (o a la leche fría), NUNCA al revés. No respires los vapores.",
+        "oils": "Aceites y mantecas",
+        "addOil": "Agregar aceite",
+        "olivePct": "Aceite de oliva (%)",
+        "coconutPct": "Aceite de coco (%)",
+        "palmPct": "Aceite de palma (%)",
+        "sheaPct": "Manteca de karité (%)",
+        "cocoacPct": "Manteca de cacao (%)",
+        "otherOils": "Otros aceites (%)",
+        "superfattPct": "Sobreengrasado (%)",
+        "lyeConcentration": "Concentración de lejía (%)",
+        "waterAmount": "Cantidad de agua (g)",
+        "lyeAmount": "Cantidad de sosa cáustica (g)",
+        "sapIndex": "Índice SAP",
+        "calculatedLye": "Sosa / KOH calculada",
+        "tooltipSuperfat": "El sobreengrasado (2-8%) deja aceites libres en el jabón para suavidad. Más sobreengrase = jabón más suave pero con menos limpieza.",
+        "tooltipLye": "Calculado automáticamente con el índice de saponificación de cada aceite."
+      },
+      "additives": {
+        "title": "Aditivos y extras",
+        "exfoliants": "Exfoliantes",
+        "fragrance": "Fragancia",
+        "essentialOil": "Aceite esencial",
+        "colorants": "Colorantes",
+        "extras": "Otros aditivos"
+      },
+      "curingTime": "Tiempo de curado (días)",
+      "packaging": "Empaque",
+      "label": "Etiqueta"
+    },
+    "concrete": {
+      "title": "Calculadora de Concreto Decorativo",
+      "subtitle": "Mezclas, piezas y costeo para productos de concreto artesanal",
+      "projectType": "Tipo de producto",
+      "types": {
+        "tray": "Bandeja",
+        "planter": "Maceta",
+        "candleHolder": "Portavelas",
+        "base": "Base decorativa",
+        "sculpture": "Escultura",
+        "bowl": "Cuenco",
+        "lamp": "Lámpara",
+        "table": "Mesa pequeña",
+        "combined": "Pieza combinada",
+        "custom": "Molde personalizado"
+      },
+      "mixType": "Tipo de mezcla",
+      "mixTypes": {
+        "cement": "Cemento",
+        "concrete": "Concreto",
+        "microcement": "Microcemento",
+        "mortar": "Mortero",
+        "whiteCement": "Cemento blanco",
+        "artisan": "Mezcla artesanal"
+      },
+      "mix": {
+        "title": "Composición de la mezcla",
+        "cement": "Cemento",
+        "sand": "Arena",
+        "water": "Agua",
+        "cementRatio": "Proporción de cemento (%)",
+        "sandRatio": "Proporción de arena (%)",
+        "waterCementRatio": "Relación agua/cemento",
+        "costPerKg": "Costo por kg",
+        "tooltipWater": "La relación agua/cemento ideal es 0.4-0.5. Más agua debilita la mezcla.",
+        "warnings": {
+          "tooMuchWater": "La cantidad de agua es muy alta. Puede debilitar la mezcla y causar grietas.",
+          "tooLittleWater": "Poca agua puede dificultar el trabajo y afectar el curado."
+        }
+      },
+      "additives": {
+        "title": "Aditivos y acabado",
+        "pigment": "Pigmentos",
+        "sealant": "Sellador",
+        "fibers": "Fibras reforzantes",
+        "plasticizer": "Plastificante",
+        "waterproofing": "Impermeabilizante",
+        "mold": "Molde",
+        "releaseAgent": "Desmoldante",
+        "sandpaper": "Lija",
+        "polish": "Pulimento"
+      },
+      "dryingTime": "Tiempo de secado (horas)",
+      "finalWeight": "Peso final estimado (kg)"
+    },
+    "plaster": {
+      "title": "Calculadora de Yeso y Escayola",
+      "subtitle": "Cálculo preciso de mezclas, costos y tiempos para productos de yeso",
+      "projectType": "Tipo de proyecto",
+      "types": {
+        "figure": "Figura decorativa",
+        "tray": "Bandeja",
+        "candleHolder": "Portavelas",
+        "aromatic": "Pieza aromática",
+        "diffuser": "Difusor",
+        "sculpture": "Escultura",
+        "decorative": "Molde decorativo",
+        "keepsake": "Recuerdo",
+        "painted": "Producto pintado",
+        "sealed": "Producto sellado"
+      },
+      "plasterType": "Tipo de yeso",
+      "plasterTypes": {
+        "standard": "Yeso estándar",
+        "escayola": "Escayola",
+        "ceramic": "Yeso cerámico",
+        "stone": "Yeso piedra",
+        "premium": "Yeso premium"
+      },
+      "mix": {
+        "title": "Mezcla de yeso",
+        "plasterAmount": "Cantidad de yeso (g)",
+        "waterAmount": "Cantidad de agua (g)",
+        "waterPlasterRatio": "Relación agua/yeso",
+        "costPerKg": "Costo por kg de yeso",
+        "tooltipRatio": "La relación típica es 0.6-0.8 partes de agua por 1 parte de yeso. Escayola: 0.5-0.7.",
+        "calculatedWater": "Agua calculada"
+      },
+      "additives": {
+        "title": "Aditivos y acabado",
+        "pigment": "Pigmentos",
+        "fragrance": "Fragancia (si aplica)",
+        "sealant": "Sellador",
+        "paint": "Pintura",
+        "varnish": "Barniz",
+        "mold": "Molde",
+        "releaseAgent": "Desmoldante",
+        "sandpaper": "Lija"
+      },
+      "dryingTime": "Tiempo de secado (minutos)",
+      "finalWeight": "Peso final (g)",
+      "comparison": {
+        "title": "Comparación de yesos",
+        "standard": "Yeso estándar",
+        "premium": "Yeso premium",
+        "costDiff": "Diferencia de costo",
+        "qualityNote": "El yeso premium ofrece mejor blancura, resistencia y detalle de superficie."
+      }
+    },
+    "multi": {
+      "title": "Calculadora Multimaterial",
+      "subtitle": "Crea productos combinados o sets con múltiples materiales",
+      "description": "Combina diferentes categorías de materiales en un solo producto. Ideal para sets de regalo, kits DIY y productos con múltiples componentes.",
+      "addComponent": "Agregar componente",
+      "component": "Componente",
+      "componentType": "Tipo de material",
+      "componentName": "Nombre del componente",
+      "componentCost": "Costo del componente",
+      "componentTime": "Tiempo de producción (min)",
+      "componentWaste": "Merma (%)",
+      "removeComponent": "Eliminar",
+      "examples": {
+        "title": "Ejemplos de productos combinados",
+        "items": [
+          "Vela en base de concreto",
+          "Set de difusor de yeso + aceite",
+          "Bandeja de resina + portavelas",
+          "Kit: jabón + vela + soporte de concreto"
+        ]
+      },
+      "analysis": {
+        "title": "Análisis por componente",
+        "costShare": "Participación en costo total",
+        "mostExpensive": "Componente más costoso",
+        "mostTimeConsuming": "Componente más lento",
+        "costDistribution": "Distribución de costos",
+        "recommendation": "Recomendación del conjunto"
+      }
+    }
+  },
+  "library": {
+    "materials": {
+      "title": "Biblioteca de Materiales",
+      "subtitle": "Registra y gestiona todos tus materiales con costos actualizados",
+      "add": "Agregar material",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "fields": {
+        "name": "Nombre del material",
+        "category": "Categoría",
+        "purchaseUnit": "Unidad de compra",
+        "purchaseQty": "Cantidad comprada",
+        "pricePaid": "Precio pagado",
+        "supplier": "Proveedor",
+        "purchaseDate": "Fecha de compra",
+        "costPerGram": "Costo por gramo",
+        "costPerMl": "Costo por ml",
+        "costPerUnit": "Costo por unidad",
+        "stock": "Stock disponible",
+        "wastePct": "Merma estimada (%)",
+        "notes": "Notas",
+        "photo": "Foto"
+      },
+      "categories": {
+        "waxes": "Ceras",
+        "fragrances": "Fragancias",
+        "colorants": "Colorantes",
+        "additives": "Aditivos",
+        "resins": "Resinas",
+        "hardeners": "Endurecedores",
+        "pigments": "Pigmentos",
+        "micas": "Micas",
+        "soapBases": "Jabones base",
+        "oils": "Aceites",
+        "butters": "Mantecas",
+        "cement": "Cemento",
+        "plaster": "Yeso",
+        "sand": "Arena",
+        "sealants": "Selladores",
+        "packaging": "Empaques",
+        "labels": "Etiquetas",
+        "accessories": "Accesorios",
+        "tools": "Herramientas consumibles",
+        "other": "Otros"
+      },
+      "empty": "Aún no has registrado materiales. Agrega tu primer material para empezar a calcular costos reales.",
+      "search": "Buscar material...",
+      "filter": "Filtrar por categoría"
+    },
+    "molds": {
+      "title": "Biblioteca de Moldes",
+      "subtitle": "Registra tus moldes, calcula amortización y volúmenes",
+      "add": "Agregar molde",
+      "edit": "Editar molde",
+      "shapes": {
+        "cylinder": "Cilindro",
+        "cube": "Cubo",
+        "rectangular": "Rectangular",
+        "sphere": "Esfera",
+        "hemisphere": "Semiesfera",
+        "cone": "Cono",
+        "pyramid": "Pirámide",
+        "hexagonal": "Hexagonal",
+        "irregular": "Irregular"
+      },
+      "materials": {
+        "silicone": "Silicona",
+        "polycarbonate": "Policarbonato",
+        "wood": "Madera",
+        "metal": "Metal",
+        "plastic": "Plástico",
+        "other": "Otro"
+      },
+      "fields": {
+        "name": "Nombre del molde",
+        "shape": "Forma",
+        "material": "Material del molde",
+        "height": "Altura (cm)",
+        "diameter": "Diámetro (cm)",
+        "width": "Ancho (cm)",
+        "length": "Largo (cm)",
+        "cost": "Costo del molde ($)",
+        "estimatedVolume": "Volumen estimado",
+        "volume": "Volumen (ml)",
+        "category": "Categoría",
+        "dimensions": "Dimensiones",
+        "capacity": "Capacidad",
+        "moldMaterial": "Material del molde",
+        "cavities": "Número de cavidades",
+        "moldCost": "Costo del molde",
+        "estimatedUses": "Usos estimados",
+        "amortizedCost": "Costo amortizado por uso",
+        "notes": "Notas",
+        "photo": "Foto"
+      },
+      "amortization": {
+        "title": "Amortización del molde",
+        "formula": "Costo del molde ÷ usos estimados = costo por uso",
+        "costPerUse": "Costo por uso"
+      },
+      "empty": "Aún no has registrado moldes. Agrega tu primer molde para incluir su amortización en los cálculos.",
+      "search": "Buscar molde..."
+    },
+    "formulas": {
+      "title": "Biblioteca de Fórmulas",
+      "subtitle": "Guarda, versiona y compara tus mejores fórmulas",
+      "add": "Nueva fórmula",
+      "duplicate": "Duplicar",
+      "compare": "Comparar",
+      "fields": {
+        "name": "Nombre de la fórmula",
+        "category": "Categoría",
+        "version": "Versión",
+        "createdAt": "Fecha de creación",
+        "updatedAt": "Última modificación",
+        "notes": "Notas",
+        "materials": "Materiales e ingredientes"
+      },
+      "noMaterials": "Esta fórmula no tiene materiales detallados registrados.",
+      "empty": "Aún no has guardado fórmulas. Realiza un cálculo y guárdalo como fórmula.",
+      "search": "Buscar fórmula..."
+    }
+  },
+  "simulator": {
+    "title": "Simulador de Precios",
+    "subtitle": "Simula diferentes escenarios de precio y encuentra el más rentable",
+    "baseCost": "Costo base por unidad",
+    "salePrice": "Precio de venta",
+    "discount": "Descuento (%)",
+    "wholesalePrice": "Precio mayorista",
+    "marketplaceFee": "Comisión marketplace (%)",
+    "hotmartFee": "Comisión Hotmart (%)",
+    "gatewayFee": "Comisión pasarela (%)",
+    "affiliateFee": "Comisión afiliado (%)",
+    "shippingCost": "Costo de envío",
+    "taxes": "Impuestos (%)",
+    "premiumPackaging": "Empaque premium",
+    "promotion2x1": "Promoción 2x1",
+    "volumeDiscount": "Descuento por volumen (%)",
+    "minMargin": "Margen mínimo deseado (%)",
+    "results": {
+      "minProfitable": "Precio mínimo rentable",
+      "recommended": "Precio recomendado",
+      "premium": "Precio premium",
+      "safeWholesale": "Precio mayorista seguro",
+      "promoWithoutLoss": "Precio con promo sin pérdida",
+      "minUnitsToRecover": "Unidades mínimas para recuperar inversión"
+    }
+  },
+  "compare": {
+    "title": "Comparador de Escenarios",
+    "subtitle": "Compara fórmulas, materiales, precios y estrategias lado a lado",
+    "addScenario": "Agregar escenario",
+    "compare": "Comparar ahora",
+    "fields": {
+      "directCosts": "Costos directos (materiales)",
+      "laborHours": "Horas de producción",
+      "laborCostPerHour": "Costo mano de obra/hora",
+      "packagingCost": "Empaque",
+      "wastePct": "Merma (%)",
+      "platformFeePct": "Comisión plataforma (%)",
+      "margin": "Margen deseado (%)",
+      "units": "Unidades"
+    },
+    "results": {
+      "table": "Tabla comparativa",
+      "chart": "Gráfico comparativo",
+      "metric": "Métrica"
+    },
+    "scenarios": {
+      "formulaAvsB": "Fórmula A vs Fórmula B",
+      "cheapVsPremium": "Material económico vs premium",
+      "retailVsWholesale": "Minorista vs mayorista",
+      "directVsMarketplace": "Venta directa vs marketplace",
+      "singleVsSet": "Producto individual vs set",
+      "smallVsBatch": "Producción pequeña vs lote"
+    },
+    "metrics": {
+      "cost": "Costo",
+      "margin": "Margen",
+      "price": "Precio",
+      "profit": "Ganancia",
+      "profitability": "Rentabilidad"
+    }
+  },
+  "learn": {
+    "title": "Aprende a costear",
+    "subtitle": "Mini guías para emprendedores DIY que quieren profesionalizar su negocio",
+    "articles": {
+      "grossMargin": {
+        "title": "Qué es el margen bruto",
+        "summary": "El margen bruto mide cuánto ganas antes de restar gastos operativos.",
+        "content": "El margen bruto es la diferencia entre tu precio de venta y el costo directo de producción. Se expresa en porcentaje. Un margen bruto de 50% significa que de cada $100 vendidos, $50 cubren los materiales y $50 quedan para cubrir otros gastos y generar ganancia."
+      },
+      "netMargin": {
+        "title": "Qué es el margen neto",
+        "summary": "El margen neto es lo que realmente ganas después de todos los gastos.",
+        "content": "El margen neto incluye todos los costos: materiales, mano de obra, empaque, comisiones, impuestos, envíos y gastos operativos. Es el indicador más honesto de la rentabilidad real de tu negocio."
+      },
+      "waste": {
+        "title": "Cómo calcular la merma",
+        "summary": "La merma es el material que se pierde durante la producción.",
+        "content": "La merma incluye lo que se derrama, lo que no encuadra en el molde, el material que se endurece antes de usar, o el producto que no pasa el control de calidad. Si produces 100 velas pero 5 no quedan perfectas, tu merma es 5%. Siempre inclúyela en tus costos."
+      },
+      "labor": {
+        "title": "Cómo incluir la mano de obra",
+        "summary": "Tu tiempo tiene valor. No lo regales.",
+        "content": "Define cuánto vale tu hora de trabajo. Multiplica ese valor por las horas que dedicas a cada producto. Incluye preparación, producción, acabado y empaque. Si no incluyes tu mano de obra, no estás viendo el costo real."
+      },
+      "wholesale": {
+        "title": "Cómo calcular precio mayorista",
+        "summary": "El precio mayorista debe cubrir costos y mantener margen mínimo.",
+        "content": "El precio mayorista típicamente es el doble de tu costo de producción. Pero si tus costos incluyen mano de obra y todos los gastos, el multiplicador puede ser diferente. Usa DIY Calc Pro para simularlo con tus números reales."
+      },
+      "profitability": {
+        "title": "Cómo saber si un producto es rentable",
+        "summary": "Un producto es rentable cuando genera margen después de TODOS los costos.",
+        "content": "Un producto rentable cubre: materiales, mano de obra, empaque, comisiones, envío, merma y deja margen neto positivo. Si alguna de estas variables no está incluida, tu cálculo de rentabilidad está incompleto."
+      },
+      "multiplier": {
+        "title": "Por qué no debes multiplicar solo por 2 o 3",
+        "summary": "La regla del 2x o 3x ignora variables críticas que afectan tu rentabilidad.",
+        "content": "Multiplicar el costo de materiales por 2 o 3 es el método más común y más peligroso. Omite mano de obra, merma, empaque, comisiones y tiempo. En muchos casos, un producto que \"parece\" rentable con este método genera pérdidas cuando se incluyen todas las variables."
+      },
+      "sets": {
+        "title": "Cómo costear sets",
+        "summary": "Un set debe cubrir los costos de todos sus componentes más el empaque de presentación.",
+        "content": "Al crear un set, suma el costo de cada componente individual, agrega el empaque especial del set, el tiempo extra de montaje y un margen que justifique el valor percibido. Un set bien costeo puede tener mejor margen que cada pieza vendida por separado."
+      },
+      "custom": {
+        "title": "Cómo costear productos personalizados",
+        "summary": "La personalización tiene un valor adicional que debes cobrar.",
+        "content": "Un producto personalizado toma más tiempo, implica riesgo de error y tiene menor posibilidad de reventa si hay devolución. Incluye un porcentaje adicional por personalización (generalmente 20-30% sobre el precio base) y tiempos de consulta con el cliente."
+      }
+    }
+  },
+  "settings": {
+    "title": "Configuración",
+    "language": "Idioma",
+    "currency": "Moneda",
+    "units": "Sistema de unidades",
+    "unitsMetric": "Métrico (kg, cm, ml)",
+    "unitsImperial": "Imperial (lb, in, oz)",
+    "theme": "Tema",
+    "themeLight": "Claro",
+    "themeDark": "Oscuro",
+    "themeSystem": "Sistema",
+    "profile": "Perfil",
+    "name": "Nombre",
+    "email": "Correo",
+    "password": "Cambiar contraseña",
+    "save": "Guardar cambios",
+    "saved": "Cambios guardados",
+    "license": {
+      "title": "Licencia",
+      "status": "Estado",
+      "active": "Activa",
+      "expired": "Expirada",
+      "demo": "Demo",
+      "activatedAt": "Activada el",
+      "upgrade": "Actualizar a premium"
+    }
+  },
+  "admin": {
+    "title": "Panel de Administración",
+    "tabs": {
+      "users": "Usuarios",
+      "licenses": "Licencias",
+      "codes": "Códigos",
+      "stats": "Estadísticas"
+    },
+    "users": {
+      "title": "Usuarios registrados",
+      "email": "Correo",
+      "name": "Nombre",
+      "license": "Licencia",
+      "language": "Idioma",
+      "calcs": "Cálculos",
+      "joinedAt": "Registro"
+    },
+    "codes": {
+      "title": "Códigos de activación",
+      "generate": "Generar códigos",
+      "quantity": "Cantidad",
+      "code": "Código",
+      "status": "Estado",
+      "used": "Usado",
+      "unused": "Sin usar",
+      "blocked": "Bloqueado",
+      "usedBy": "Usado por",
+      "usedAt": "Fecha de uso",
+      "block": "Bloquear",
+      "copyAll": "Copiar todos",
+      "import": "Importar"
+    },
+    "stats": {
+      "title": "Estadísticas generales",
+      "totalUsers": "Total usuarios",
+      "activeUsers": "Usuarios activos",
+      "totalCalcs": "Cálculos totales",
+      "mostUsedCalc": "Calculadora más usada",
+      "byCategory": "Por categoría"
+    }
+  },
+  "export": {
+    "title": "Exportar resultados",
+    "pdf": "Exportar PDF",
+    "csv": "Exportar CSV",
+    "print": "Imprimir",
+    "filename": "diy-calc-pro-resultado",
+    "pdfTitle": "DIY Calc Pro — Ficha de costos",
+    "brand": "DIY Calc Pro by Seiton Home",
+    "generatedAt": "Generado el",
+    "product": "Producto",
+    "category": "Categoría",
+    "formula": "Fórmula",
+    "materials": "Materiales",
+    "costs": "Costos",
+    "suggestedPrice": "Precio sugerido",
+    "margin": "Margen",
+    "notes": "Notas",
+    "language": "Idioma del documento"
+  },
+  "errors": {
+    "generic": "Ocurrió un error inesperado. Intenta de nuevo.",
+    "notFound": "Página no encontrada",
+    "unauthorized": "Acceso no autorizado",
+    "licenseRequired": "Esta función requiere licencia activa",
+    "networkError": "Error de conexión. Verifica tu internet.",
+    "saveError": "No se pudo guardar. Intenta de nuevo.",
+    "loadError": "No se pudieron cargar los datos."
+  },
+  "common": {
+    "loading": "Cargando...",
+    "saving": "Guardando...",
+    "saved": "Guardado",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "view": "Ver",
+    "close": "Cerrar",
+    "back": "Volver",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "sort": "Ordenar",
+    "new": "Nuevo",
+    "create": "Crear",
+    "update": "Actualizar",
+    "add": "Agregar",
+    "remove": "Eliminar",
+    "yes": "Sí",
+    "no": "No",
+    "or": "o",
+    "and": "y",
+    "of": "de",
+    "per": "por",
+    "total": "Total",
+    "subtotal": "Subtotal",
+    "optional": "Opcional",
+    "required": "Obligatorio",
+    "currency": "$",
+    "noData": "Sin datos disponibles",
+    "empty": "No hay elementos aquí aún."
+  },
+  "geometry": {
+    "title": "Calculadora de volumen",
+    "shape": "Forma del molde",
+    "cylinder": "Cilindro",
+    "cube": "Cubo",
+    "rectangular": "Prisma rectangular",
+    "sphere": "Esfera",
+    "hemisphere": "Semiesfera",
+    "cone": "Cono",
+    "pyramid": "Pirámide",
+    "hexagonal": "Hexágono",
+    "irregular": "Irregular (método agua)",
+    "diameter": "Diámetro (cm)",
+    "radius": "Radio (cm)",
+    "height": "Altura (cm)",
+    "width": "Ancho (cm)",
+    "length": "Largo (cm)",
+    "side": "Lado (cm)",
+    "calculatedVolume": "Volumen calculado",
+    "irregularMethod": {
+      "title": "Método para molde irregular",
+      "step1": "1. Llena el molde completamente con agua.",
+      "step2": "2. Pesa o mide el agua que cabe en el molde.",
+      "step3": "3. Ingresa la cantidad de agua aquí (1 ml = 1 g de agua).",
+      "waterAmount": "Cantidad de agua (ml / g)",
+      "result": "Volumen aproximado del molde"
+    }
+  },
+  "support": {
+    "title": "Soporte",
+    "subtitle": "Estamos aquí para ayudarte. Escríbenos o abre un ticket y te respondemos en 24–48 horas hábiles.",
+    "contact": {
+      "title": "Canales de atención",
+      "emailLabel": "Correo de soporte",
+      "emailValue": "servicioalcliente@seitonhome.com",
+      "emailDesc": "Escríbenos para consultas, reportes de errores o soporte técnico.",
+      "emailAction": "Enviar correo",
+      "ticketLabel": "Portal de tickets",
+      "ticketDesc": "Registra tu solicitud y haz seguimiento del estado en tiempo real.",
+      "ticketAction": "Abrir un ticket",
+      "responseTime": "Tiempo de respuesta promedio: 24–48 horas hábiles (lunes a viernes)"
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "items": [
+        {
+          "q": "¿Cómo activo mi licencia después de comprar?",
+          "a": "Después de la compra recibes un correo con tu código de activación (formato XXXX-XXXX-XXXX-XXXX). Inicia sesión en la app, ve a la sección Activar licencia, ingresa el código y presiona Activar. El acceso queda habilitado de inmediato."
+        },
+        {
+          "q": "Compré pero no recibí el código de activación",
+          "a": "Revisa la carpeta de spam o correo no deseado. Si no aparece en 15 minutos, escríbenos a servicioalcliente@seitonhome.com con el comprobante de compra y te enviamos el código manualmente."
+        },
+        {
+          "q": "¿Puedo usar la app en varios dispositivos?",
+          "a": "Sí. Con tu cuenta puedes ingresar desde cualquier computador, tablet o celular con acceso a internet. La licencia es por usuario, no por dispositivo."
+        },
+        {
+          "q": "¿La app funciona sin conexión a internet?",
+          "a": "No. DIY Calc Pro requiere conexión a internet para cargar y guardar tus cálculos, materiales y fórmulas. Los datos se guardan en la nube para que los tengas disponibles en cualquier dispositivo."
+        },
+        {
+          "q": "¿Cómo exporto mis cálculos en PDF?",
+          "a": "En cada calculadora, una vez que obtienes los resultados, verás el botón Exportar PDF. Genera una ficha de costos profesional con todos los datos del cálculo, lista para imprimir o compartir."
+        },
+        {
+          "q": "¿Las actualizaciones futuras tienen costo adicional?",
+          "a": "No. El pago es único e incluye todas las actualizaciones futuras de la app sin ningún costo adicional."
+        },
+        {
+          "q": "¿Cómo cambio el idioma de la app?",
+          "a": "En la parte inferior del menú lateral encontrarás el selector de idioma. Puedes cambiar entre Español e Inglés en cualquier momento y el cambio aplica a toda la app de inmediato."
+        },
+        {
+          "q": "¿La app vende sosa cáustica, cera o resina?",
+          "a": "No. DIY Calc Pro es una herramienta de cálculo — te dice cuánto necesitas de cada material. Los materiales los consigues en tu proveedor local habitual."
+        }
+      ]
+    }
+  }
+}
