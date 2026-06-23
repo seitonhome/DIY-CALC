@@ -15,6 +15,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "DIY Calc Pro by Seiton Home",
   description: "Calculadora profesional para creadores DIY. Calcula materiales, costos, precios y márgenes con precisión.",
+  icons: {
+    icon: "/DIY.png",
+    apple: "/DIY.png",
+  },
 };
 
 export default function RootLayout({
