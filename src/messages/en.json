@@ -25,6 +25,16 @@
       "ctaDemo": "View demo",
       "ctaSub": "Over 500 entrepreneurs already calculate with precision"
     },
+    "countdown": {
+      "eyebrow": "Exclusive opportunity",
+      "title": "Your opportunity to produce with precision",
+      "subtitle": "This access window renews every 15 days. Make the most of the time left.",
+      "days": "Days",
+      "hours": "Hours",
+      "minutes": "Min",
+      "seconds": "Sec",
+      "cta": "Seize this opportunity"
+    },
     "problem": {
       "title": "Selling more does not always mean earning more",
       "subtitle": "Many makers end up losing money without realizing it",
@@ -199,6 +209,18 @@
       "send": "Send link",
       "emailSent": "Email sent",
       "checkInbox": "Check your inbox and follow the instructions in the email."
+    },
+    "resetPassword": {
+      "title": "Reset password",
+      "subtitle": "Enter your new password to continue.",
+      "password": "New password",
+      "confirm": "Confirm password",
+      "submit": "Save password",
+      "loading": "Saving...",
+      "success": "Password updated successfully.",
+      "goToLogin": "Go to sign in",
+      "invalidLink": "This link is invalid or has expired.",
+      "requestNewLink": "Request a new link"
     },
     "errors": {
       "invalidEmail": "Invalid email address",

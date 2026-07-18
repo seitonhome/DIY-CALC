@@ -25,6 +25,16 @@
       "ctaDemo": "Ver demo",
       "ctaSub": "Más de 500 emprendedores ya calculan con precisión"
     },
+    "countdown": {
+      "eyebrow": "Oportunidad exclusiva",
+      "title": "Tu oportunidad para producir con precisión",
+      "subtitle": "Esta ventana de acceso se renueva cada 15 días. Aprovecha el tiempo que queda.",
+      "days": "Días",
+      "hours": "Horas",
+      "minutes": "Min",
+      "seconds": "Seg",
+      "cta": "Aprovechar esta oportunidad"
+    },
     "problem": {
       "title": "Vender mucho no siempre significa ganar más",
       "subtitle": "Muchos creadores terminan perdiendo dinero sin saberlo",
@@ -199,6 +209,18 @@
       "send": "Enviar enlace",
       "emailSent": "Correo enviado",
       "checkInbox": "Revisa tu bandeja de entrada y sigue las instrucciones del correo."
+    },
+    "resetPassword": {
+      "title": "Restablecer contraseña",
+      "subtitle": "Ingresa tu nueva contraseña para continuar.",
+      "password": "Nueva contraseña",
+      "confirm": "Confirmar contraseña",
+      "submit": "Guardar contraseña",
+      "loading": "Guardando...",
+      "success": "Contraseña actualizada correctamente.",
+      "goToLogin": "Ir a iniciar sesión",
+      "invalidLink": "Este enlace no es válido o ha expirado.",
+      "requestNewLink": "Solicitar un nuevo enlace"
     },
     "errors": {
       "invalidEmail": "Correo electrónico inválido",

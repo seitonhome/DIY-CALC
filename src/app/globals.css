@@ -50,3 +50,8 @@ body {
 .accent-line {
   background: linear-gradient(90deg, #A8862A, #C9A347, #A8862A);
 }
+
+/* Hero background gradient */
+.hero-gradient {
+  background: linear-gradient(180deg, #FDFBF8 0%, #F5F0EA 100%);
+}

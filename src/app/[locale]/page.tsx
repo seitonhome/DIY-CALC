@@ -1,7 +1,33 @@
-import { redirect } from "next/navigation";
-import { getLocale } from "next-intl/server";
+import { Hero } from "@/components/landing/hero";
+import { Countdown } from "@/components/landing/countdown";
+import {
+  ProblemSection,
+  SolutionSection,
+  CategoriesSection,
+  BenefitsSection,
+  HowItWorksSection,
+  ForWhoSection,
+  PricingSection,
+  FAQSection,
+  FinalCTASection,
+  LandingFooter,
+} from "@/components/landing/sections";
 
-export default async function LocalePage() {
-  const locale = await getLocale();
-  redirect(`/${locale}/login`);
+export default function LocalePage() {
+  return (
+    <main>
+      <Hero />
+      <Countdown />
+      <ProblemSection />
+      <SolutionSection />
+      <CategoriesSection />
+      <BenefitsSection />
+      <HowItWorksSection />
+      <ForWhoSection />
+      <PricingSection />
+      <FAQSection />
+      <FinalCTASection />
+      <LandingFooter />
+    </main>
+  );
 }
