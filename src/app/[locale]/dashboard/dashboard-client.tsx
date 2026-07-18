@@ -88,19 +88,6 @@ export function DashboardClient({ profile, license, calculations, formulas, mate
 
   return (
     <AppLayout title={t("greeting", { name: userName })}>
-      {/* License warning banner — only for users with an explicitly inactive/demo license */}
-      {(license?.status === "demo" || license?.status === "expired") && !isAdmin(profile) && (
-        <div className="mb-6 rounded-xl bg-amber-50 border border-amber-200 px-5 py-4 flex items-center justify-between gap-4 flex-wrap">
-          <div className="flex items-center gap-3">
-            <AlertTriangle className="h-5 w-5 text-amber-600 flex-shrink-0" />
-            <p className="text-sm font-medium text-amber-800">{t("demoWarning")}</p>
-          </div>
-          <Button asChild variant="primary" size="sm">
-            <Link href={`/${locale}/activate`}>{t("activateLicense")}</Link>
-          </Button>
-        </div>
-      )}
-
       {/* Stats grid */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-6">
         <StatCard
@@ -252,7 +239,7 @@ export function DashboardClient({ profile, license, calculations, formulas, mate
                     className="w-full"
                     onClick={async () => {
                       const { exportGuidePDF } = await import("@/lib/pdf/guide");
-                      await exportGuidePDF();
+                      await exportGuidePDF(locale as "es" | "en");
                     }}
                   >
                     <FileDown className="h-3.5 w-3.5" />

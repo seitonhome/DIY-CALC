@@ -17,13 +17,23 @@ export async function proxy(request: NextRequest) {
   const isAdmin     = ADMIN_PATHS.some((p) => pathnameWithoutLocale.startsWith(p));
 
   if (isProtected || isAdmin) {
-    const { supabaseResponse, user } = await updateSession(request);
+    const { supabaseResponse, user, supabase } = await updateSession(request);
+    const locale = pathname.startsWith("/en") ? "en" : "es";
 
     if (!user) {
-      const locale = pathname.startsWith("/en") ? "en" : "es";
       const loginUrl = new URL(`/${locale}/login`, request.url);
       loginUrl.searchParams.set("redirect", pathname);
       return NextResponse.redirect(loginUrl);
+    }
+
+    const { data: license } = await supabase
+      .from("licenses")
+      .select("status")
+      .eq("user_id", user.id)
+      .single();
+
+    if (license?.status !== "active") {
+      return NextResponse.redirect(new URL(`/${locale}/activate`, request.url));
     }
 
     return supabaseResponse;

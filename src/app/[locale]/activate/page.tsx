@@ -128,15 +128,6 @@ export default function ActivatePage() {
               {isSubmitting ? t("loading") : t("submit")}
             </Button>
           </form>
-
-          <div className="mt-4 text-center">
-            <button
-              onClick={() => router.push("/dashboard")}
-              className="text-sm text-stone-400 hover:text-stone-600 transition-colors"
-            >
-              {t("skip")} →
-            </button>
-          </div>
         </div>
 
         <p className="mt-6 text-center text-sm text-stone-500">

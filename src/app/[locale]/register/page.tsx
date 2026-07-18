@@ -25,6 +25,7 @@ export default function RegisterPage() {
     email: z.string().email(tErr("invalidEmail")),
     password: z.string().min(8, tErr("minPassword")),
     confirm: z.string().min(1, tErr("required")),
+    code: z.string().min(1, tErr("required")),
   }).refine((d) => d.password === d.confirm, {
     message: tErr("passwordMatch"),
     path: ["confirm"],
@@ -39,10 +40,17 @@ export default function RegisterPage() {
   async function onSubmit(data: FormData) {
     setError("");
     const supabase = createClient();
+
+    const { data: codeValid } = await supabase.rpc("check_activation_code", { p_code: data.code });
+    if (!codeValid) {
+      setError(tErr("invalidCode"));
+      return;
+    }
+
     const { error: authError } = await supabase.auth.signUp({
       email: data.email,
       password: data.password,
-      options: { data: { full_name: data.name } },
+      options: { data: { full_name: data.name, activation_code: data.code } },
     });
     if (authError) {
       setError(tErr("genericError"));
@@ -80,6 +88,21 @@ export default function RegisterPage() {
             <Input label={t("email")} type="email" placeholder="tu@email.com" error={errors.email?.message} {...register("email")} />
             <Input label={t("password")} type="password" placeholder="••••••••" error={errors.password?.message} {...register("password")} />
             <Input label={t("confirm")} type="password" placeholder="••••••••" error={errors.confirm?.message} {...register("confirm")} />
+            <Input
+              label={t("activationCode")}
+              placeholder={t("activationCodePlaceholder")}
+              className="tracking-widest font-mono text-center uppercase"
+              error={errors.code?.message}
+              {...register("code")}
+              onChange={(e) => {
+                const formatted = e.target.value
+                  .toUpperCase()
+                  .replace(/[^A-Z0-9]/g, "")
+                  .replace(/(.{4})/g, "$1-")
+                  .slice(0, 19);
+                e.target.value = formatted;
+              }}
+            />
 
             {error && (
               <div className="rounded-lg bg-red-50 border border-red-100 px-4 py-3 text-sm text-red-600">{error}</div>

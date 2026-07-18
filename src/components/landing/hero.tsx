@@ -1,7 +1,7 @@
 "use client";
 import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
-import { ArrowRight, Play, Sparkles, Star } from "lucide-react";
+import { ArrowRight, FileDown, Sparkles, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -47,12 +47,38 @@ export function Hero() {
                 <ArrowRight className="h-5 w-5" />
               </Link>
             </Button>
-            <Button asChild variant="outline" size="xl" className="w-full sm:w-auto gap-2">
-              <Link href={`/${locale}/login?demo=true`}>
-                <Play className="h-4 w-4" />
-                {t("ctaDemo")}
-              </Link>
+            <Button
+              variant="outline"
+              size="xl"
+              className="w-full sm:w-auto gap-2"
+              onClick={async () => {
+                const { exportGuidePDF } = await import("@/lib/pdf/guide");
+                await exportGuidePDF(locale as "es" | "en");
+              }}
+            >
+              <FileDown className="h-4 w-4" />
+              {t("ctaGuide")}
             </Button>
+          </div>
+
+          {/* Guide language links */}
+          <div className="mt-3 flex items-center justify-center gap-2 text-xs text-stone-400">
+            <span>{t("guideLangLabel")}</span>
+            {(["es", "en", "fr"] as const).map((lng, i) => (
+              <span key={lng} className="flex items-center gap-2">
+                {i > 0 && <span className="text-stone-300">·</span>}
+                <button
+                  type="button"
+                  className="font-medium text-stone-500 hover:text-amber-700 transition-colors"
+                  onClick={async () => {
+                    const { exportGuidePDF } = await import("@/lib/pdf/guide");
+                    await exportGuidePDF(lng);
+                  }}
+                >
+                  {lng.toUpperCase()}
+                </button>
+              </span>
+            ))}
           </div>
 
           {/* Social proof */}

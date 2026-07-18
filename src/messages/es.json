@@ -22,7 +22,8 @@
       "title": "DIY CALC PRO",
       "subtitle": "La calculadora profesional para creadores que quieren producir, costear y vender con precisión.",
       "cta": "Acceder a la calculadora",
-      "ctaDemo": "Ver demo",
+      "ctaGuide": "Descargar guía completa",
+      "guideLangLabel": "Guía disponible en:",
       "ctaSub": "Más de 500 emprendedores ya calculan con precisión"
     },
     "countdown": {
@@ -134,7 +135,7 @@
         },
         {
           "q": "¿Cómo funciona la activación?",
-          "a": "Recibes un código de activación al comprar. Lo ingresas en tu cuenta y tienes acceso completo de inmediato."
+          "a": "Recibes un código de compra al pagar. Lo ingresas al crear tu cuenta y tienes acceso completo de inmediato."
         },
         {
           "q": "¿Puedo exportar mis cálculos?",
@@ -173,7 +174,6 @@
       "submit": "Entrar",
       "noAccount": "¿No tienes cuenta?",
       "register": "Regístrate aquí",
-      "demo": "Probar en modo demo",
       "loading": "Iniciando sesión..."
     },
     "register": {
@@ -183,6 +183,8 @@
       "email": "Correo electrónico",
       "password": "Contraseña",
       "confirm": "Confirmar contraseña",
+      "activationCode": "Código de compra",
+      "activationCodePlaceholder": "XXXX-XXXX-XXXX-XXXX",
       "submit": "Crear cuenta",
       "hasAccount": "¿Ya tienes cuenta?",
       "login": "Inicia sesión aquí",
@@ -197,7 +199,6 @@
       "submit": "Activar ahora",
       "loading": "Activando...",
       "success": "¡Licencia activada! Bienvenido a DIY Calc Pro.",
-      "skip": "Usar en modo demo por ahora",
       "noCode": "¿No tienes código?",
       "buy": "Obtener acceso completo"
     },
@@ -236,8 +237,6 @@
   "dashboard": {
     "greeting": "Hola, {name}",
     "subtitle": "Aquí tienes el resumen de tu actividad",
-    "demoWarning": "Estás en modo demo. Activa tu licencia para acceso completo.",
-    "activateLicense": "Activar licencia",
     "stats": {
       "products": "Productos",
       "formulas": "Fórmulas guardadas",
@@ -998,7 +997,7 @@
       "status": "Estado",
       "active": "Activa",
       "expired": "Expirada",
-      "demo": "Demo",
+      "demo": "Sin activar",
       "activatedAt": "Activada el",
       "upgrade": "Actualizar a premium"
     }

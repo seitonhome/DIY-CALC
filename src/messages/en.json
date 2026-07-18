@@ -22,7 +22,8 @@
       "title": "DIY CALC PRO",
       "subtitle": "The professional calculator for makers who want to produce, price, and sell with precision.",
       "cta": "Access the calculator",
-      "ctaDemo": "View demo",
+      "ctaGuide": "Download full guide",
+      "guideLangLabel": "Guide available in:",
       "ctaSub": "Over 500 entrepreneurs already calculate with precision"
     },
     "countdown": {
@@ -134,7 +135,7 @@
         },
         {
           "q": "How does activation work?",
-          "a": "You receive an activation code when you purchase. Enter it in your account and get full access immediately."
+          "a": "You receive a purchase code when you pay. Enter it when you create your account and get full access immediately."
         },
         {
           "q": "Can I export my calculations?",
@@ -173,7 +174,6 @@
       "submit": "Sign in",
       "noAccount": "Don't have an account?",
       "register": "Register here",
-      "demo": "Try demo mode",
       "loading": "Signing in..."
     },
     "register": {
@@ -183,6 +183,8 @@
       "email": "Email address",
       "password": "Password",
       "confirm": "Confirm password",
+      "activationCode": "Purchase code",
+      "activationCodePlaceholder": "XXXX-XXXX-XXXX-XXXX",
       "submit": "Create account",
       "hasAccount": "Already have an account?",
       "login": "Sign in here",
@@ -197,7 +199,6 @@
       "submit": "Activate now",
       "loading": "Activating...",
       "success": "License activated! Welcome to DIY Calc Pro.",
-      "skip": "Use demo mode for now",
       "noCode": "Don't have a code?",
       "buy": "Get full access"
     },
@@ -236,8 +237,6 @@
   "dashboard": {
     "greeting": "Hello, {name}",
     "subtitle": "Here's your activity summary",
-    "demoWarning": "You are in demo mode. Activate your license for full access.",
-    "activateLicense": "Activate license",
     "stats": {
       "products": "Products",
       "formulas": "Saved formulas",
@@ -998,7 +997,7 @@
       "status": "Status",
       "active": "Active",
       "expired": "Expired",
-      "demo": "Demo",
+      "demo": "Not activated",
       "activatedAt": "Activated on",
       "upgrade": "Upgrade to premium"
     }
