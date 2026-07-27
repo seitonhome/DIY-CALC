@@ -14,7 +14,7 @@ import { MoldCalculator } from "@/components/ui/mold-calculator";
 import { calculatePlaster, PLASTER_TYPES } from "@/lib/calculations/plaster";
 import { exportCalculationPDF } from "@/lib/pdf/export";
 import type { Locale } from "@/types";
-import { Layers3, Save, FileDown, RefreshCw } from "lucide-react";
+import { Layers3, Save, FileDown, RefreshCw, AlertTriangle } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
 const schema = z.object({
@@ -233,6 +233,22 @@ export default function PlasterCalculatorPage() {
           <div className="space-y-4">
             {results ? (
               <>
+                {results.warnings?.includes("offWaterRatio") && (
+                  <div style={{ background: "#FFFBEB", border: "1px solid #FDE68A", borderRadius: 12, padding: "12px 16px", display: "flex", gap: 10 }}>
+                    <AlertTriangle size={16} style={{ color: "#B45309", flexShrink: 0, marginTop: 1 }} />
+                    <div>
+                      <p style={{ fontSize: 13, fontWeight: 700, color: "#92400E", margin: "0 0 2px" }}>
+                        {es ? "Relación agua:yeso fuera de rango" : "Water:plaster ratio off"}
+                      </p>
+                      <p style={{ fontSize: 12, color: "#92400E", margin: 0 }}>
+                        {es
+                          ? `Lo recomendado para ${typeProps.label_es} es ${typeProps.wpr} partes de agua por 1 de yeso. Mucha agua debilita la pieza; muy poca fragua demasiado rápido para trabajarla.`
+                          : `The recommended ratio for ${typeProps.label_en} is ${typeProps.wpr} parts water per 1 part plaster. Too much water weakens the piece; too little sets before you can work it.`}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
                 <RecipeCard
                   title={es ? "Lo que necesitas" : "What you need"}
                   locale={locale}

@@ -190,6 +190,10 @@ export function calculateResin(inputs: ResinInputs): ResinCalculationResult {
   const warnings: string[] = [];
   if (pourDepthMm > maxPourMm && maxPourMm > 0) warnings.push("tooDeep");
   if ((mixLossPct || 5) > 15) warnings.push("highWaste");
+  // Off-ratio mixes are the #1 cause of resin that never cures (sticky/tacky surface)
+  if (rType !== "uv" && Math.abs((partAPct || typeProps.defaultRatioA) - typeProps.defaultRatioA) > 3) {
+    warnings.push("offRatio");
+  }
 
   const results = calculateResults(
     materialCostPerUnit, inputs, costItems,

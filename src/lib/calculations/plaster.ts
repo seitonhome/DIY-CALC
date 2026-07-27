@@ -129,6 +129,10 @@ export function calculatePlaster(inputs: PlasterInputs): PlasterCalculationResul
 
   const warnings: string[] = [];
   if (!volumeMl && !plasterAmountG && !finalWeightG) warnings.push("noVolume");
+  // Wrong water:plaster ratio is the top cause of pieces that crumble (too much water) or set too fast to work (too little)
+  if (waterPlasterRatio > 0 && Math.abs(wpr - typeProps.wpr) / typeProps.wpr > 0.15) {
+    warnings.push("offWaterRatio");
+  }
 
   const results = calculateResults(
     materialCostPerUnit, inputs, costItems,

@@ -278,6 +278,16 @@ export default function SoapCalculatorPage() {
           <div className="space-y-4">
             {results ? (
               <>
+                {results.warnings?.includes("highFragrance") && (
+                  <div className="flex items-start gap-2 rounded-lg bg-red-50 border border-red-200 p-3 text-sm text-red-800">
+                    <AlertTriangle className="h-4 w-4 flex-shrink-0 mt-0.5" />
+                    <span>
+                      {locale === "es"
+                        ? `Fragancia/aceite esencial muy alto para ${soapData.label_es} (máx. recomendado: ${soapData.maxFragrancePct}%). Puede irritar la piel o hacer que el jabón "acelere" y se endurezca antes de tiempo.`
+                        : `Fragrance/essential oil is too high for ${soapData.label_en} (recommended max: ${soapData.maxFragrancePct}%). May irritate skin or make the soap "accelerate" and harden too early.`}
+                    </span>
+                  </div>
+                )}
                 <ResultPanel results={results} locale={locale} currency={watch("currency")} />
                 <div className="flex gap-2">
                   <Button variant="outline" className="flex-1" onClick={handleSave} loading={saving} disabled={saved}>

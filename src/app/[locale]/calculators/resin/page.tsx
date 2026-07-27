@@ -498,6 +498,7 @@ export default function ResinCalculatorPage() {
                     <Input label={es ? "Costo Parte B ($/kg)" : "Part B cost ($/kg)"} type="number" min="0" step="0.01" {...register("costPerKgB")} prefix="$" />
                   </div>
                 )}
+
                 <div className="grid gap-3 sm:grid-cols-3">
                   <Input label={es ? "Micas / pigmentos" : "Micas / pigments"} type="number" min="0" step="0.01" {...register("micasCost")} prefix="$" />
                   <Input label={es ? "Tintas de alcohol" : "Alcohol inks"} type="number" min="0" step="0.01" {...register("alcoholInksCost")} prefix="$" />
@@ -542,6 +543,22 @@ export default function ResinCalculatorPage() {
                         {es
                           ? `Esta resina permite máx. ${typeProps.maxPourMm} mm por colada. Divide en ${results.recommendedPours} coladas de ${results.resinPerLayerMl.toFixed(0)} ml cada una.`
                           : `This resin allows max. ${typeProps.maxPourMm} mm per pour. Split into ${results.recommendedPours} pours of ${results.resinPerLayerMl.toFixed(0)} ml each.`}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {results.warnings?.includes("offRatio") && (
+                  <div style={{ background: "#FFFBEB", border: "1px solid #FDE68A", borderRadius: 12, padding: "12px 16px", display: "flex", gap: 10 }}>
+                    <AlertTriangle size={16} style={{ color: "#B45309", flexShrink: 0, marginTop: 1 }} />
+                    <div>
+                      <p style={{ fontSize: 13, fontWeight: 700, color: "#92400E", margin: "0 0 2px" }}>
+                        {es ? "Mezcla fuera de proporción" : "Mix ratio off"}
+                      </p>
+                      <p style={{ fontSize: 12, color: "#92400E", margin: 0 }}>
+                        {es
+                          ? `La proporción recomendada para esta resina es ${typeProps.defaultRatioA}:${typeProps.defaultRatioB} (A:B). Fuera de esa proporción puede quedar pegajosa y no curar bien.`
+                          : `The recommended ratio for this resin is ${typeProps.defaultRatioA}:${typeProps.defaultRatioB} (A:B). Off that ratio it may stay tacky and never fully cure.`}
                       </p>
                     </div>
                   </div>

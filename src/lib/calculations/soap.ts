@@ -227,6 +227,10 @@ export function calculateSoap(inputs: SoapInputs & {
   const eoCost = targetG * ((essentialOilPct || 0) / 100) * ((essentialOilCostPerKg || 0) / 1000);
   materialCostPerUnit += fragranceCost + eoCost + (colorantCost || 0) + (exfoliantCost || 0) + (additivesCost || 0);
 
+  const soapTypeData = SOAP_TYPES[soapType] ?? SOAP_TYPES.meltPour;
+  const totalScentPct = (fragrancePct || 0) + (essentialOilPct || 0);
+  if (totalScentPct > soapTypeData.maxFragrancePct) warnings.push("highFragrance");
+
   if (fragranceCost > 0) costItems.push({ name: "Fragancia / Fragrance", cost: fragranceCost, percentage: 0 });
   if (eoCost > 0) costItems.push({ name: "Aceite esencial / EO", cost: eoCost, percentage: 0 });
   if ((colorantCost || 0) > 0) costItems.push({ name: "Colorante / Colorant", cost: colorantCost, percentage: 0 });

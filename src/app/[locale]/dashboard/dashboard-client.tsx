@@ -150,7 +150,10 @@ export function DashboardClient({ profile, license, calculations, formulas, mate
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
-                {t("recentCalcs.title")}
+                <span className="flex items-center gap-2">
+                  {t("recentCalcs.title")}
+                  <span className="text-xs font-normal text-stone-400">{calculations.length}/10</span>
+                </span>
                 {calculations.length > 0 && (
                   <Button asChild variant="ghost" size="sm">
                     <Link href={`/${locale}/calculators`}>{t("recentCalcs.viewAll")}</Link>
