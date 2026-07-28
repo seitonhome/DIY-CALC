@@ -88,7 +88,7 @@ const CONTENT: Record<GuideLocale, GuideContent> = {
   es: {
     filename: "DIY-Calc-Pro-Guia-Completa.pdf",
     footerTag: "Guía de Usuario Completa",
-    footerCopy: "© 2025 Seiton Home. Todos los derechos reservados.",
+    footerCopy: "© 2026 Seiton Home. Todos los derechos reservados.",
     cover: {
       subtitle: "La calculadora completa para artesanos DIY",
       tagline: "Guía de Usuario  ·  Beneficios  ·  Referencia Técnica",
@@ -101,7 +101,7 @@ const CONTENT: Record<GuideLocale, GuideContent> = {
         { num: "05", title: "Calculadora de Resina", desc: "8 tipos según técnica — geoda, joyería, pisos" },
         { num: "06", title: "Concreto, Yeso y Precios", desc: "Mezclas, hypertufa, microcemento, precio justo" },
       ],
-      footerCopy: "© 2025 Seiton Home · Todos los derechos reservados",
+      footerCopy: "© 2026 Seiton Home · Todos los derechos reservados",
     },
     page2: {
       header: "Descripción del producto",
@@ -300,17 +300,17 @@ const CONTENT: Record<GuideLocale, GuideContent> = {
         ["¿La sosa / KOH se vende en la app?", "No. La app calcula cuánto necesitas. Los materiales los consigues en tu proveedor local."],
         ["¿Funciona para Colombia y LatAm?", "Sí. Está optimizada para artesanos de habla hispana. Moneda y unidades ajustables."],
         ["¿Está en inglés?", "Sí. La app completa está disponible en español e inglés con un solo clic."],
-        ["¿Cómo contacto soporte?", "Escribe a soporte@seitonhome.com. Respuesta en 24–48 horas hábiles."],
+        ["¿Cómo contacto soporte?", "Escribe a servicioalcliente@seitonhome.com. Respuesta en 24–48 horas hábiles."],
       ],
       ctaSubtitle: "La calculadora completa para artesanos DIY",
-      ctaFooter: "by Seiton Home  ·  soporte@seitonhome.com  ·  © 2025 Seiton Home",
+      ctaFooter: "by Seiton Home  ·  servicioalcliente@seitonhome.com  ·  © 2026 Seiton Home",
     },
   },
 
   en: {
     filename: "DIY-Calc-Pro-Complete-Guide.pdf",
     footerTag: "Complete User Guide",
-    footerCopy: "© 2025 Seiton Home. All rights reserved.",
+    footerCopy: "© 2026 Seiton Home. All rights reserved.",
     cover: {
       subtitle: "The complete calculator for DIY makers",
       tagline: "User Guide  ·  Benefits  ·  Technical Reference",
@@ -323,7 +323,7 @@ const CONTENT: Record<GuideLocale, GuideContent> = {
         { num: "05", title: "Resin Calculator", desc: "8 types by technique — geode, jewelry, floors" },
         { num: "06", title: "Concrete, Plaster & Pricing", desc: "Mixes, hypertufa, microcement, fair pricing" },
       ],
-      footerCopy: "© 2025 Seiton Home · All rights reserved",
+      footerCopy: "© 2026 Seiton Home · All rights reserved",
     },
     page2: {
       header: "Product description",
@@ -522,17 +522,17 @@ const CONTENT: Record<GuideLocale, GuideContent> = {
         ["Does the app sell lye / KOH?", "No. The app calculates how much you need. You get the materials from your local supplier."],
         ["Does it work for Latin America?", "Yes. It's optimized for Spanish-speaking makers too. Currency and units are adjustable."],
         ["Is it available in Spanish?", "Yes. The full app is available in Spanish and English with a single click."],
-        ["How do I contact support?", "Email soporte@seitonhome.com. Response within 24–48 business hours."],
+        ["How do I contact support?", "Email servicioalcliente@seitonhome.com. Response within 24–48 business hours."],
       ],
       ctaSubtitle: "The complete calculator for DIY makers",
-      ctaFooter: "by Seiton Home  ·  soporte@seitonhome.com  ·  © 2025 Seiton Home",
+      ctaFooter: "by Seiton Home  ·  servicioalcliente@seitonhome.com  ·  © 2026 Seiton Home",
     },
   },
 
   fr: {
     filename: "DIY-Calc-Pro-Guide-Complet.pdf",
     footerTag: "Guide d'utilisation complet",
-    footerCopy: "© 2025 Seiton Home. Tous droits réservés.",
+    footerCopy: "© 2026 Seiton Home. Tous droits réservés.",
     cover: {
       subtitle: "Le calculateur complet pour les créateurs DIY",
       tagline: "Guide d'utilisation  ·  Avantages  ·  Référence technique",
@@ -545,7 +545,7 @@ const CONTENT: Record<GuideLocale, GuideContent> = {
         { num: "05", title: "Calculateur de Résine", desc: "8 types selon la technique — géode, bijoux, sols" },
         { num: "06", title: "Béton, Plâtre et Prix", desc: "Mélanges, hypertufa, microciment, juste prix" },
       ],
-      footerCopy: "© 2025 Seiton Home · Tous droits réservés",
+      footerCopy: "© 2026 Seiton Home · Tous droits réservés",
     },
     page2: {
       header: "Description du produit",
@@ -745,10 +745,10 @@ const CONTENT: Record<GuideLocale, GuideContent> = {
         ["La soude / le KOH est-il vendu dans l'application ?", "Non. L'application calcule la quantité dont vous avez besoin. Vous vous procurez les matériaux chez votre fournisseur local."],
         ["Fonctionne-t-elle pour l'Amérique latine ?", "Oui. Elle est aussi optimisée pour les artisans hispanophones. Devise et unités ajustables."],
         ["Est-elle disponible en espagnol ?", "Oui. L'application complète est disponible en espagnol et en anglais en un clic."],
-        ["Comment contacter le support ?", "Écrivez à soporte@seitonhome.com. Réponse sous 24 à 48 heures ouvrables."],
+        ["Comment contacter le support ?", "Écrivez à servicioalcliente@seitonhome.com. Réponse sous 24 à 48 heures ouvrables."],
       ],
       ctaSubtitle: "Le calculateur complet pour les créateurs DIY",
-      ctaFooter: "by Seiton Home  ·  soporte@seitonhome.com  ·  © 2025 Seiton Home",
+      ctaFooter: "by Seiton Home  ·  servicioalcliente@seitonhome.com  ·  © 2026 Seiton Home",
     },
   },
 };
