@@ -101,9 +101,10 @@
     },
     "pricing": {
       "title": "Full access to DIY Calc Pro",
-      "subtitle": "One-time payment. No subscription. No usage limits.",
+      "subtitle": "One-time payment. No subscription. Save up to 10 calculations per calculator.",
       "badge": "Launch offer",
-      "price": "$47",
+      "price": "$9",
+      "originalPrice": "$47",
       "priceSub": "USD · One-time payment",
       "features": [
         "All specialized calculators",
@@ -116,7 +117,7 @@
         "Email support"
       ],
       "cta": "Get access now",
-      "guarantee": "30-day satisfaction guarantee"
+      "guarantee": "7-day satisfaction guarantee"
     },
     "faq": {
       "title": "Frequently asked questions",

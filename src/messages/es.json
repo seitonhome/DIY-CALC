@@ -101,9 +101,10 @@
     },
     "pricing": {
       "title": "Acceso completo a DIY Calc Pro",
-      "subtitle": "Pago único. Sin suscripción. Sin límites de uso.",
+      "subtitle": "Pago único. Sin suscripción. Guarda hasta 10 cálculos por calculadora.",
       "badge": "Oferta de lanzamiento",
-      "price": "$47",
+      "price": "$9",
+      "originalPrice": "$47",
       "priceSub": "USD · Pago único",
       "features": [
         "Todas las calculadoras especializadas",
@@ -116,7 +117,7 @@
         "Soporte por email"
       ],
       "cta": "Obtener acceso ahora",
-      "guarantee": "30 días de garantía de satisfacción"
+      "guarantee": "7 días de garantía de satisfacción"
     },
     "faq": {
       "title": "Preguntas frecuentes",

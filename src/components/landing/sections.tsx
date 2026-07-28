@@ -217,7 +217,10 @@ export function PricingSection() {
             <Badge className="mb-4 bg-white/20 text-white border-white/20">{t("badge")}</Badge>
             <h2 className="text-2xl font-bold mb-1">{t("title")}</h2>
             <p className="text-amber-100 text-sm mb-6">{t("subtitle")}</p>
-            <div className="text-5xl font-black">{t("price")}</div>
+            <div className="flex items-center justify-center gap-3">
+              <span className="text-2xl font-medium text-amber-200/70 line-through">{t("originalPrice")}</span>
+              <span className="text-5xl font-black">{t("price")}</span>
+            </div>
             <p className="text-amber-100 text-sm mt-1">{t("priceSub")}</p>
           </div>
           <div className="p-8">
