@@ -247,6 +247,8 @@
       "avgMargin": "Avg. margin",
       "mostProfitable": "Most profitable",
       "leastProfitable": "Least profitable",
+      "profitableEmptyTitle": "No products to compare yet",
+      "profitableEmptyDesc": "Save a few calculations and you'll see which one leaves you the most margin here.",
       "totalCalcs": "Calculations done"
     },
     "quickAccess": {
@@ -341,7 +343,12 @@
       "recommendation": "Recommendation",
       "costDistribution": "Cost distribution",
       "mostExpensive": "Most expensive material",
-      "productionTime": "Estimated production time"
+      "productionTime": "Estimated production time",
+      "costsIncomplete": "The prices below are $0 because you haven't entered your costs yet. Fill in the Costs section to see your real price and margin.",
+      "tooltipGrossMargin": "What's left from the sale price after paying only for materials, before subtracting labor, packaging and fees.",
+      "tooltipNetMargin": "What you actually earn per unit after ALL costs. Below 20% is risky; above 30% is healthy.",
+      "tooltipBreakEvenUnits": "How many units you need to sell to recover what you spent producing them (not counting your profit yet).",
+      "tooltipWholesalePrice": "Suggested price if you sell in volume to shops or resellers, with a smaller margin than the retail price."
     },
     "recommendations": {
       "lowMargin": "Your margin is below the recommended minimum (20%). Review your costs or adjust the price.",
@@ -719,6 +726,7 @@
       "componentType": "Material type",
       "componentName": "Component name",
       "componentCost": "Component cost",
+      "componentCostHint": "The per-unit cost of this piece. If you already calculated it in its own calculator, use that per-unit cost here.",
       "componentTime": "Production time (min)",
       "componentWaste": "Waste (%)",
       "removeComponent": "Remove",

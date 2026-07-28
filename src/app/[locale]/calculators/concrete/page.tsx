@@ -255,8 +255,8 @@ export default function ConcreteCalculatorPage() {
                   <Input label={es ? "Arena ($/kg)" : "Sand ($/kg)"} type="number" min="0" step="0.01" {...register("sandCostPerKg")} prefix="$" />
                   <Input label={es ? "Pigmento ($/kg)" : "Pigment ($/kg)"} type="number" min="0" step="0.01" {...register("pigmentCostPerKg")} prefix="$" />
                   <Input label={es ? "% pigmento" : "Pigment %" } type="number" min="0" max="10" {...register("pigmentPct")} suffix="%" />
-                  <Input label={es ? "Sellador" : "Sealant"} type="number" min="0" step="0.01" {...register("sealantCost")} prefix="$" />
-                  <Input label={es ? "Desmoldante" : "Release agent"} type="number" min="0" step="0.01" {...register("releaseAgentCost")} prefix="$" />
+                  <Input label={es ? "Sellador" : "Sealant"} type="number" min="0" step="0.01" {...register("sealantCost")} prefix="$" hint={es ? "Protege la pieza de humedad y manchas una vez seca" : "Protects the piece from moisture and stains once dry"} />
+                  <Input label={es ? "Desmoldante" : "Release agent"} type="number" min="0" step="0.01" {...register("releaseAgentCost")} prefix="$" hint={es ? "Spray o aceite para que la pieza no se pegue al molde" : "Spray or oil so the piece doesn't stick to the mold"} />
                   <Input label={es ? "Mano de obra $/h" : "Labor $/h"} type="number" min="0" step="0.01" {...register("laborCostPerHour")} prefix="$" />
                   <Input label={es ? "Horas" : "Hours"} type="number" min="0" step="0.5" {...register("laborHours")} />
                   <Input label={es ? "Margen deseado %" : "Desired margin %"} type="number" min="1" max="100" {...register("desiredMarginPct")} suffix="%" />

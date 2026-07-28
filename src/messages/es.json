@@ -247,6 +247,8 @@
       "avgMargin": "Margen promedio",
       "mostProfitable": "Más rentable",
       "leastProfitable": "Menos rentable",
+      "profitableEmptyTitle": "Aún no hay productos para comparar",
+      "profitableEmptyDesc": "Guarda algunos cálculos y aquí verás cuál te deja más margen.",
       "totalCalcs": "Cálculos realizados"
     },
     "quickAccess": {
@@ -341,7 +343,12 @@
       "recommendation": "Recomendación",
       "costDistribution": "Distribución de costos",
       "mostExpensive": "Material más costoso",
-      "productionTime": "Tiempo estimado de producción"
+      "productionTime": "Tiempo estimado de producción",
+      "costsIncomplete": "Los precios de abajo están en $0 porque no ingresaste tus costos. Completa la sección de Costos para ver tu precio y margen reales.",
+      "tooltipGrossMargin": "Lo que te queda del precio de venta después de pagar solo los materiales, antes de restar mano de obra, empaque y comisiones.",
+      "tooltipNetMargin": "Lo que realmente ganas por unidad después de TODOS los costos. Debajo de 20% es riesgoso; arriba de 30% es saludable.",
+      "tooltipBreakEvenUnits": "Cuántas unidades necesitas vender para recuperar lo que gastaste en producirlas (sin contar aún tu ganancia).",
+      "tooltipWholesalePrice": "Precio sugerido si vendes por volumen a tiendas o revendedores, con un margen menor que el precio al público."
     },
     "recommendations": {
       "lowMargin": "Tu margen está por debajo del mínimo recomendado (20%). Revisa tus costos o ajusta el precio.",
@@ -719,6 +726,7 @@
       "componentType": "Tipo de material",
       "componentName": "Nombre del componente",
       "componentCost": "Costo del componente",
+      "componentCostHint": "El costo por unidad de esta pieza. Si ya la calculaste en su propia calculadora, usa ese costo por unidad aquí.",
       "componentTime": "Tiempo de producción (min)",
       "componentWaste": "Merma (%)",
       "removeComponent": "Eliminar",

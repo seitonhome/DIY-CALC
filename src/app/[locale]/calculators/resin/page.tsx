@@ -419,9 +419,9 @@ export default function ResinCalculatorPage() {
                   <div>
                     <p style={sectionLabel}>{es ? "Proporción de mezcla" : "Mix ratio"}</p>
                     <div className="grid gap-3 sm:grid-cols-3">
-                      <Input label={es ? "Parte A %" : "Part A %"} type="number" min="0" max="100" {...register("partAPct")} suffix="%" />
-                      <Input label={es ? "Parte B %" : "Part B %"} type="number" min="0" max="100" {...register("partBPct")} suffix="%" />
-                      <Input label={es ? "Densidad g/ml" : "Density g/ml"} type="number" min="0" step="0.01" {...register("densityGml")} suffix="g/ml" />
+                      <Input label={es ? "Parte A %" : "Part A %"} type="number" min="0" max="100" {...register("partAPct")} suffix="%" hint={es ? "Cuánta resina (parte A) por cada 100% de mezcla" : "How much resin (part A) per 100% of the mix"} />
+                      <Input label={es ? "Parte B %" : "Part B %"} type="number" min="0" max="100" {...register("partBPct")} suffix="%" hint={es ? "Cuánto endurecedor (parte B). A+B debe sumar 100%" : "How much hardener (part B). A+B should add up to 100%"} />
+                      <Input label={es ? "Densidad g/ml" : "Density g/ml"} type="number" min="0" step="0.01" {...register("densityGml")} suffix="g/ml" hint={es ? "Densidad típica de resina epóxica: 1.1 g/ml" : "Typical epoxy resin density: 1.1 g/ml"} />
                     </div>
                     <p style={{ fontSize: 11, color: "#9E998F", marginTop: 6 }}>
                       {es

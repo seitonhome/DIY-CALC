@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, type ReactNode } from "react";
 import { calculateVolume } from "@/lib/calculations/geometry";
 
 const SHAPES = [
@@ -18,6 +18,111 @@ const DIM_LABELS: Record<string, { es: string; en: string; suffix: string }> = {
   diameter:     { es: "Diámetro",      en: "Diameter",      suffix: "cm" },
   waterAmountMl:{ es: "Agua desplazada", en: "Water displaced", suffix: "ml" },
 };
+
+// Simple line-art diagrams showing which measurement is which per shape.
+// Deliberately language-agnostic (no text) — the input labels next to it carry the words.
+function ShapeDiagram({ shape }: { shape: string }) {
+  const stroke = "#A8862A";
+  const dim = "#C9A347";
+  const fill = "#FFFFFF";
+  const common = { fill, stroke, strokeWidth: 1.5 } as const;
+
+  const Arrow = ({ x1, y1, x2, y2 }: { x1: number; y1: number; x2: number; y2: number }) => (
+    <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={dim} strokeWidth={1.5} strokeDasharray="3 2" markerStart="url(#dot)" markerEnd="url(#dot)" />
+  );
+
+  const defs = (
+    <defs>
+      <marker id="dot" markerWidth="6" markerHeight="6" refX="3" refY="3">
+        <circle cx="3" cy="3" r="2" fill={dim} />
+      </marker>
+    </defs>
+  );
+
+  let content: ReactNode;
+  switch (shape) {
+    case "rectangular":
+      content = (
+        <>
+          {/* back face */}
+          <rect x="34" y="14" width="52" height="40" {...common} opacity={0.5} />
+          {/* front face */}
+          <rect x="20" y="28" width="52" height="40" {...common} />
+          {/* connecting edges */}
+          <line x1="34" y1="14" x2="20" y2="28" stroke={stroke} strokeWidth={1.5} />
+          <line x1="86" y1="14" x2="72" y2="28" stroke={stroke} strokeWidth={1.5} />
+          <line x1="86" y1="54" x2="72" y2="68" stroke={stroke} strokeWidth={1.5} />
+          <Arrow x1={20} y1={74} x2={72} y2={74} />
+          <Arrow x1={12} y1={28} x2={12} y2={68} />
+          <Arrow x1={34} y1={8} x2={86} y2={8} />
+        </>
+      );
+      break;
+    case "cylinder":
+      content = (
+        <>
+          <ellipse cx="52" cy="18" rx="26" ry="9" {...common} />
+          <line x1="26" y1="18" x2="26" y2="58" stroke={stroke} strokeWidth={1.5} />
+          <line x1="78" y1="18" x2="78" y2="58" stroke={stroke} strokeWidth={1.5} />
+          <path d="M26 58 A26 9 0 0 0 78 58" fill="none" stroke={stroke} strokeWidth={1.5} />
+          <Arrow x1={26} y1={8} x2={78} y2={8} />
+          <Arrow x1={90} y1={18} x2={90} y2={58} />
+        </>
+      );
+      break;
+    case "sphere":
+      content = (
+        <>
+          <circle cx="52" cy="40" r="28" {...common} />
+          <ellipse cx="52" cy="40" rx="28" ry="8" fill="none" stroke={stroke} strokeWidth={1} opacity={0.4} />
+          <Arrow x1={24} y1={40} x2={80} y2={40} />
+        </>
+      );
+      break;
+    case "hemisphere":
+      content = (
+        <>
+          <path d="M24 54 A28 28 0 0 1 80 54" {...common} />
+          <line x1="24" y1="54" x2="80" y2="54" stroke={stroke} strokeWidth={1.5} />
+          <Arrow x1={24} y1={64} x2={80} y2={64} />
+        </>
+      );
+      break;
+    case "cone":
+      content = (
+        <>
+          <path d="M52 8 L78 58 A26 7 0 0 1 26 58 Z" {...common} />
+          <ellipse cx="52" cy="58" rx="26" ry="7" fill="none" stroke={stroke} strokeWidth={1} opacity={0.5} />
+          <Arrow x1={26} y1={68} x2={78} y2={68} />
+          <Arrow x1={14} y1={8} x2={14} y2={58} />
+        </>
+      );
+      break;
+    case "irregular":
+    default:
+      content = (
+        <>
+          {/* mold/cup */}
+          <path d="M30 20 L26 62 Q52 70 78 62 L74 20 Z" {...common} />
+          {/* water wavy line */}
+          <path d="M30 44 Q40 40 52 44 T74 44" fill="none" stroke={dim} strokeWidth={1.5} />
+          {/* measuring cup on the right */}
+          <path d="M86 46 L84 66 Q92 70 100 66 L98 46 Z" fill={fill} stroke={stroke} strokeWidth={1.2} />
+          <line x1="85" y1="56" x2="99" y2="56" stroke={dim} strokeWidth={1} strokeDasharray="2 2" />
+          {/* arrow from mold to cup */}
+          <path d="M78 34 Q84 30 88 38" fill="none" stroke={dim} strokeWidth={1.5} markerEnd="url(#dot)" />
+        </>
+      );
+      break;
+  }
+
+  return (
+    <svg viewBox="0 0 104 78" width="104" height="78" style={{ display: "block", margin: "0 auto" }}>
+      {defs}
+      {content}
+    </svg>
+  );
+}
 
 interface Props {
   locale: string;
@@ -68,20 +173,25 @@ export function MoldCalculator({ locale, onVolume }: Props) {
         {es ? "Calculadora de volumen del molde" : "Mold volume calculator"}
       </p>
 
-      {/* Shape selector */}
-      <div style={{ marginBottom: 12 }}>
-        <label style={labelStyle}>{es ? "Forma del molde" : "Mold shape"}</label>
-        <select
-          value={shape}
-          onChange={e => { setShape(e.target.value); setDims({}); setVolume(null); }}
-          style={{ ...inputStyle, cursor: "pointer" }}
-        >
-          {SHAPES.map(s => (
-            <option key={s.value} value={s.value}>
-              {es ? s.label_es : s.label_en}
-            </option>
-          ))}
-        </select>
+      {/* Shape selector + diagram */}
+      <div style={{ display: "flex", gap: 14, alignItems: "flex-start", marginBottom: 12 }}>
+        <div style={{ flex: 1 }}>
+          <label style={labelStyle}>{es ? "Forma del molde" : "Mold shape"}</label>
+          <select
+            value={shape}
+            onChange={e => { setShape(e.target.value); setDims({}); setVolume(null); }}
+            style={{ ...inputStyle, cursor: "pointer" }}
+          >
+            {SHAPES.map(s => (
+              <option key={s.value} value={s.value}>
+                {es ? s.label_es : s.label_en}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div style={{ background: "white", border: "1px solid #EDE8E1", borderRadius: 8, padding: "4px 8px", flexShrink: 0 }}>
+          <ShapeDiagram shape={shape} />
+        </div>
       </div>
 
       {/* Dimension inputs */}

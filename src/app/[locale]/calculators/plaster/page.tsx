@@ -209,7 +209,7 @@ export default function PlasterCalculatorPage() {
                   <Input label={es ? "Pintura / acabado" : "Paint / finish"} type="number" min="0" step="0.01" {...register("paintCost")} prefix="$" />
                   <Input label={es ? "Barniz / sellador" : "Varnish / sealant"} type="number" min="0" step="0.01" {...register("varnishCost")} prefix="$" />
                   <Input label={es ? "Pigmento" : "Pigment"} type="number" min="0" step="0.01" {...register("pigmentCost")} prefix="$" />
-                  <Input label={es ? "Desmoldante" : "Release agent"} type="number" min="0" step="0.01" {...register("releaseAgentCost")} prefix="$" />
+                  <Input label={es ? "Desmoldante" : "Release agent"} type="number" min="0" step="0.01" {...register("releaseAgentCost")} prefix="$" hint={es ? "Spray o aceite para que la pieza no se pegue al molde" : "Spray or oil so the piece doesn't stick to the mold"} />
                   <Input label={es ? "Mano de obra $/h" : "Labor $/h"} type="number" min="0" step="0.01" {...register("laborCostPerHour")} prefix="$" />
                   <Input label={es ? "Horas" : "Hours"} type="number" min="0" step="0.5" {...register("laborHours")} />
                   <Input label={es ? "Margen deseado %" : "Desired margin %"} type="number" min="1" max="100" {...register("desiredMarginPct")} suffix="%" />

@@ -4,8 +4,9 @@ import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils/cn";
 import { formatCurrency, formatPct } from "@/lib/utils/format";
 import type { CalculationResults, Locale } from "@/types";
-import { TrendingUp, TrendingDown, AlertTriangle, CheckCircle, Shield } from "lucide-react";
+import { TrendingUp, TrendingDown, AlertTriangle, CheckCircle, Shield, Info } from "lucide-react";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from "recharts";
+import { TooltipHelp } from "@/components/ui/tooltip";
 
 interface ResultPanelProps {
   results: CalculationResults;
@@ -35,9 +36,25 @@ export function ResultPanel({ results, locale, currency = "USD", className }: Re
 
   const fmt = (v: number) => formatCurrency(v, currency, locale);
   const fmtPct = (v: number) => formatPct(v, locale);
+  const costsIncomplete = results.totalProductionCost === 0;
+
+  const labelWithTip = (label: string, tip: string) => (
+    <span className="inline-flex items-center gap-1">
+      {label}
+      <TooltipHelp text={tip} />
+    </span>
+  );
 
   return (
     <div className={cn("space-y-4", className)}>
+      {/* Missing-costs hint */}
+      {costsIncomplete && (
+        <div className="flex items-start gap-2 rounded-lg bg-sky-50 border border-sky-100 px-4 py-3 text-sm text-sky-800">
+          <Info className="h-4 w-4 flex-shrink-0 mt-0.5" />
+          <span>{t("costsIncomplete")}</span>
+        </div>
+      )}
+
       {/* Main metrics */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
         <MetricBox
@@ -51,17 +68,17 @@ export function ResultPanel({ results, locale, currency = "USD", className }: Re
           accent="gold"
         />
         <MetricBox
-          label={t("wholesalePrice")}
+          label={labelWithTip(t("wholesalePrice"), t("tooltipWholesalePrice"))}
           value={fmt(results.wholesalePrice)}
           accent="default"
         />
         <MetricBox
-          label={t("grossMargin")}
+          label={labelWithTip(t("grossMargin"), t("tooltipGrossMargin"))}
           value={fmtPct(results.grossMargin)}
           accent={results.grossMargin >= 30 ? "success" : "warning"}
         />
         <MetricBox
-          label={t("netMargin")}
+          label={labelWithTip(t("netMargin"), t("tooltipNetMargin"))}
           value={fmtPct(results.netMargin)}
           accent={isHealthy ? "success" : isDanger ? "danger" : "warning"}
           icon={isHealthy ? <TrendingUp className="h-4 w-4" /> : <TrendingDown className="h-4 w-4" />}
@@ -77,7 +94,7 @@ export function ResultPanel({ results, locale, currency = "USD", className }: Re
       <div className="grid grid-cols-2 gap-3">
         <MetricBox label={t("totalProductionCost")} value={fmt(results.totalProductionCost)} />
         <MetricBox label={t("profitPerBatch")} value={fmt(results.profitPerBatch)} />
-        <MetricBox label={t("breakEvenUnits")} value={`${results.breakEvenUnits} uds.`} />
+        <MetricBox label={labelWithTip(t("breakEvenUnits"), t("tooltipBreakEvenUnits"))} value={`${results.breakEvenUnits} uds.`} />
         <MetricBox label={t("productionTime")} value={`${results.productionTimeMinutes} min`} />
       </div>
 
@@ -143,7 +160,7 @@ function MetricBox({
   accent = "default",
   icon,
 }: {
-  label: string;
+  label: React.ReactNode;
   value: string;
   accent?: MetricAccent;
   icon?: React.ReactNode;

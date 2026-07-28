@@ -158,7 +158,7 @@ export default function MultiCalculatorPage() {
                           </Select>
                         )} />
                         <Input label={t("componentName")} placeholder={locale === "es" ? "Nombre" : "Name"} {...register(`components.${index}.name`)} />
-                        <Input label={t("componentCost")} type="number" min="0" step="0.01" {...register(`components.${index}.costPerUnit`)} prefix="$" />
+                        <Input label={t("componentCost")} type="number" min="0" step="0.01" {...register(`components.${index}.costPerUnit`)} prefix="$" hint={t("componentCostHint")} />
                         <Input label={t("componentTime")} type="number" min="0" {...register(`components.${index}.productionTimeMin`)} suffix="min" />
                         <Input label={t("componentWaste")} type="number" min="0" max="50" {...register(`components.${index}.wastePct`)} suffix="%" />
                       </div>

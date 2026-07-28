@@ -309,29 +309,37 @@ export function DashboardClient({ profile, license, calculations, formulas, mate
           )}
 
           {/* Most/Least profitable */}
-          {mostProfitable && (
-            <Card>
-              <CardContent className="pt-5 space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-stone-500">{t("stats.mostProfitable")}</span>
-                  <Badge variant="success">{formatPct(mostProfitable.net_margin, locale)}</Badge>
+          <Card>
+            <CardContent className="pt-5 space-y-3">
+              {mostProfitable ? (
+                <>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-stone-500">{t("stats.mostProfitable")}</span>
+                    <Badge variant="success">{formatPct(mostProfitable.net_margin, locale)}</Badge>
+                  </div>
+                  <p className="text-sm font-semibold text-stone-900 truncate">{mostProfitable.name}</p>
+                  {leastProfitable && leastProfitable.id !== mostProfitable.id && (
+                    <>
+                      <div className="h-px bg-stone-100" />
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-stone-500">{t("stats.leastProfitable")}</span>
+                        <Badge variant={leastProfitable.net_margin >= 0 ? "warning" : "danger"}>
+                          {formatPct(leastProfitable.net_margin, locale)}
+                        </Badge>
+                      </div>
+                      <p className="text-sm font-semibold text-stone-900 truncate">{leastProfitable.name}</p>
+                    </>
+                  )}
+                </>
+              ) : (
+                <div className="text-center py-4">
+                  <TrendingUp className="mx-auto h-6 w-6 text-stone-300 mb-2" />
+                  <p className="text-sm font-medium text-stone-600">{t("stats.profitableEmptyTitle")}</p>
+                  <p className="text-xs text-stone-400 mt-1">{t("stats.profitableEmptyDesc")}</p>
                 </div>
-                <p className="text-sm font-semibold text-stone-900 truncate">{mostProfitable.name}</p>
-                {leastProfitable && leastProfitable.id !== mostProfitable.id && (
-                  <>
-                    <div className="h-px bg-stone-100" />
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs text-stone-500">{t("stats.leastProfitable")}</span>
-                      <Badge variant={leastProfitable.net_margin >= 0 ? "warning" : "danger"}>
-                        {formatPct(leastProfitable.net_margin, locale)}
-                      </Badge>
-                    </div>
-                    <p className="text-sm font-semibold text-stone-900 truncate">{leastProfitable.name}</p>
-                  </>
-                )}
-              </CardContent>
-            </Card>
-          )}
+              )}
+            </CardContent>
+          </Card>
         </div>
       </div>
     </AppLayout>
