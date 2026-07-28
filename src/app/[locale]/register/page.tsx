@@ -39,24 +39,29 @@ export default function RegisterPage() {
 
   async function onSubmit(data: FormData) {
     setError("");
-    const supabase = createClient();
 
-    const { data: codeValid } = await supabase.rpc("check_activation_code", { p_code: data.code });
-    if (!codeValid) {
-      setError(tErr("invalidCode"));
+    const res = await fetch("/api/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: data.name, email: data.email, password: data.password, code: data.code }),
+    });
+    const result = await res.json();
+    if (!result.ok) {
+      setError(result.error === "email_taken" ? tErr("emailTaken") : tErr("invalidCode"));
       return;
     }
 
-    const { error: authError } = await supabase.auth.signUp({
+    const supabase = createClient();
+    const { error: loginError } = await supabase.auth.signInWithPassword({
       email: data.email,
       password: data.password,
-      options: { data: { full_name: data.name, activation_code: data.code } },
     });
-    if (authError) {
-      setError(tErr("genericError"));
+    if (loginError) {
+      setSuccess(true);
       return;
     }
-    setSuccess(true);
+
+    router.push("/dashboard");
   }
 
   if (success) {

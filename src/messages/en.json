@@ -190,7 +190,7 @@
       "hasAccount": "Already have an account?",
       "login": "Sign in here",
       "loading": "Creating account...",
-      "success": "Account created. Check your email to confirm."
+      "success": "Account created successfully."
     },
     "activate": {
       "title": "Activate license",
@@ -232,7 +232,8 @@
       "invalidCode": "Invalid or already used activation code",
       "expiredCode": "This code has expired",
       "genericError": "An error occurred. Please try again.",
-      "invalidCredentials": "Incorrect email or password"
+      "invalidCredentials": "Incorrect email or password",
+      "emailTaken": "An account with this email already exists."
     }
   },
   "dashboard": {

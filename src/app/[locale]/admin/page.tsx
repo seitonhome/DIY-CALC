@@ -14,13 +14,11 @@ export default async function AdminPage() {
 
   const [
     { data: users },
-    { data: codes },
     { data: calculations },
   ] = await Promise.all([
     supabase.from("users_profile").select("*, licenses(*), user_preferences(preferred_language)").order("created_at", { ascending: false }),
-    supabase.from("activation_codes").select("*").order("created_at", { ascending: false }),
     supabase.from("calculations").select("category, created_at"),
   ]);
 
-  return <AdminClient users={users ?? []} codes={codes ?? []} calculations={calculations ?? []} />;
+  return <AdminClient users={users ?? []} calculations={calculations ?? []} />;
 }

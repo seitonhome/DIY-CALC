@@ -32,48 +32,22 @@ export default function ActivatePage() {
     setError("");
     const supabase = createClient();
 
-    // Get current user
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
       router.push("/login");
       return;
     }
 
-    // Check code validity
-    const { data: codeData, error: codeError } = await supabase
-      .from("activation_codes")
-      .select("*")
-      .eq("code", data.code.toUpperCase().trim())
-      .eq("status", "unused")
-      .single();
-
-    if (codeError || !codeData) {
+    const res = await fetch("/api/activate-license", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code: data.code }),
+    });
+    const result = await res.json();
+    if (!result.ok) {
       setError(tErr("invalidCode"));
       return;
     }
-
-    // Check expiry
-    if (codeData.expires_at && new Date(codeData.expires_at) < new Date()) {
-      setError(tErr("expiredCode"));
-      return;
-    }
-
-    // Mark code as used
-    await supabase
-      .from("activation_codes")
-      .update({ status: "used", used_by: user.id, used_at: new Date().toISOString() })
-      .eq("id", codeData.id);
-
-    // Update license
-    await supabase
-      .from("licenses")
-      .update({
-        status: "active",
-        plan: "premium",
-        activation_code_id: codeData.id,
-        activated_at: new Date().toISOString(),
-      })
-      .eq("user_id", user.id);
 
     setSuccess(true);
     setTimeout(() => router.push("/dashboard"), 2000);

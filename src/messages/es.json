@@ -190,7 +190,7 @@
       "hasAccount": "¿Ya tienes cuenta?",
       "login": "Inicia sesión aquí",
       "loading": "Creando cuenta...",
-      "success": "Cuenta creada. Revisa tu correo para confirmar."
+      "success": "Cuenta creada correctamente."
     },
     "activate": {
       "title": "Activar licencia",
@@ -232,7 +232,8 @@
       "invalidCode": "Código de activación inválido o ya utilizado",
       "expiredCode": "Este código ha expirado",
       "genericError": "Ocurrió un error. Intenta de nuevo.",
-      "invalidCredentials": "Correo o contraseña incorrectos"
+      "invalidCredentials": "Correo o contraseña incorrectos",
+      "emailTaken": "Ya existe una cuenta con este correo."
     }
   },
   "dashboard": {
