@@ -28,7 +28,8 @@ export async function POST(request: Request) {
     .eq("user_id", user.id);
 
   if (updateError) {
-    return NextResponse.json({ ok: false, error: "license_update_failed" }, { status: 500 });
+    console.error("[activate-license] license update failed:", updateError);
+    return NextResponse.json({ ok: false, error: "license_update_failed", debug: updateError.message }, { status: 500 });
   }
 
   return NextResponse.json({ ok: true });
