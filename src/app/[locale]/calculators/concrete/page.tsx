@@ -15,7 +15,7 @@ import { calculateConcrete, CONCRETE_MIX_TYPES } from "@/lib/calculations/concre
 import { exportCalculationPDF } from "@/lib/pdf/export";
 import type { Locale } from "@/types";
 import { Mountain, AlertTriangle, Save, FileDown, RefreshCw } from "lucide-react";
-import { createClient } from "@/lib/supabase/client";
+import { saveFormula } from "@/lib/formulas";
 
 const schema = z.object({
   productName:       z.string().default(""),
@@ -101,16 +101,16 @@ export default function ConcreteCalculatorPage() {
   async function handleSave() {
     if (!results) return;
     setSaving(true);
-    const supabase = createClient();
-    const { data: { user } } = await supabase.auth.getUser();
-    if (user) {
-      await supabase.from("calculations").insert({
-        user_id: user.id, product_name: watch("productName") || null,
-        category: "concrete", units: watch("units"), batch_size: watch("batchSize"),
-        input_data: watch(), results, locale,
-      });
-      setSaved(true);
-    }
+    const { ok } = await saveFormula({
+      category: "concrete",
+      productName: watch("productName"),
+      units: watch("units"),
+      batchSize: watch("batchSize"),
+      inputData: watch(),
+      results,
+      locale,
+    });
+    if (ok) setSaved(true);
     setSaving(false);
   }
 

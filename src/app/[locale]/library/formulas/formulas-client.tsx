@@ -15,6 +15,7 @@ const CATEGORIES = ["candles","resin","soap","concrete","plaster","multi"];
 
 export function FormulasClient({ formulas: initialFormulas, userId }: Props) {
   const t = useTranslations("library.formulas");
+  const tDash = useTranslations("dashboard");
   const locale = useLocale() as Locale;
   const [formulas, setFormulas] = useState(initialFormulas);
   const [expanded, setExpanded] = useState<string | null>(null);
@@ -62,7 +63,7 @@ export function FormulasClient({ formulas: initialFormulas, userId }: Props) {
                       <p className="font-semibold text-stone-900 text-sm">{f.name}</p>
                       <p className="text-xs text-stone-500 truncate">{f.description ?? ""}</p>
                     </div>
-                    <Badge variant="default" className="text-[10px] ml-2 flex-shrink-0">{f.category}</Badge>
+                    <Badge variant="default" className="text-[10px] ml-2 flex-shrink-0">{tDash(`quickAccess.${f.category}` as any)}</Badge>
                     {isOpen ? <ChevronUp className="h-4 w-4 text-stone-300 flex-shrink-0" /> : <ChevronDown className="h-4 w-4 text-stone-300 flex-shrink-0" />}
                   </button>
                   <button onClick={() => handleDelete(f.id)} className="p-1.5 rounded text-stone-400 hover:text-red-500 hover:bg-red-50 transition-colors flex-shrink-0">

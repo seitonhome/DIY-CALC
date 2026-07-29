@@ -19,7 +19,7 @@ import { calculateVolume } from "@/lib/calculations/geometry";
 import { exportCalculationPDF } from "@/lib/pdf/export";
 import type { CandleInputs, CalculationResults, Locale, MoldShape } from "@/types";
 import { AlertTriangle, Flame, Save, FileDown, RefreshCw } from "lucide-react";
-import { createClient } from "@/lib/supabase/client";
+import { saveFormula } from "@/lib/formulas";
 
 const schema = z.object({
   productName: z.string().min(1),
@@ -145,22 +145,17 @@ export default function CandlesCalculatorPage() {
     if (!results) return;
     setSaving(true);
     try {
-      const supabase = createClient();
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) return;
-
       const values = watch();
-      await supabase.from("calculations").insert({
-        user_id: user.id,
-        product_name: values.productName || null,
+      const { ok } = await saveFormula({
         category: "candles",
+        productName: values.productName,
         units: values.units,
-        batch_size: values.batchSize,
-        input_data: values,
+        batchSize: values.batchSize,
+        inputData: values,
         results,
         locale,
       });
-      setSaved(true);
+      if (ok) setSaved(true);
     } finally {
       setSaving(false);
     }

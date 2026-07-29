@@ -16,7 +16,7 @@ import { calculateSoap, SOAP_TYPES, OIL_PROPERTIES } from "@/lib/calculations/so
 import { exportCalculationPDF } from "@/lib/pdf/export";
 import type { SoapInputs, CalculationResults, Locale } from "@/types";
 import { Sparkles, AlertTriangle, Save, FileDown, RefreshCw } from "lucide-react";
-import { createClient } from "@/lib/supabase/client";
+import { saveFormula } from "@/lib/formulas";
 
 const schema = z.object({
   productName: z.string().default(""),
@@ -95,12 +95,16 @@ export default function SoapCalculatorPage() {
   async function handleSave() {
     if (!results) return;
     setSaving(true);
-    const supabase = createClient();
-    const { data: { user } } = await supabase.auth.getUser();
-    if (user) {
-      await supabase.from("calculations").insert({ user_id: user.id, product_name: watch("productName") || null, category: "soap", units: watch("units"), batch_size: watch("batchSize"), input_data: watch(), results, locale });
-      setSaved(true);
-    }
+    const { ok } = await saveFormula({
+      category: "soap",
+      productName: watch("productName"),
+      units: watch("units"),
+      batchSize: watch("batchSize"),
+      inputData: watch(),
+      results,
+      locale,
+    });
+    if (ok) setSaved(true);
     setSaving(false);
   }
 

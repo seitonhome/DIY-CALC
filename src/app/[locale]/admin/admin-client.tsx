@@ -14,6 +14,7 @@ interface Props {
 
 export function AdminClient({ users, calculations }: Props) {
   const t = useTranslations("admin");
+  const tDash = useTranslations("dashboard");
 
   const totalCalcs = calculations.length;
   const byCategory = calculations.reduce<Record<string, number>>((acc, c) => {
@@ -40,7 +41,7 @@ export function AdminClient({ users, calculations }: Props) {
             <StatCard title={t("stats.totalUsers")} value={String(users.length)} icon={<Users className="h-4 w-4" />} />
             <StatCard title={t("stats.activeUsers")} value={String(users.filter((u: any) => u.licenses?.[0]?.status === "active").length)} accent="success" icon={<Users className="h-4 w-4" />} />
             <StatCard title={t("stats.totalCalcs")} value={String(totalCalcs)} icon={<BarChart3 className="h-4 w-4" />} />
-            <StatCard title={t("stats.mostUsedCalc")} value={mostUsed?.[0] ?? "—"} icon={<BarChart3 className="h-4 w-4" />} accent="gold" />
+            <StatCard title={t("stats.mostUsedCalc")} value={mostUsed ? tDash(`quickAccess.${mostUsed[0]}` as any) : "—"} icon={<BarChart3 className="h-4 w-4" />} accent="gold" />
           </div>
 
           <Card>
@@ -49,7 +50,7 @@ export function AdminClient({ users, calculations }: Props) {
               <div className="space-y-3">
                 {Object.entries(byCategory).sort((a,b) => b[1]-a[1]).map(([cat, count]) => (
                   <div key={cat} className="flex items-center gap-3">
-                    <p className="w-24 text-sm text-stone-600 capitalize">{cat}</p>
+                    <p className="w-24 text-sm text-stone-600 capitalize">{tDash(`quickAccess.${cat}` as any)}</p>
                     <div className="flex-1 rounded-full bg-stone-100 h-2">
                       <div className="h-2 rounded-full bg-amber-500" style={{ width: `${totalCalcs > 0 ? (count / totalCalcs) * 100 : 0}%` }} />
                     </div>

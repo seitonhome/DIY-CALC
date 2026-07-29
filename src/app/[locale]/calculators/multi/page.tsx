@@ -15,7 +15,7 @@ import { calculateMulti } from "@/lib/calculations/multi";
 import { exportCalculationPDF } from "@/lib/pdf/export";
 import type { MultiInputs, Locale } from "@/types";
 import { Package, Plus, Trash2, Save, FileDown, RefreshCw, Flame, Droplets, Sparkles, Mountain, Layers3 } from "lucide-react";
-import { createClient } from "@/lib/supabase/client";
+import { saveFormula } from "@/lib/formulas";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from "recharts";
 import { formatCurrency } from "@/lib/utils/format";
 import { v4 as uuidv4 } from "uuid";
@@ -65,6 +65,7 @@ const CHART_COLORS = ["#92400e","#d97706","#65a30d","#0891b2","#7c3aed","#db2777
 export default function MultiCalculatorPage() {
   const t = useTranslations("calculators.multi");
   const tCommon = useTranslations("calculators.common");
+  const tDash = useTranslations("dashboard");
   const locale = useLocale() as Locale;
   const [results, setResults] = useState<any>(null);
   const [saving, setSaving] = useState(false);
@@ -90,12 +91,16 @@ export default function MultiCalculatorPage() {
   async function handleSave() {
     if (!results) return;
     setSaving(true);
-    const supabase = createClient();
-    const { data: { user } } = await supabase.auth.getUser();
-    if (user) {
-      await supabase.from("calculations").insert({ user_id: user.id, product_name: watch("productName") || null, category: "multi", units: watch("units"), batch_size: watch("batchSize"), input_data: watch(), results, locale });
-      setSaved(true);
-    }
+    const { ok } = await saveFormula({
+      category: "multi",
+      productName: watch("productName"),
+      units: watch("units"),
+      batchSize: watch("batchSize"),
+      inputData: watch(),
+      results,
+      locale,
+    });
+    if (ok) setSaved(true);
     setSaving(false);
   }
 
@@ -152,7 +157,7 @@ export default function MultiCalculatorPage() {
                             <SelectContent>
                               {(["candles","resin","soap","concrete","plaster"] as const).map(k => {
                                 const CIcon = TYPE_ICONS[k];
-                                return <SelectItem key={k} value={k}><span className="flex items-center gap-2"><CIcon className="h-3 w-3" />{k}</span></SelectItem>;
+                                return <SelectItem key={k} value={k}><span className="flex items-center gap-2"><CIcon className="h-3 w-3" />{tDash(`quickAccess.${k}` as any)}</span></SelectItem>;
                               })}
                             </SelectContent>
                           </Select>

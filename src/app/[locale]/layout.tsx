@@ -1,5 +1,5 @@
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages, getLocale } from "next-intl/server";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import type { Metadata } from "next";
@@ -41,7 +41,13 @@ export default async function LocaleLayout({ children, params }: Props) {
     notFound();
   }
 
-  const messages = await getMessages();
+  // proxy.ts skips next-intl's middleware for protected/admin paths (auth gate
+  // runs instead), so requestLocale is never set by the middleware there.
+  // Setting it explicitly here makes getMessages()/getTranslations() resolve
+  // the correct locale regardless of which middleware path served the request.
+  setRequestLocale(locale);
+
+  const messages = await getMessages({ locale });
 
   return (
     <NextIntlClientProvider messages={messages} locale={locale}>

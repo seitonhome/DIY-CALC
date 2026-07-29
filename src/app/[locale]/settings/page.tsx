@@ -10,15 +10,16 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import { createClient } from "@/lib/supabase/client";
 import { useAppStore } from "@/store";
-import type { Locale } from "@/types";
+import type { License, Locale } from "@/types";
 import { Settings, Globe, Key, Check } from "lucide-react";
 
 export default function SettingsPage() {
   const t = useTranslations("settings");
   const locale = useLocale() as Locale;
   const router = useRouter();
-  const { license, setLocale } = useAppStore();
+  const { setLocale } = useAppStore();
   const [name, setName] = useState("");
+  const [license, setLicense] = useState<License | null>(null);
   const [savedMsg, setSavedMsg] = useState(false);
   const [selectedLang, setSelectedLang] = useState<Locale>(locale);
 
@@ -29,6 +30,10 @@ export default function SettingsPage() {
       if (!user) return;
       const { data: profile } = await supabase.from("users_profile").select("full_name").eq("user_id", user.id).single();
       if (profile) setName(profile.full_name ?? "");
+      // The app-wide store never populates `license` (nothing calls
+      // setLicense), so fetch it directly here instead of relying on it.
+      const { data: lic } = await supabase.from("licenses").select("*").eq("user_id", user.id).single();
+      if (lic) setLicense(lic);
     }
     load();
   }, []);

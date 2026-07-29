@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -10,6 +11,7 @@ import {
   LifeBuoy, Settings, Shield, ChevronLeft, Menu
 } from "lucide-react";
 import { useAppStore } from "@/store";
+import { createClient } from "@/lib/supabase/client";
 import { LanguageSwitcher } from "./language-switcher";
 import { TipsRotator } from "@/components/ui/tips-rotator";
 
@@ -54,10 +56,11 @@ const NAV_SECTIONS = [
     key: "bottom",
     items: [
       { href: "/settings", icon: Settings, labelKey: "settings" },
-      { href: "/admin", icon: Shield, labelKey: "admin" },
     ],
   },
 ];
+
+const ADMIN_ITEM = { href: "/admin", icon: Shield, labelKey: "admin" };
 
 export function Sidebar() {
   const locale = useLocale();
@@ -67,6 +70,18 @@ export function Sidebar() {
   const tLib = useTranslations("library");
   const tSim = useTranslations("simulator");
   const { sidebarOpen, setSidebarOpen } = useAppStore();
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    async function checkAdmin() {
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+      const { data: profile } = await supabase.from("users_profile").select("role").eq("user_id", user.id).single();
+      setIsAdmin(profile?.role === "admin");
+    }
+    checkAdmin();
+  }, []);
 
   function getLabel(href: string): string {
     if (href === "/dashboard") return t("dashboard");
@@ -141,7 +156,7 @@ export function Sidebar() {
                   {t(section.labelKey as any)}
                 </p>
               )}
-              {section.items.map((item) => {
+              {(section.key === "bottom" && isAdmin ? [...section.items, ADMIN_ITEM] : section.items).map((item) => {
                 const active = isActive(item.href);
                 return (
                   <Link

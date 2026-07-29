@@ -194,7 +194,7 @@ export function DashboardClient({ profile, license, calculations, formulas, mate
                             <td className="py-2.5">
                               <span className={`inline-flex items-center gap-1 text-xs ${iconClass}`}>
                                 <Icon className="h-3 w-3" />
-                                {calc.category}
+                                {t(`quickAccess.${calc.category}` as any)}
                               </span>
                             </td>
                             <td className="py-2.5 text-right font-medium text-stone-900">
