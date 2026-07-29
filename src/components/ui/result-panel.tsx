@@ -39,9 +39,9 @@ export function ResultPanel({ results, locale, currency = "USD", className }: Re
   const costsIncomplete = results.totalProductionCost === 0;
 
   const labelWithTip = (label: string, tip: string) => (
-    <span className="inline-flex items-center gap-1">
-      {label}
-      <TooltipHelp text={tip} />
+    <span className="flex items-center gap-1 min-w-0">
+      <span className="truncate">{label}</span>
+      <TooltipHelp className="flex-shrink-0" text={tip} />
     </span>
   );
 
@@ -167,7 +167,7 @@ function MetricBox({
 }) {
   return (
     <div className={cn("rounded-lg border p-3", metricAccentStyles[accent])}>
-      <p className="text-xs font-medium text-stone-500 truncate">{label}</p>
+      <p className={cn("text-xs font-medium text-stone-500", typeof label === "string" && "truncate")}>{label}</p>
       <div className="mt-1 flex items-center gap-1">
         {icon}
         <p className="text-base font-bold text-stone-900 truncate">{value}</p>
