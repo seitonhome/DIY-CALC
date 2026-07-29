@@ -16,7 +16,9 @@ seitonhome.com site.
 - next-intl with `localePrefix: "always"` — every route is `/es/...` or `/en/...`
 - Supabase (Postgres, Auth, RLS) — SSR client in `src/lib/supabase/`
 - Zustand (`src/store/index.ts`) — persists only `locale`; `user`/`license` fields exist
-  but are dead state (see known issues below)
+  but are never populated (nothing calls `setUser`/`setLicense`) — don't rely on them,
+  fetch license/role directly from Supabase where needed (see `settings/page.tsx` and
+  `components/layout/sidebar.tsx` for the pattern)
 - React Hook Form + Zod (`resolver: zodResolver(schema) as any` — needed for
   `z.coerce.number()` compatibility with strict TS)
 - Recharts for charts, jsPDF for PDF export
@@ -45,31 +47,35 @@ account, use the Supabase service-role key to `admin.createUser()` and directly
 `update` its `licenses` row to `status: 'active'` (see session notes / ask the user
 for the current test account credentials before re-creating one).
 
-## Known issues (found 2026-07-29, unfixed as of last check — verify before assuming still true)
+## Bugs found & fixed 2026-07-29
 
-1. **English locale is broken on every authenticated page.** `src/proxy.ts` bypasses
-   next-intl's `intlMiddleware` for `PROTECTED_PATHS`/`ADMIN_PATHS`, and
-   `src/app/[locale]/layout.tsx` calls `getMessages()` without first calling
-   `setRequestLocale(locale)`. Result: dashboard/calculators/library/etc. under
-   `/en/...` render Spanish text (only the locale badge and a couple of
-   client-derived bits show English). Public pages (`/`, `/login`, `/register`,
-   `/activate`, `/support`) are fine since they go through `intlMiddleware` normally.
-2. **"Guardar fórmula" doesn't save to the Formulas library.** Every calculator's
-   save handler (`handleSave` in each `calculators/*/page.tsx`) inserts only into the
-   `calculations` table, never `formulas`. `Biblioteca de Fórmulas` and the
-   dashboard's "Fórmulas guardadas" stat are permanently empty/0 for every user.
-3. **Settings page license status is always wrong.** `useAppStore().license` is never
-   populated — `setLicense` exists in `src/store/index.ts` but is called nowhere — so
-   `/settings` always shows "Sin activar" regardless of the real DB status. (The
-   dashboard itself is fine: it computes premium status from server-fetched props,
-   not the store.)
-4. **Untranslated category keys shown raw**, e.g. "candles" instead of "Velas" — in the
-   Multimaterial calculator's material-type dropdown
-   (`calculators/multi/page.tsx:155`, renders `{k}` instead of a translated label) and
-   in the dashboard/admin "Tipo" column for recent calculations.
-5. **"Admin" nav link shown to every user** in `src/components/layout/sidebar.tsx`
-   regardless of role (not a security hole — `/admin/page.tsx` correctly redirects
-   non-admins server-side — just a confusing UI element for everyone else).
+Found during a full functional test pass (all 6 calculators, library, simulator,
+compare, learn, settings, language switch) and fixed the same session:
+
+1. **English locale broken on every authenticated page** — `src/proxy.ts` bypasses
+   next-intl's `intlMiddleware` for `PROTECTED_PATHS`/`ADMIN_PATHS`, so
+   `getMessages()` in `[locale]/layout.tsx` resolved the wrong locale via cache/header
+   fallback. Fixed by calling `getMessages({ locale })` with the URL-segment locale
+   explicitly (plus `setRequestLocale(locale)`) instead of relying on requestLocale
+   negotiation. If English breaks again on a protected route, start here.
+2. **"Guardar fórmula" never saved to the Formulas library** — every calculator's
+   save handler inserted only into `calculations`, never `formulas`/`formula_materials`.
+   Fixed via a shared `saveFormula()` helper in `src/lib/formulas.ts`, called from all
+   6 `calculators/*/page.tsx` `handleSave` functions.
+3. **Settings page license status always wrong** — `useAppStore().license` was never
+   populated (`setLicense` defined but never called). Fixed by having
+   `settings/page.tsx` fetch the license row directly from Supabase instead of the
+   store.
+4. **Untranslated category keys shown raw** (e.g. "candles" instead of "Velas") — in
+   the Multimaterial material-type dropdown, dashboard/admin "Tipo" columns, and the
+   Formulas library category badge. Fixed by translating via `dashboard.quickAccess.*`
+   wherever a raw `category`/`type` value was rendered.
+5. **"Admin" nav link shown to every user** regardless of role. Fixed by having
+   `Sidebar` fetch the current user's role client-side and only injecting the Admin
+   item when `role === "admin"`.
+
+If any of these resurface, that's a regression worth flagging loudly rather than
+re-diagnosing from scratch — the root causes above still apply.
 
 ## Standing preferences
 
