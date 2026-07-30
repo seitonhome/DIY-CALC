@@ -1151,10 +1151,10 @@
     "calculatedVolume": "Volumen calculado",
     "irregularMethod": {
       "title": "Método para molde irregular",
-      "step1": "1. Llena el molde completamente con agua.",
-      "step2": "2. Pesa o mide el agua que cabe en el molde.",
-      "step3": "3. Ingresa la cantidad de agua aquí (1 ml = 1 g de agua).",
-      "waterAmount": "Cantidad de agua (ml / g)",
+      "step1": "1. Pesa el molde vacío en una báscula de cocina y anota el peso.",
+      "step2": "2. Llena el molde con agua hasta el tope y vuelve a pesarlo.",
+      "step3": "3. Resta el primer peso al segundo: esa diferencia en gramos es el volumen en mililitros (1 g de agua = 1 ml).",
+      "waterAmount": "Diferencia de peso (ml / g)",
       "result": "Volumen aproximado del molde"
     }
   },

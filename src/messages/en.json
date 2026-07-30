@@ -1151,10 +1151,10 @@
     "calculatedVolume": "Calculated volume",
     "irregularMethod": {
       "title": "Method for irregular molds",
-      "step1": "1. Fill the mold completely with water.",
-      "step2": "2. Weigh or measure the water that fits in the mold.",
-      "step3": "3. Enter the water amount here (1 ml = 1 g of water).",
-      "waterAmount": "Water amount (ml / g)",
+      "step1": "1. Weigh the empty mold on a kitchen scale and write down the weight.",
+      "step2": "2. Fill the mold with water to the top and weigh it again.",
+      "step3": "3. Subtract the first weight from the second: that difference in grams is the volume in milliliters (1 g of water = 1 ml).",
+      "waterAmount": "Weight difference (ml / g)",
       "result": "Approximate mold volume"
     }
   },

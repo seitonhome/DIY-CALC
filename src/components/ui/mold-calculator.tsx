@@ -223,10 +223,16 @@ export function MoldCalculator({ locale, onVolume }: Props) {
       {/* Special instruction for irregular */}
       {shape === "irregular" && (
         <div style={{ background: "white", border: "1px solid #EDE8E1", borderRadius: 8, padding: "8px 12px", marginBottom: 12 }}>
+          <p style={{ fontSize: 11, color: "#6B6460", margin: "0 0 4px", lineHeight: 1.5 }}>
+            {es ? "1. Pesa el molde vacío en una báscula de cocina y anota el peso." : "1. Weigh the empty mold on a kitchen scale and write down the weight."}
+          </p>
+          <p style={{ fontSize: 11, color: "#6B6460", margin: "0 0 4px", lineHeight: 1.5 }}>
+            {es ? "2. Llena el molde con agua hasta el tope y vuelve a pesarlo." : "2. Fill the mold with water to the top and weigh it again."}
+          </p>
           <p style={{ fontSize: 11, color: "#6B6460", margin: 0, lineHeight: 1.5 }}>
             {es
-              ? "Llena el molde con agua hasta el tope. Mide cuántos ml de agua usaste. Ese es el volumen del molde."
-              : "Fill the mold with water to the top. Measure how many ml of water you used. That is the mold volume."}
+              ? "3. Resta el primer peso al segundo: esa diferencia en gramos es el volumen del molde en mililitros (1 g de agua = 1 ml)."
+              : "3. Subtract the first weight from the second: that difference in grams is the mold's volume in milliliters (1 g of water = 1 ml)."}
           </p>
         </div>
       )}
