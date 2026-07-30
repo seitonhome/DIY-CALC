@@ -277,7 +277,7 @@ export default function MultiCalculatorPage() {
                   </CardContent>
                 </Card>
 
-                <ResultPanel results={results} locale={locale} currency={currency} />
+                <ResultPanel results={results} locale={locale} currency={currency} hideCostDistribution />
 
                 <div className="flex gap-2">
                   <Button variant="outline" className="flex-1" onClick={handleSave} loading={saving} disabled={saved}>

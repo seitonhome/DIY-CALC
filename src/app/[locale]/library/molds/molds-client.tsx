@@ -191,7 +191,7 @@ export function MoldsClient({ molds: initialMolds, userId }: Props) {
                 </div>
                 <div className="flex justify-between">
                   <span>{t("fields.material")}</span>
-                  <span className="font-medium text-stone-700">{m.mold_material ?? "—"}</span>
+                  <span className="font-medium text-stone-700">{m.mold_material ? t(`materials.${m.mold_material}`) : "—"}</span>
                 </div>
               </div>
             </div>

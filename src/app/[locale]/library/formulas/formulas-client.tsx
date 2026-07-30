@@ -80,7 +80,7 @@ export function FormulasClient({ formulas: initialFormulas, userId }: Props) {
                           {materials.map((m: any) => (
                             <div key={m.id} className="flex items-center justify-between text-sm">
                               <span className="text-stone-700">{m.material_name ?? m.material_id}</span>
-                              <span className="text-stone-500">{m.quantity} {m.unit}</span>
+                              <span className="text-stone-500">{Number(m.amount ?? 0).toFixed(1)} {m.unit}</span>
                             </div>
                           ))}
                         </div>

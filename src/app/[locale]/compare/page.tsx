@@ -92,13 +92,13 @@ export default function ComparePage() {
     setHasResults(true);
   }
 
-  const bestNetMargin = hasResults ? Math.max(...results.map(r => r.netMarginPct)) : 0;
+  const bestNetMargin = hasResults ? Math.max(...results.map(r => r.netMargin)) : 0;
   const bestProfit = hasResults ? Math.max(...results.map(r => r.profitPerUnit)) : 0;
 
   const COLORS = ["#d97706","#0891b2","#65a30d","#7c3aed","#db2777"];
 
   const chartData = hasResults ? [
-    { metric: locale === "es" ? "Costo" : "Cost", ...Object.fromEntries(results.map(r => [r.name, r.totalCostPerUnit])) },
+    { metric: locale === "es" ? "Costo" : "Cost", ...Object.fromEntries(results.map(r => [r.name, r.costPerUnit])) },
     { metric: locale === "es" ? "Precio sugerido" : "Suggested price", ...Object.fromEntries(results.map(r => [r.name, r.suggestedPrice])) },
     { metric: locale === "es" ? "Ganancia/ud." : "Profit/unit", ...Object.fromEntries(results.map(r => [r.name, r.profitPerUnit])) },
   ] : [];
@@ -167,7 +167,7 @@ export default function ComparePage() {
             <div>
               <p className="font-semibold text-amber-900 text-sm">
                 {locale === "es" ? "Mejor margen neto" : "Best net margin"}:{" "}
-                {results.find(r => r.netMarginPct === bestNetMargin)?.name}
+                {results.find(r => r.netMargin === bestNetMargin)?.name}
               </p>
               <p className="text-xs text-amber-700">
                 {locale === "es" ? "Mayor ganancia por unidad" : "Highest profit per unit"}:{" "}
@@ -192,18 +192,18 @@ export default function ComparePage() {
                   </thead>
                   <tbody className="divide-y divide-stone-50">
                     {[
-                      { label: locale === "es" ? "Costo total/ud." : "Total cost/unit", key: "totalCostPerUnit", fmt: (v: number) => formatCurrency(v, "USD", locale) },
+                      { label: locale === "es" ? "Costo total/ud." : "Total cost/unit", key: "costPerUnit", fmt: (v: number) => formatCurrency(v, "USD", locale) },
                       { label: locale === "es" ? "Precio sugerido" : "Suggested price", key: "suggestedPrice", fmt: (v: number) => formatCurrency(v, "USD", locale) },
                       { label: locale === "es" ? "Ganancia/ud." : "Profit/unit", key: "profitPerUnit", fmt: (v: number) => formatCurrency(v, "USD", locale) },
-                      { label: locale === "es" ? "Margen bruto" : "Gross margin", key: "grossMarginPct", fmt: (v: number) => formatPct(v, locale) },
-                      { label: locale === "es" ? "Margen neto" : "Net margin", key: "netMarginPct", fmt: (v: number) => formatPct(v, locale) },
+                      { label: locale === "es" ? "Margen bruto" : "Gross margin", key: "grossMargin", fmt: (v: number) => formatPct(v, locale) },
+                      { label: locale === "es" ? "Margen neto" : "Net margin", key: "netMargin", fmt: (v: number) => formatPct(v, locale) },
                       { label: locale === "es" ? "Break-even" : "Break-even", key: "breakEvenUnits", fmt: (v: number) => `${Math.ceil(v)} uds.` },
                     ].map(({ label, key, fmt }) => (
                       <tr key={key} className="hover:bg-stone-50/50">
                         <td className="py-2.5 text-stone-600">{label}</td>
                         {results.map((r, i) => {
                           const val = r[key as keyof typeof r] as number;
-                          const isBest = key === "netMarginPct" ? val === bestNetMargin : key === "profitPerUnit" ? val === bestProfit : false;
+                          const isBest = key === "netMargin" ? val === bestNetMargin : key === "profitPerUnit" ? val === bestProfit : false;
                           return (
                             <td key={i} className={`py-2.5 text-right font-medium ${isBest ? "text-emerald-600" : "text-stone-900"}`}>
                               {fmt(val)}

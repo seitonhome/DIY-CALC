@@ -688,7 +688,7 @@ export default function CandlesCalculatorPage() {
                   if (results.vybarAmountG > 0) items.push({ label: `Vybar ${watch("vybarType")}`, amount: `${results.vybarAmountG.toFixed(2)} g`, sub: `${results.vybarPct.toFixed(2)}%` });
                   if (results.colorantAmountG > 0) items.push({ label: es ? "Colorante" : "Colorant", amount: `${results.colorantAmountG.toFixed(1)} g` });
                   items.push({ separator: true });
-                  items.push({ label: es ? "1 Pabilo" : "1 Wick", amount: "1 pieza" });
+                  items.push({ label: es ? "1 Pabilo" : "1 Wick", amount: es ? "1 pieza" : "1 pc" });
                   if (isPillar && results.secondPourG > 0) {
                     items.push({ separator: true });
                     items.push({

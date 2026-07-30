@@ -13,9 +13,10 @@ interface ResultPanelProps {
   locale: Locale;
   currency?: string;
   className?: string;
+  hideCostDistribution?: boolean;
 }
 
-export function ResultPanel({ results, locale, currency = "USD", className }: ResultPanelProps) {
+export function ResultPanel({ results, locale, currency = "USD", className, hideCostDistribution }: ResultPanelProps) {
   const t = useTranslations("calculators.results");
   const tRec = useTranslations("calculators.recommendations");
 
@@ -111,7 +112,7 @@ export function ResultPanel({ results, locale, currency = "USD", className }: Re
       </div>
 
       {/* Cost distribution chart */}
-      {results.costDistribution.length > 0 && (
+      {!hideCostDistribution && results.costDistribution.length > 0 && (
         <div className="rounded-xl border border-stone-100 bg-white p-4">
           <p className="text-sm font-semibold text-stone-700 mb-3">{t("costDistribution")}</p>
           <ResponsiveContainer width="100%" height={200}>
