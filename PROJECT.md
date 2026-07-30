@@ -77,6 +77,34 @@ compare, learn, settings, language switch) and fixed the same session:
 If any of these resurface, that's a regression worth flagging loudly rather than
 re-diagnosing from scratch — the root causes above still apply.
 
+## Guided wizard (added 2026-07-29)
+
+`/{locale}/wizard` (`src/app/[locale]/wizard/page.tsx`) is the app's guided onboarding
+flow: pick a material → pick a project type for that material → land on
+`/calculators/{material}?type={value}` with that technique/type already selected and
+its recommendation visible, instead of a blank form. It's the target of the
+dashboard's "Nuevo cálculo" button and the empty-state "Hacer mi primer cálculo" CTA.
+
+- Project-type options per material come from the SAME data each calculator already
+  uses — `RESIN_TECHNIQUES` (`lib/calculations/resin.ts`), `CONCRETE_MIX_TYPES`,
+  `PLASTER_TYPES`, `SOAP_TYPES` — so the wizard and the calculator never drift apart.
+  Candles has no such data structure; its 12 short descriptions live under
+  `calculators.candles.typeDescriptions.*` in the message files. Multi has no natural
+  "technique," so its second question is "what's the main material" and it prefills
+  the first component's type.
+- Each calculator reads `?type=` on mount (via `new URLSearchParams(window.location.search)`,
+  not `useSearchParams()` — the latter forces a Suspense boundary on these
+  statically-generated pages and broke the build) and calls `setValue()` to preselect
+  its own type field.
+- **Gotcha**: for the 3 calculators whose type field is a Radix `Select` (candles,
+  soap, multi's per-component type), calling `setValue()` synchronously on mount gets
+  silently overwritten a tick later — the value visibly reverts to empty. Wrap it in
+  `setTimeout(..., 50)` with a `clearTimeout` cleanup (already done in all three). The
+  other 3 (resin, concrete, plaster) use plain radio-styled `<input>`s bound via
+  `register()` and don't need the delay — only Radix `Select` is affected. If a future
+  calculator field prefill silently reverts to empty, check whether it's a Radix
+  Select first before assuming the prefill code itself is wrong.
+
 ## Standing preferences
 
 - Auto commit + push every change in this repo without asking first (standing
