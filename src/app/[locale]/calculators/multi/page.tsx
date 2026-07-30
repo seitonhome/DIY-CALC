@@ -11,14 +11,23 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import { ResultPanel } from "@/components/ui/result-panel";
+import { StepGuide, type StepGuideStep } from "@/components/ui/step-guide";
 import { calculateMulti } from "@/lib/calculations/multi";
 import { exportCalculationPDF } from "@/lib/pdf/export";
 import type { MultiInputs, Locale } from "@/types";
-import { Package, Plus, Trash2, Save, FileDown, RefreshCw, Flame, Droplets, Sparkles, Mountain, Layers3 } from "lucide-react";
+import { Package, Plus, Trash2, Save, FileDown, RefreshCw, Flame, Droplets, Sparkles, Mountain, Layers3, type LucideIcon } from "lucide-react";
 import { saveFormula } from "@/lib/formulas";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from "recharts";
 import { formatCurrency } from "@/lib/utils/format";
 import { v4 as uuidv4 } from "uuid";
+
+const COMPONENT_TIPS: Record<string, { title_es: string; title_en: string; hint_es: string; hint_en: string }> = {
+  candles: { title_es: "Vela: cuidado con la cera caliente", title_en: "Candle: watch for hot wax", hint_es: "Nunca dejes la cera sola en el fuego. Agrega fragancia solo a la temperatura correcta para esa cera." , hint_en: "Never leave wax unattended over heat. Add fragrance only at that wax's correct temperature." },
+  resin: { title_es: "Resina: ventila y respeta la proporción", title_en: "Resin: ventilate and respect the ratio", hint_es: "Trabaja en un área ventilada y mide Parte A/B con precisión — es la causa #1 de que la resina no cure." , hint_en: "Work in a ventilated area and measure Part A/B precisely — the #1 cause of resin that never cures." },
+  soap: { title_es: "Jabón: si lleva sosa, equípate primero", title_en: "Soap: if it uses lye, gear up first", hint_es: "Guantes y gafas si es un jabón con sosa (proceso frío/caliente) — es corrosiva. La glicerina no la necesita." , hint_en: "Gloves and goggles if it's a lye soap (cold/hot process) — it's corrosive. Glycerin soap doesn't need this." },
+  concrete: { title_es: "Concreto: protégete del polvo", title_en: "Concrete: protect yourself from dust", hint_es: "Mascarilla al mezclar cemento y arena en seco — el polvo de sílice es dañino si lo respiras repetidamente." , hint_en: "Mask when mixing dry cement and sand — silica dust is harmful if inhaled repeatedly." },
+  plaster: { title_es: "Yeso: va AL AGUA, nunca al revés", title_en: "Plaster: goes INTO water, never the reverse", hint_es: "Mide el agua primero y espolvorea el yeso encima — al revés se hacen grumos." , hint_en: "Measure the water first and sift the plaster on top — doing it backwards causes lumps." },
+};
 
 const componentSchema = z.object({
   id: z.string().default(() => uuidv4()),
@@ -54,7 +63,7 @@ const schema = z.object({
 
 type FormValues = z.infer<typeof schema>;
 
-const TYPE_ICONS: Record<string, React.ElementType> = {
+const TYPE_ICONS: Record<string, LucideIcon> = {
   candles: Flame, resin: Droplets, soap: Sparkles, concrete: Mountain, plaster: Layers3, multi: Package,
 };
 const TYPE_COLORS: Record<string, string> = {
@@ -181,6 +190,11 @@ export default function MultiCalculatorPage() {
                         <Input label={t("componentTime")} type="number" min="0" {...register(`components.${index}.productionTimeMin`)} suffix="min" />
                         <Input label={t("componentWaste")} type="number" min="0" max="50" {...register(`components.${index}.wastePct`)} suffix="%" />
                       </div>
+                      {COMPONENT_TIPS[compType] && (
+                        <p className="mt-3 text-xs text-stone-500 bg-stone-50 rounded-lg px-3 py-2 leading-relaxed">
+                          💡 {locale === "es" ? COMPONENT_TIPS[compType].hint_es : COMPONENT_TIPS[compType].hint_en}
+                        </p>
+                      )}
                     </CardContent>
                   </Card>
                 );
@@ -235,6 +249,24 @@ export default function MultiCalculatorPage() {
           <div className="space-y-4">
             {results ? (
               <>
+                {/* Before-you-start checklist, one reminder per unique material in this set */}
+                {(() => {
+                  const uniqueTypes: string[] = Array.from(new Set(results.components.map((c: any) => c.type as string)));
+                  const steps: StepGuideStep[] = uniqueTypes
+                    .filter((type) => COMPONENT_TIPS[type])
+                    .map((type) => ({
+                      icon: TYPE_ICONS[type] ?? Package,
+                      title: locale === "es" ? COMPONENT_TIPS[type].title_es : COMPONENT_TIPS[type].title_en,
+                      description: locale === "es" ? COMPONENT_TIPS[type].hint_es : COMPONENT_TIPS[type].hint_en,
+                    }));
+                  return steps.length > 0 ? (
+                    <StepGuide
+                      title={locale === "es" ? "Antes de empezar" : "Before you start"}
+                      steps={steps}
+                    />
+                  ) : null;
+                })()}
+
                 {/* Component breakdown */}
                 <Card>
                   <CardHeader><CardTitle className="text-sm">{t("analysis.costDistribution")}</CardTitle></CardHeader>

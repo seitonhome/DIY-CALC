@@ -12,11 +12,30 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@
 import { ResultPanel } from "@/components/ui/result-panel";
 import { RecipeCard } from "@/components/ui/recipe-card";
 import { MoldCalculator } from "@/components/ui/mold-calculator";
+import { StepGuide, type StepGuideStep } from "@/components/ui/step-guide";
 import { calculateResin, RESIN_TYPES, RESIN_TECHNIQUES as TECHNIQUES } from "@/lib/calculations/resin";
 import { exportCalculationPDF } from "@/lib/pdf/export";
 import type { Locale } from "@/types";
-import { Droplets, Save, FileDown, RefreshCw, AlertTriangle, Info } from "lucide-react";
+import { Droplets, Save, FileDown, RefreshCw, AlertTriangle, Info, ShieldAlert, Scale, Beaker, Flame, Clock } from "lucide-react";
 import { saveFormula } from "@/lib/formulas";
+
+function getResinSteps(locale: Locale, typeProps: (typeof RESIN_TYPES)[string], partAPct: number, partBPct: number, results: any): StepGuideStep[] {
+  const es = locale === "es";
+  const cureStr = typeProps.cureTimeH < 1 ? `${typeProps.cureTimeH * 60} min` : `${typeProps.cureTimeH}h`;
+  const steps: StepGuideStep[] = [
+    { icon: ShieldAlert, critical: true, title: es ? "Prepara tu espacio de trabajo" : "Prepare your workspace", description: es ? "Cubre la superficie, ponte guantes y trabaja en un área ventilada — los vapores de la resina sin curar pueden irritar." : "Cover your surface, wear gloves, and work in a ventilated area — uncured resin fumes can irritate." },
+    { icon: Scale, title: es ? "Mide Parte A y B con precisión" : "Measure Part A and B precisely", description: results?.partAg
+        ? (es ? `Báscula digital: ${results.partAg.toFixed(1)} g de Parte A y ${results.partBg.toFixed(1)} g de Parte B (proporción ${partAPct}:${partBPct}). Es la causa #1 de que la resina no cure bien.` : `Digital scale: ${results.partAg.toFixed(1)} g of Part A and ${results.partBg.toFixed(1)} g of Part B (${partAPct}:${partBPct} ratio). The #1 cause of resin that never fully cures.`)
+        : (es ? `Respeta la proporción ${partAPct}:${partBPct} (A:B) al gramo — es la causa #1 de que la resina no cure bien.` : `Stick to the ${partAPct}:${partBPct} (A:B) ratio to the gram — the #1 cause of resin that never fully cures.`) },
+    { icon: Beaker, title: es ? "Mezcla lento, 3-4 minutos" : "Mix slowly, 3-4 minutes", description: es ? "Remueve raspando bien el fondo y las paredes del recipiente — la resina que quede sin mezclar ahí se queda pegajosa para siempre." : "Scrape the bottom and sides of the container well as you stir — any unmixed resin left there stays tacky forever." },
+    { icon: Flame, title: es ? "Elimina las burbujas" : "Pop the air bubbles", description: es ? "Pasa un soplete o encendedor rápidamente sobre la superficie después de verter, sin acercarte demasiado." : "Quickly pass a torch or lighter over the surface after pouring, without lingering too close." },
+    { icon: Droplets, title: es ? "Vierte en el molde" : "Pour into the mold", description: results?.recommendedPours > 1
+        ? (es ? `Divide en ${results.recommendedPours} coladas de ~${results.resinPerLayerG?.toFixed(0)}g cada una, esperando ${cureStr} de curado entre cada una.` : `Split into ${results.recommendedPours} pours of ~${results.resinPerLayerG?.toFixed(0)}g each, waiting ${cureStr} of cure time between pours.`)
+        : (es ? "Vierte despacio y por el centro del molde para evitar burbujas." : "Pour slowly through the center of the mold to avoid bubbles.") },
+    { icon: Clock, title: es ? `Cura ${cureStr} antes de desmoldar` : `Cure for ${cureStr} before demolding`, description: es ? "No lo muevas ni lo destapes mientras cura — el polvo y las vibraciones arruinan el acabado." : "Don't move it or uncover it while curing — dust and vibration ruin the finish." },
+  ];
+  return steps;
+}
 
 const schema = z.object({
   productName:     z.string().default(""),
@@ -488,6 +507,11 @@ export default function ResinCalculatorPage() {
                     ))}
                   </div>
                 </div>
+
+                <StepGuide
+                  title={es ? "Cómo hacerlo, paso a paso" : "How to make it, step by step"}
+                  steps={getResinSteps(locale, typeProps, watch("partAPct"), watch("partBPct"), results)}
+                />
 
                 {/* Cost breakdown — SECONDARY */}
                 <ResultPanel results={results} locale={locale} currency={watch("currency")} />

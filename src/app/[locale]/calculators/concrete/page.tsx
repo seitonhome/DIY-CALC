@@ -11,11 +11,51 @@ import { Button } from "@/components/ui/button";
 import { ResultPanel } from "@/components/ui/result-panel";
 import { RecipeCard } from "@/components/ui/recipe-card";
 import { MoldCalculator } from "@/components/ui/mold-calculator";
+import { StepGuide, type StepGuideStep } from "@/components/ui/step-guide";
 import { calculateConcrete, CONCRETE_MIX_TYPES } from "@/lib/calculations/concrete";
 import { exportCalculationPDF } from "@/lib/pdf/export";
 import type { Locale } from "@/types";
-import { Mountain, AlertTriangle, Save, FileDown, RefreshCw } from "lucide-react";
+import { Mountain, AlertTriangle, Save, FileDown, RefreshCw, ShieldAlert, Scale, Layers, Droplets, Waves, Clock, Paintbrush } from "lucide-react";
 import { saveFormula } from "@/lib/formulas";
+
+function getConcreteSteps(locale: Locale, concreteType: string, results: any): StepGuideStep[] {
+  const es = locale === "es";
+  const dustStep: StepGuideStep = { icon: ShieldAlert, critical: true, title: es ? "Protégete del polvo" : "Protect yourself from dust", description: es ? "Mascarilla y guantes al manipular cemento y arena secos — el polvo de sílice es dañino si lo respiras repetidamente." : "Mask and gloves when handling dry cement and sand — silica dust is harmful if inhaled repeatedly." };
+
+  if (concreteType === "hypertufa") {
+    return [
+      dustStep,
+      { icon: Scale, title: es ? "Mide cemento, turba y perlita por volumen" : "Measure cement, peat and perlite by volume", description: es ? "1 parte de cemento por 1.5 de turba y 1.5 de perlita — se mide en volumen (baldes), no en peso." : "1 part cement to 1.5 peat and 1.5 perlite — measured by volume (buckets), not weight." },
+      { icon: Layers, title: es ? "Mezcla los secos primero" : "Mix the dry ingredients first", description: es ? "Combina bien hasta que no se vean grumos de turba antes de agregar agua." : "Combine well until there are no peat clumps left before adding water." },
+      { icon: Droplets, title: es ? "Agrega agua hasta textura de \"brownie\"" : "Add water to a \"brownie batter\" texture", description: es ? "Debe quedar húmeda pero sin escurrir — si aprietas un puñado, mantiene la forma." : "It should be moist but not dripping — a handful should hold its shape when squeezed." },
+      { icon: Waves, title: es ? "Empaca en el molde a mano" : "Pack it into the mold by hand", description: es ? "Presiona firme contra las paredes del molde para eliminar bolsas de aire." : "Press firmly against the mold walls to remove air pockets." },
+      { icon: Clock, title: es ? "Cura tapado 24-48h, luego destapa 3-4 semanas" : "Cure covered 24-48h, then uncover for 3-4 weeks", description: es ? "Envuelve en plástico los primeros días para que no seque muy rápido, luego destapa y deja curar al aire." : "Wrap in plastic for the first days so it doesn't dry too fast, then uncover and let it cure in open air." },
+    ];
+  }
+
+  if (concreteType === "microcement") {
+    return [
+      dustStep,
+      { icon: Paintbrush, title: es ? "Imprima la superficie primero" : "Prime the surface first", description: es ? "El microcemento necesita un imprimante adherente — sin esto se despega. Deja secar según la ficha del producto." : "Microcement needs a bonding primer — without it, it peels off. Let it dry per the product's data sheet." },
+      { icon: Scale, title: es ? "Pesa cemento y arena fina (malla 200+)" : "Weigh cement and fine sand (200+ mesh)", description: es ? "La arena debe ser finísima — arena normal deja una textura demasiado gruesa para esta técnica." : "The sand must be extremely fine — regular sand leaves too coarse a texture for this technique." },
+      { icon: Layers, title: es ? "Aplica en capas ultra-delgadas (1-3mm)" : "Apply in ultra-thin layers (1-3mm)", description: es ? "Usa una llana o espátula. Deja secar cada capa antes de la siguiente y lija suave entre capas." : "Use a trowel or spatula. Let each layer dry before the next, and lightly sand between coats." },
+      { icon: Droplets, title: es ? "Sella con epóxico al curar" : "Seal with epoxy once cured", description: es ? "El sellador epóxico es obligatorio — sin él, el microcemento se mancha y no resiste agua." : "Epoxy sealer is mandatory — without it, microcement stains and won't resist water." },
+    ];
+  }
+
+  return [
+    dustStep,
+    { icon: Scale, title: es ? "Pesa cemento y arena" : "Weigh cement and sand", description: results?.cementG
+        ? (es ? `${results.cementG.toFixed(0)}g de cemento y ${results.sandG.toFixed(0)}g de arena, según la proporción de esta mezcla.` : `${results.cementG.toFixed(0)}g of cement and ${results.sandG.toFixed(0)}g of sand, per this mix's ratio.`)
+        : (es ? "Pesa cada material — a ojo la proporción sale mal." : "Weigh each material — eyeballing the ratio comes out wrong.") },
+    { icon: Layers, title: es ? "Mezcla en seco primero" : "Mix dry first", description: es ? "Combina cemento y arena secos hasta que el color sea uniforme, antes de agregar una sola gota de agua." : "Combine dry cement and sand until the color is even, before adding a single drop of water." },
+    { icon: Droplets, title: es ? "Agrega agua poco a poco" : "Add water gradually", description: results?.waterG
+        ? (es ? `~${results.waterG.toFixed(0)}g de agua. Agrégala de a poco — si te pasas, el concreto queda débil y poroso.` : `~${results.waterG.toFixed(0)}g of water. Add it a little at a time — too much and the concrete turns out weak and porous.`)
+        : (es ? "Agrégala de a poco — si te pasas, el concreto queda débil y poroso." : "Add it a little at a time — too much and the concrete turns out weak and porous.") },
+    { icon: Waves, title: es ? "Vierte y saca el aire" : "Pour and remove air", description: es ? "Golpea el molde suavemente contra la mesa o usa una vibradora para que suban las burbujas de aire." : "Tap the mold gently against the table or use a vibrating tool so air bubbles rise out." },
+    { icon: Clock, title: es ? "Cura tapado, desmolda a las 24h" : "Cure covered, demold after 24h", description: es ? "Cubre con plástico para que no seque muy rápido. El curado completo toma 7-28 días." : "Cover with plastic so it doesn't dry too fast. Full cure takes 7-28 days." },
+  ];
+}
 
 const schema = z.object({
   productName:       z.string().default(""),
@@ -297,6 +337,15 @@ export default function ConcreteCalculatorPage() {
                   </div>
                 )}
 
+                {results.warnings?.includes("tooLittleWater") && (
+                  <div style={{ background: "#FFFBEB", border: "1px solid #FDE68A", borderRadius: 12, padding: "12px 16px", display: "flex", gap: 10 }}>
+                    <AlertTriangle size={16} style={{ color: "#B45309", flexShrink: 0 }} />
+                    <p style={{ fontSize: 12, color: "#92400E", margin: 0 }}>
+                      {es ? "Relación agua/cemento muy baja (<0.30). La mezcla fraguará demasiado rápido para trabajarla bien." : "Water/cement ratio too low (<0.30). The mix will set too fast to work with properly."}
+                    </p>
+                  </div>
+                )}
+
                 <RecipeCard
                   title={es ? "Lo que necesitas" : "What you need"}
                   locale={locale}
@@ -304,6 +353,11 @@ export default function ConcreteCalculatorPage() {
                   note={es
                     ? `Mezcla seca primero, agrega agua poco a poco. Tiempo de fraguado: 24–48h. Desmolda a las 24h.`
                     : `Mix dry first, add water gradually. Setting time: 24–48h. Demold after 24h.`}
+                />
+
+                <StepGuide
+                  title={es ? "Cómo hacerlo, paso a paso" : "How to make it, step by step"}
+                  steps={getConcreteSteps(locale, concreteType, results)}
                 />
 
                 <ResultPanel results={results} locale={locale} currency={watch("currency")} />

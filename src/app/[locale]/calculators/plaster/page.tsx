@@ -11,11 +11,27 @@ import { Button } from "@/components/ui/button";
 import { ResultPanel } from "@/components/ui/result-panel";
 import { RecipeCard } from "@/components/ui/recipe-card";
 import { MoldCalculator } from "@/components/ui/mold-calculator";
+import { StepGuide, type StepGuideStep } from "@/components/ui/step-guide";
 import { calculatePlaster, PLASTER_TYPES } from "@/lib/calculations/plaster";
 import { exportCalculationPDF } from "@/lib/pdf/export";
 import type { Locale } from "@/types";
-import { Layers3, Save, FileDown, RefreshCw, AlertTriangle } from "lucide-react";
+import { Layers3, Save, FileDown, RefreshCw, AlertTriangle, ShieldAlert, Scale, Waves, Droplets, Clock } from "lucide-react";
 import { saveFormula } from "@/lib/formulas";
+
+function getPlasterSteps(locale: Locale, typeProps: (typeof PLASTER_TYPES)[string], results: any): StepGuideStep[] {
+  const es = locale === "es";
+  const workTime = Math.max(typeProps.cureTimeMin - 5, 5);
+  return [
+    { icon: ShieldAlert, critical: true, title: es ? "Protégete del polvo" : "Protect yourself from dust", description: es ? "Usa mascarilla al manipular yeso en polvo — respirarlo repetidamente irrita las vías respiratorias." : "Wear a mask when handling plaster powder — breathing it in repeatedly irritates the airways." },
+    { icon: Scale, title: es ? "Mide el agua primero, luego el yeso" : "Measure the water first, then the plaster", description: results?.waterG
+        ? (es ? `${results.waterG.toFixed(0)} g de agua en un recipiente, ${results.plasterG.toFixed(0)} g de yeso listo para espolvorear encima.` : `${results.waterG.toFixed(0)} g of water in a bowl, ${results.plasterG.toFixed(0)} g of plaster ready to sift on top.`)
+        : (es ? "Pesa el agua y el yeso por separado — a ojo la proporción sale mal." : "Weigh the water and plaster separately — eyeballing the ratio comes out wrong.") },
+    { icon: Waves, title: es ? "Espolvorea el yeso AL AGUA — nunca al revés" : "Sift the plaster INTO the water — never the reverse", description: es ? "Deja que se hunda solo unos segundos antes de mezclar, así evitas grumos." : "Let it sink on its own for a few seconds before mixing — this avoids lumps." },
+    { icon: Droplets, title: es ? "Mezcla suave, sin batir" : "Mix gently, without whipping", description: es ? "Remueve con movimientos suaves 2-3 minutos. Batir fuerte mete burbujas de aire que debilitan la pieza." : "Stir gently for 2-3 minutes. Whipping hard traps air bubbles that weaken the piece." },
+    { icon: Droplets, title: es ? `Vierte rápido — tienes ~${workTime} min` : `Pour quickly — you have ~${workTime} min`, description: es ? "El yeso fragua solo, no puedes reutilizar lo que sobre. Vierte todo lo que necesites de una vez." : "Plaster sets on its own — you can't reuse leftovers. Pour everything you need in one go." },
+    { icon: Clock, title: es ? `Deja fraguar ${typeProps.cureTimeMin} min y desmolda` : `Let it set ${typeProps.cureTimeMin} min and demold`, description: es ? "Desmolda cuando esté firme al tacto pero puede seguir endureciendo unos días más." : "Demold once firm to the touch — it can keep hardening for a few more days." },
+  ];
+}
 
 const schema = z.object({
   productName:      z.string().default(""),
@@ -263,6 +279,11 @@ export default function PlasterCalculatorPage() {
                   note={es
                     ? `Siempre agrega el yeso AL AGUA (no al revés). Mezcla suavemente sin batir para evitar burbujas. Vierte rápido — tiempo de trabajo: ~${Math.max(typeProps.cureTimeMin - 5, 5)} min.`
                     : `Always add plaster TO WATER (not the other way). Mix gently without whipping to avoid bubbles. Pour quickly — working time: ~${Math.max(typeProps.cureTimeMin - 5, 5)} min.`}
+                />
+
+                <StepGuide
+                  title={es ? "Cómo hacerlo, paso a paso" : "How to make it, step by step"}
+                  steps={getPlasterSteps(locale, typeProps, results)}
                 />
 
                 <ResultPanel results={results} locale={locale} currency={watch("currency")} />

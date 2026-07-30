@@ -14,12 +14,31 @@ import { TooltipHelp } from "@/components/ui/tooltip";
 import { ResultPanel } from "@/components/ui/result-panel";
 import { RecipeCard } from "@/components/ui/recipe-card";
 import { Badge } from "@/components/ui/badge";
+import { StepGuide, type StepGuideStep } from "@/components/ui/step-guide";
 import { calculateCandles, WAX_TYPES } from "@/lib/calculations/candles";
 import { calculateVolume } from "@/lib/calculations/geometry";
 import { exportCalculationPDF } from "@/lib/pdf/export";
 import type { CandleInputs, CalculationResults, Locale, MoldShape } from "@/types";
-import { AlertTriangle, Flame, Save, FileDown, RefreshCw } from "lucide-react";
+import { AlertTriangle, Flame, Save, FileDown, RefreshCw, Scale, Thermometer, Droplets, Clock, Scissors } from "lucide-react";
 import { saveFormula } from "@/lib/formulas";
+
+function getCandleSteps(locale: Locale, waxType: string, isMW: boolean, results: any): StepGuideStep[] {
+  const es = locale === "es";
+  const wax = WAX_TYPES[waxType] ?? WAX_TYPES.soy;
+  const steps: StepGuideStep[] = [
+    { icon: Flame, critical: true, title: es ? "Prepara tu espacio de trabajo" : "Prepare your workspace", description: es ? "Baño maría o fundidor de cera, termómetro a mano, superficie protegida. La cera caliente quema — no la dejes sola en el fuego." : "Double boiler or wax melter, thermometer on hand, protected surface. Hot wax burns — never leave it unattended over heat." },
+    { icon: Scale, title: es ? `Pesa y derrite la cera a ${wax.meltPointC} °C` : `Weigh and melt the wax to ${wax.meltPointC} °C`, description: isMW
+        ? (es ? `No la dejes hervir. Con la cera ya derretida, agrega el ácido esteárico${results?.stearicAcidG ? ` (${results.stearicAcidG.toFixed(1)} g)` : ""} y remueve hasta disolver — es lo que le da dureza y opacidad a esta cera.` : `Don't let it boil. Once melted, stir in the stearic acid${results?.stearicAcidG ? ` (${results.stearicAcidG.toFixed(1)} g)` : ""} until dissolved — it's what gives this wax its hardness and opacity.`)
+        : (es ? "No la dejes hervir — el sobrecalentamiento degrada la cera y la fragancia." : "Don't let it boil — overheating degrades the wax and the fragrance.") },
+    { icon: Thermometer, title: es ? `Agrega fragancia a ${wax.fragranceAddTempC} °C` : `Add fragrance at ${wax.fragranceAddTempC} °C`, description: es ? "Espera a que la cera llegue exactamente a esta temperatura antes de agregar fragancia y colorante — muy caliente y se evapora, muy fría y no se integra bien." : "Wait until the wax hits exactly this temperature before adding fragrance and colorant — too hot and it evaporates, too cool and it won't blend in." },
+    { icon: Droplets, title: es ? `Vierte a ${wax.pourTempC} °C` : `Pour at ${wax.pourTempC} °C`, description: es ? "Centra el pabilo antes de verter (usa una pinza o palito para sujetarlo derecho). Vierte despacio y por el centro para evitar burbujas." : "Center the wick before pouring (use a wick holder or a stick to keep it straight). Pour slowly through the center to avoid bubbles." },
+  ];
+  if (wax.needsSecondPour) {
+    steps.push({ icon: Clock, title: es ? "Espera 12-24h y haz la 2ª colada" : "Wait 12-24h and do the 2nd pour", description: es ? `Al solidificar verás un hundimiento en el centro — rellénalo con ${results?.secondPourG ? `~${results.secondPourG.toFixed(1)} g` : "un poco"} más de cera a la misma temperatura de vertido.` : `As it solidifies you'll see a sinkhole in the center — fill it with ${results?.secondPourG ? `~${results.secondPourG.toFixed(1)} g` : "a bit"} more wax at the same pour temperature.` });
+  }
+  steps.push({ icon: Scissors, title: es ? "Deja curar y recorta el pabilo" : "Let it cure and trim the wick", description: es ? "Espera 24-48h antes de encenderla para que la fragancia se asiente. Recorta el pabilo a 6mm cada vez que la vayas a usar." : "Wait 24-48h before burning it so the fragrance settles. Trim the wick to 6mm every time before lighting." });
+  return steps;
+}
 
 const schema = z.object({
   productName: z.string().min(1),
@@ -712,6 +731,11 @@ export default function CandlesCalculatorPage() {
                     />
                   );
                 })()}
+
+                <StepGuide
+                  title={locale === "es" ? "Cómo hacerlo, paso a paso" : "How to make it, step by step"}
+                  steps={getCandleSteps(locale, watch("waxType"), watch("waxType") === "moldWax", results)}
+                />
 
                 <ResultPanel results={results} locale={locale} currency={watch("currency")} />
 

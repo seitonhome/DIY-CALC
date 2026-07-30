@@ -12,11 +12,39 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import { ResultPanel } from "@/components/ui/result-panel";
 import { TooltipHelp } from "@/components/ui/tooltip";
+import { StepGuide, type StepGuideStep } from "@/components/ui/step-guide";
 import { calculateSoap, SOAP_TYPES, OIL_PROPERTIES } from "@/lib/calculations/soap";
 import { exportCalculationPDF } from "@/lib/pdf/export";
 import type { SoapInputs, CalculationResults, Locale } from "@/types";
-import { Sparkles, AlertTriangle, Save, FileDown, RefreshCw } from "lucide-react";
+import { Sparkles, AlertTriangle, Save, FileDown, RefreshCw, ShieldAlert, Scale, FlaskConical, Thermometer, Beaker, Droplets, Clock, Scissors, Flame } from "lucide-react";
 import { saveFormula } from "@/lib/formulas";
+
+function getSoapSteps(locale: Locale, soapType: string, soapData: (typeof SOAP_TYPES)[string], results: any): StepGuideStep[] {
+  const es = locale === "es";
+  if (!soapData.isSaponified) {
+    return [
+      { icon: Scissors, title: es ? "Corta la base en cubos" : "Cut the base into cubes", description: es ? "Cubos pequeños y parejos derriten más rápido y de forma pareja." : "Small, even cubes melt faster and more evenly." },
+      { icon: Flame, title: es ? "Derrite a fuego bajo o microondas" : "Melt over low heat or microwave", description: es ? "Baño maría o microondas en intervalos de 20-30 seg, revolviendo. No dejes que hierva." : "Double boiler or microwave in 20-30 sec bursts, stirring between. Don't let it boil." },
+      { icon: Sparkles, title: es ? "Agrega color y fragancia" : "Add color and fragrance", description: es ? `Con la base ya fuera del calor, mezcla bien (máx. ${soapData.maxFragrancePct}% de fragancia).` : `With the base off heat, mix well (max ${soapData.maxFragrancePct}% fragrance).` },
+      { icon: Droplets, title: es ? "Vierte en el molde" : "Pour into the mold", description: es ? "Vierte despacio para evitar burbujas. Rocía alcohol en la superficie si quedan burbujas." : "Pour slowly to avoid bubbles. Spritz rubbing alcohol on the surface if bubbles remain." },
+      { icon: Clock, title: es ? "Deja enfriar y desmolda" : "Let it cool and unmold", description: es ? "1-2 horas a temperatura ambiente (o refrigera para acelerar). Ya está listo para usar." : "1-2 hours at room temperature (or fridge to speed it up). Ready to use right away." },
+    ];
+  }
+  const lyeName = soapType === "liquid" ? "KOH" : (es ? "sosa (NaOH)" : "lye (NaOH)");
+  const liquidBase = soapType === "milkSoap" ? (es ? "leche muy fría o congelada" : "very cold or frozen milk") : (es ? "agua" : "water");
+  const lyeAmt = results?.lyeAmountG ? results.lyeAmountG.toFixed(1) : "—";
+  const waterAmt = results?.waterAmountG ? results.waterAmountG.toFixed(1) : "—";
+  return [
+    { icon: ShieldAlert, critical: true, title: es ? "Equípate y ventila el espacio" : "Gear up and ventilate the space", description: es ? "Guantes, gafas y manga larga puestos ANTES de tocar la sosa. Trabaja en un área ventilada o con extractor." : "Gloves, goggles and long sleeves on BEFORE touching the lye. Work in a ventilated area or with an extractor." },
+      { icon: Scale, title: es ? "Pesa cada cosa por separado" : "Weigh everything separately", description: es ? `Aceites en un recipiente, ${liquidBase} (${waterAmt} g) en otro, ${lyeName} (${lyeAmt} g) en un tercero. Nunca a ojo.` : `Oils in one container, ${liquidBase} (${waterAmt} g) in another, ${lyeName} (${lyeAmt} g) in a third. Never eyeball it.` },
+      { icon: FlaskConical, critical: true, title: es ? `Agrega la ${lyeName === "KOH" ? "sosa potásica" : "sosa"} al líquido — nunca al revés` : "Add the lye to the liquid — never the reverse", description: es ? "Vierte la sosa DENTRO del agua/leche, poco a poco, revolviendo. Soltará vapor y calor fuerte — no lo respires directamente." : "Pour the lye INTO the water/milk, a little at a time, stirring. It will release strong heat and fumes — don't breathe it directly." },
+      { icon: Thermometer, title: es ? "Deja enfriar ambos a 32-43 °C" : "Let both cool to 32-43 °C", description: es ? "Espera a que la mezcla de sosa y los aceites bajen a temperaturas parecidas antes de combinarlos." : "Wait for the lye mixture and the oils to reach similar temperatures before combining." },
+      { icon: Beaker, title: es ? "Combina y licúa hasta 'trace'" : "Combine and blend to 'trace'", description: es ? "Vierte la mezcla de sosa en los aceites y licúa con batidora de inmersión hasta que espese como pudín ligero." : "Pour the lye mixture into the oils and blend with a stick blender until it thickens like light pudding." },
+      { icon: Sparkles, title: es ? "Agrega fragancia y color en trace" : "Add fragrance and color at trace", description: es ? `Mezcla rápido pero bien (máx. ${soapData.maxFragrancePct}% de fragancia) — algunas fragancias aceleran el endurecido.` : `Mix quickly but thoroughly (max ${soapData.maxFragrancePct}% fragrance) — some fragrances speed up hardening.` },
+      { icon: Droplets, title: es ? "Vierte en el molde" : "Pour into the mold", description: es ? "Vierte antes de que espese demasiado. Golpea el molde suavemente contra la mesa para sacar burbujas." : "Pour before it thickens too much. Tap the mold gently on the table to release air bubbles." },
+      { icon: Clock, title: es ? `Desmolda y cura ${soapData.curingDays} día${soapData.curingDays === 1 ? "" : "s"}` : `Unmold and cure ${soapData.curingDays} day${soapData.curingDays === 1 ? "" : "s"}`, description: es ? "Desmolda cuando esté firme (1-3 días) y déjalo curar en un lugar seco y ventilado antes de usarlo o venderlo." : "Unmold once firm (1-3 days) and let it cure in a dry, ventilated spot before using or selling it." },
+  ];
+}
 
 const schema = z.object({
   productName: z.string().default(""),
@@ -303,6 +331,10 @@ export default function SoapCalculatorPage() {
                     </span>
                   </div>
                 )}
+                <StepGuide
+                  title={locale === "es" ? "Cómo hacerlo, paso a paso" : "How to make it, step by step"}
+                  steps={getSoapSteps(locale, soapType, soapData, results)}
+                />
                 <ResultPanel results={results} locale={locale} currency={watch("currency")} />
                 <div className="flex gap-2">
                   <Button variant="outline" className="flex-1" onClick={handleSave} loading={saving} disabled={saved}>
