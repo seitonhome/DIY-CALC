@@ -1,5 +1,5 @@
 "use client";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useLocale } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -77,6 +77,13 @@ export default function ConcreteCalculatorPage() {
       units: 1, batchSize: 1, wastePct: 8, desiredMarginPct: 40, currency: "USD",
     },
   });
+
+  // Prefill from the wizard (?type=<concreteType>)
+  useEffect(() => {
+    const type = new URLSearchParams(window.location.search).get("type");
+    if (type && CONCRETE_MIX_TYPES[type]) setValue("concreteType", type);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const concreteType = watch("concreteType");
   const mix = CONCRETE_MIX_TYPES[concreteType] ?? CONCRETE_MIX_TYPES.decorative;

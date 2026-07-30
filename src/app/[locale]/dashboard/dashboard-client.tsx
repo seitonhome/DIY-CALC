@@ -123,7 +123,7 @@ export function DashboardClient({ profile, license, calculations, formulas, mate
               <CardTitle className="flex items-center justify-between">
                 {t("quickAccess.title")}
                 <Button asChild variant="primary" size="sm">
-                  <Link href={`/${locale}/calculators/candles`}>
+                  <Link href={`/${locale}/wizard`}>
                     <Plus className="h-3.5 w-3.5" />
                     {t("quickAccess.newCalc")}
                   </Link>
@@ -167,7 +167,7 @@ export function DashboardClient({ profile, license, calculations, formulas, mate
                   <BarChart3 className="mx-auto h-8 w-8 text-stone-300 mb-3" />
                   <p className="text-sm text-stone-500 mb-4">{t("recentCalcs.empty")}</p>
                   <Button asChild variant="primary" size="sm">
-                    <Link href={`/${locale}/calculators/candles`}>{t("recentCalcs.startCalc")}</Link>
+                    <Link href={`/${locale}/wizard`}>{t("recentCalcs.startCalc")}</Link>
                   </Button>
                 </div>
               ) : (

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -71,7 +71,7 @@ export default function MultiCalculatorPage() {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const { register, handleSubmit, control, watch, reset } = useForm<FormValues>({
+  const { register, handleSubmit, control, watch, reset, setValue } = useForm<FormValues>({
     resolver: zodResolver(schema) as any,
     defaultValues: {
       productName: "",
@@ -81,6 +81,20 @@ export default function MultiCalculatorPage() {
   });
 
   const { fields, append, remove } = useFieldArray({ control, name: "components" });
+
+  // Prefill first component's material from the wizard (?type=<material>).
+  // The delay lets the Radix Select mount before we drive its value
+  // programmatically — setting it synchronously on mount gets silently
+  // overwritten a tick later.
+  useEffect(() => {
+    const type = new URLSearchParams(window.location.search).get("type");
+    if (!type || !["candles", "resin", "soap", "concrete", "plaster"].includes(type)) return;
+    const timer = setTimeout(() => {
+      setValue("components.0.type", type as FormValues["components"][number]["type"]);
+    }, 50);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onSubmit = useCallback((data: FormValues) => {
     const calc = calculateMulti(data as unknown as MultiInputs);

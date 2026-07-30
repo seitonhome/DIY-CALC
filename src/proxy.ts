@@ -5,7 +5,7 @@ import { updateSession } from "./lib/supabase/middleware";
 
 const intlMiddleware = createMiddleware(routing);
 
-const PROTECTED_PATHS = ["/dashboard", "/calculators", "/library", "/simulator", "/compare", "/learn", "/settings"];
+const PROTECTED_PATHS = ["/dashboard", "/calculators", "/library", "/simulator", "/compare", "/learn", "/settings", "/wizard"];
 const ADMIN_PATHS = ["/admin"];
 
 export async function proxy(request: NextRequest) {

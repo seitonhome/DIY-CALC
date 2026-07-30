@@ -1,5 +1,5 @@
 "use client";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -93,7 +93,7 @@ export default function CandlesCalculatorPage() {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const { register, handleSubmit, control, watch, reset, formState: { errors, isSubmitting } } = useForm<FormValues>({
+  const { register, handleSubmit, control, watch, reset, setValue, formState: { errors, isSubmitting } } = useForm<FormValues>({
     resolver: zodResolver(schema) as any,
     defaultValues: {
       candleType: "glass",
@@ -114,7 +114,20 @@ export default function CandlesCalculatorPage() {
     },
   });
 
+  // Prefill from the wizard (?type=<candleType>)
+  // Prefill from the wizard (?type=<candleType>). The delay lets the Radix
+  // Select mount before we drive its value programmatically — setting it
+  // synchronously on mount gets silently overwritten a tick later.
+  useEffect(() => {
+    const type = new URLSearchParams(window.location.search).get("type");
+    if (!type) return;
+    const timer = setTimeout(() => setValue("candleType", type), 50);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const moldShape = watch("moldShape") as MoldShape;
+  const candleType = watch("candleType");
   const waxType = watch("waxType");
   const fragranceLoadPct = watch("fragranceLoadPct");
   const stearicAcidPct = watch("stearicAcidPct");
@@ -257,6 +270,12 @@ export default function CandlesCalculatorPage() {
                         )}
                       />
                     </div>
+
+                    {candleType && (
+                      <p className="rounded-lg bg-stone-50 border border-stone-100 px-3 py-2 text-xs text-stone-500">
+                        {t(`typeDescriptions.${candleType}` as any)}
+                      </p>
+                    )}
 
                     {/* Dimensions based on shape */}
                     <div className="grid gap-3 sm:grid-cols-3">

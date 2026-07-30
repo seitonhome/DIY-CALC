@@ -380,6 +380,20 @@
         "aromatic": "Scented candle",
         "unscented": "Unscented candle"
       },
+      "typeDescriptions": {
+        "glass": "Wax poured directly into a reusable glass jar. The easiest one to start with.",
+        "molded": "Unmolds once cooled. You'll need a rigid mold and mold-release spray.",
+        "decorative": "Eye-catching pieces for gifts or decor, with special colors and finishes.",
+        "pillar": "Free-standing candle with no container. Use a high-melt-point wax.",
+        "waxMelt": "Wickless scented wax pieces for a warmer. Great for testing fragrances.",
+        "tealight": "Small candle in an aluminum cup, short burn time. Sold in sets.",
+        "votive": "Small container-free candle meant for a glass votive holder.",
+        "sculptural": "Artistic or sculptural shapes, usually in a detailed silicone mold.",
+        "multilayer": "Layers of different colors or waxes poured at separate times.",
+        "embeds": "Has decorative elements embedded inside the wax (dried flowers, crystals, etc.).",
+        "aromatic": "Fragrance is the focus: higher oil percentage and a longer cure time.",
+        "unscented": "No added fragrance — good for sensitive skin or pure decor pieces."
+      },
       "moldShape": "Mold shape",
       "shapes": {
         "cylinder": "Cylinder",
@@ -1195,5 +1209,14 @@
         }
       ]
     }
+  },
+  "wizard": {
+    "title": "What do you want to make?",
+    "subtitle": "Tell us about your project and we'll take you straight to the right calculator, already set up to start.",
+    "step1Title": "1. Choose your material",
+    "step2Title": "2. What kind of project?",
+    "back": "Back",
+    "multiQuestion": "What's the main material for your combined set?",
+    "multiSubtitle": "Start with the base material, then add the rest of the components in the calculator."
   }
 }

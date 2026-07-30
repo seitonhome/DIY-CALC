@@ -1,5 +1,5 @@
 "use client";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -77,10 +77,21 @@ export default function SoapCalculatorPage() {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const { register, handleSubmit, control, watch, reset } = useForm<FormValues>({
+  const { register, handleSubmit, control, watch, reset, setValue } = useForm<FormValues>({
     resolver: zodResolver(schema) as any,
     defaultValues: { soapType: "meltPour", olivePct: 40, coconutPct: 30, palmPct: 15, sheaPct: 5, cocoaPct: 5, castorPct: 5, lardPct: 0, tallowPct: 0, sunflowerPct: 0, avocadoPct: 0, riceBranPct: 0, sweetAlmondPct: 0, superfattPct: 5, lyeConcentrationPct: 38, fragrancePct: 3, curingTimeDays: 28, targetWeightG: 100, units: 1, batchSize: 1, wastePct: 3, desiredMarginPct: 35, currency: "USD" },
   });
+
+  // Prefill from the wizard (?type=<soapType>). The delay lets the Radix
+  // Select mount before we drive its value programmatically — setting it
+  // synchronously on mount gets silently overwritten a tick later.
+  useEffect(() => {
+    const type = new URLSearchParams(window.location.search).get("type");
+    if (!type || !SOAP_TYPES[type]) return;
+    const timer = setTimeout(() => setValue("soapType", type), 50);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const soapType = watch("soapType");
   const soapData = SOAP_TYPES[soapType] ?? SOAP_TYPES.meltPour;

@@ -380,6 +380,20 @@
         "aromatic": "Vela aromática",
         "unscented": "Vela sin aroma"
       },
+      "typeDescriptions": {
+        "glass": "Cera vertida directo en un vaso de vidrio reutilizable. La más fácil para empezar.",
+        "molded": "Se desmolda una vez fría. Necesitas un molde rígido y spray desmoldante.",
+        "decorative": "Piezas vistosas para regalo o decoración, con colores y acabados especiales.",
+        "pillar": "Vela independiente que se sostiene sola, sin contenedor. Usa cera con punto de fusión alto.",
+        "waxMelt": "Trozos de cera aromática para quemador, sin mecha. Ideal para probar fragancias.",
+        "tealight": "Vela pequeña en cápsula de aluminio, de combustión corta. Se vende en sets.",
+        "votive": "Vela pequeña sin contenedor, pensada para portavelas de vidrio.",
+        "sculptural": "Formas artísticas o esculturales, usualmente en molde de silicona detallado.",
+        "multilayer": "Capas de colores o ceras distintas vertidas en tiempos separados.",
+        "embeds": "Lleva elementos decorativos incrustados dentro de la cera (flores secas, cristales, etc.).",
+        "aromatic": "El foco es la fragancia: mayor porcentaje de aceite y curado más largo.",
+        "unscented": "Sin fragancia añadida, ideal para pieles sensibles o decoración pura."
+      },
       "moldShape": "Forma del molde",
       "shapes": {
         "cylinder": "Cilindro",
@@ -1195,5 +1209,14 @@
         }
       ]
     }
+  },
+  "wizard": {
+    "title": "¿Qué quieres hacer?",
+    "subtitle": "Cuéntanos tu proyecto y te llevamos directo a la calculadora correcta, ya lista para empezar.",
+    "step1Title": "1. Elige tu material",
+    "step2Title": "2. ¿Qué tipo de proyecto?",
+    "back": "Atrás",
+    "multiQuestion": "¿Cuál es el material principal de tu set combinado?",
+    "multiSubtitle": "Empieza con el material base y luego agrega el resto de componentes en la calculadora."
   }
 }
