@@ -10,6 +10,13 @@ products). It is a **calculator tool only** — not a business/inventory/invoici
 Sold as a paid product (license-gated) at diycalc.seitonhome.com, linked from the main
 seitonhome.com site.
 
+**Product philosophy (owner-stated, 2026-07-30): the cost number is not the point.**
+The reason an artisan opens this app is to be told exactly how to execute the
+mixture/recipe (how much wax, resin ratio, water:plaster ratio, lye safety, cure
+times...). Cost/pricing output is a side effect, not the core value. When adding or
+reviewing calculator features, weigh instructional/process content at least as
+heavily as the math — see "Step-by-step guides" below for the feature this produced.
+
 ## Stack
 
 - Next.js 16 (App Router, Turbopack), TypeScript strict, Tailwind CSS
@@ -118,6 +125,48 @@ compare, learn, settings, admin gating) and fixed the same session:
 If any of these resurface, check the field/prop names against the actual
 `CalculationResults` type (`src/types/index.ts`) and translation keys before
 re-diagnosing — most of the above were naming mismatches, not logic bugs.
+
+## Step-by-step process guides (added 2026-07-30)
+
+`src/components/ui/step-guide.tsx` — `<StepGuide title steps={StepGuideStep[]}>`, a
+numbered vertical timeline of `{ icon: LucideIcon, title, description, critical? }`.
+Renders in the results column of all 6 calculators, right after the RecipeCard/"What
+you need" panel, showing HOW to execute the recipe the calculator just computed —
+not just its cost. `critical: true` renders that step's icon badge in red (used for
+lye handling in soap, workspace/ventilation prep in candles and resin).
+
+Each calculator builds its own `steps` array in its `page.tsx` (a local
+`get<Material>Steps(locale, ...)` function, same file-local pattern as the existing
+`buildRecipe()`/RecipeCard note functions) using **real computed values from
+`results`**, not generic text — e.g. soap's lye/water grams, resin's Part A/B grams,
+candles' per-wax melt/pour/fragrance temps from `WAX_TYPES`. This is the reason it's
+per-calculator inline logic instead of a shared JSON content file: the copy has to
+interpolate that specific calculation's numbers.
+
+- **Soap** branches on `soapData.isSaponified`: 8 steps for lye soap (safety gear →
+  weigh separately → lye-to-liquid order → cool → trace → fragrance → pour → cure)
+  vs. 5 for melt-and-pour. This calculator previously had the richest safety warning
+  in the app (the lye banner) but zero process steps — now it has both.
+- **Candles** pulls `meltPointC`/`fragranceAddTempC`/`pourTempC`/`needsSecondPour`
+  from `WAX_TYPES[waxType]` per step, replacing what used to be one static note
+  ("melt and pour at 65-70°C") shown identically regardless of which wax was picked
+  (wrong for e.g. gel wax at 88°C or beeswax at 74°C).
+- **Concrete** branches three ways on `concreteType`: hypertufa and microcement get
+  their own fully different step sequences (no sand vs. peat/perlite; ultra-thin
+  troweled layers needing primer/epoxy sealer) instead of the generic "mix dry, add
+  water, demold at 24h" note that used to apply to all 9 mix types alike.
+- **Plaster** and **Resin** follow the same "real numbers from `results`" pattern
+  (water/plaster grams, A/B grams, pour count).
+- **Multi-material** doesn't have its own recipe (it aggregates other calculators'
+  outputs), so instead it shows a de-duplicated "Before you start" checklist — one
+  safety/process reminder per unique material type present in the set, sourced from
+  a small `COMPONENT_TIPS` map in `multi/page.tsx` — plus an inline one-line hint
+  under each component's type selector. This was previously the only calculator with
+  zero guidance content despite being the app's marketed "Diferencial" feature.
+
+While in this calculator this session, also fixed two "dead" warnings that were
+computed but never rendered: candles' `gelFragrance` and concrete's `tooLittleWater`
+(the latter now has a warning box next to the existing `tooMuchWater` one).
 
 ## Guided wizard (added 2026-07-29)
 

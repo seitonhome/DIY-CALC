@@ -438,6 +438,18 @@ export default function CandlesCalculatorPage() {
                         <span>{t("warnings.highFragrance")}</span>
                       </div>
                     )}
+
+                    {/* Gel wax cloudiness warning — gel needs a lower non-polar-fragrance threshold than its general max */}
+                    {results?.warnings?.includes("gelFragrance") && (
+                      <div className="flex items-start gap-2 rounded-lg bg-amber-50 border border-amber-200 p-3 text-sm text-amber-800">
+                        <AlertTriangle className="h-4 w-4 flex-shrink-0 mt-0.5" />
+                        <span>
+                          {locale === "es"
+                            ? "Con cera de gel, más de 3% de fragancia puede enturbiar la transparencia. Usa solo fragancias no polares y no te pases del 5% máximo."
+                            : "With gel wax, over 3% fragrance can cloud its transparency. Use only non-polar fragrances and stay under the 5% max."}
+                        </span>
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
               </TabsContent>
