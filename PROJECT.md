@@ -77,6 +77,48 @@ compare, learn, settings, language switch) and fixed the same session:
 If any of these resurface, that's a regression worth flagging loudly rather than
 re-diagnosing from scratch — the root causes above still apply.
 
+## Bugs found & fixed 2026-07-30
+
+Found during a second full functional test pass (all 6 calculators including
+save/PDF-export, wizard flow x6, materials/molds/formulas libraries, simulator,
+compare, learn, settings, admin gating) and fixed the same session:
+
+1. **Mold-volume instructions didn't say to weigh the mold first** — the
+   water-displacement method (irregular shape, in `mold-calculator.tsx` and
+   candles' `geometry.irregularMethod`) jumped straight to "fill with water,"
+   skipping the empty-mold weigh-in step needed to compute volume by
+   subtraction. Rewritten as 3 explicit numbered steps in both places, in
+   neutral Latin American Spanish.
+2. **Multi-material calculator showed the cost-distribution chart twice** —
+   `calculators/multi/page.tsx` has its own richer pie chart (with
+   most-expensive/most-time-consuming labels), but also rendered the generic
+   `<ResultPanel>` donut chart with the *same* per-component data underneath
+   it. Fixed by adding a `hideCostDistribution` prop to `ResultPanel` and
+   passing it from the multi page only.
+3. **Candles result panel showed "1 pieza" in the English UI** — the wick-count
+   line in `calculators/candles/page.tsx` had `amount: "1 pieza"` hardcoded
+   instead of `es ? "1 pieza" : "1 pc"`.
+4. **Molds library showed the raw material enum instead of its label** —
+   `molds-client.tsx` rendered `m.mold_material` directly (e.g. lowercase
+   `"silicone"`) instead of `t(\`materials.${m.mold_material}\`)` like the
+   dropdown already did.
+5. **Formula library detail view showed a blank quantity** — the
+   `formula_materials` table column is `amount`, but `formulas-client.tsx`
+   read `m.quantity` (a field that doesn't exist), so every material row
+   showed just a bare unit with no number in front of it.
+6. **Scenario Comparator ("Compare") showed NaN for Total cost/unit, Gross
+   margin, and Net margin** — `compare/page.tsx` read
+   `totalCostPerUnit`/`grossMarginPct`/`netMarginPct` off the results object,
+   but `calculateResults()` (core.ts) actually returns `costPerUnit`/
+   `grossMargin`/`netMargin`. Same mismatch broke the "best scenario" ★
+   highlighting, the winner-banner scenario name, and the chart's "Cost" bar.
+   Fixed by aligning all four usages to the real `CalculationResults` field
+   names.
+
+If any of these resurface, check the field/prop names against the actual
+`CalculationResults` type (`src/types/index.ts`) and translation keys before
+re-diagnosing — most of the above were naming mismatches, not logic bugs.
+
 ## Guided wizard (added 2026-07-29)
 
 `/{locale}/wizard` (`src/app/[locale]/wizard/page.tsx`) is the app's guided onboarding
