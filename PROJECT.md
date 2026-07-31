@@ -126,6 +126,33 @@ If any of these resurface, check the field/prop names against the actual
 `CalculationResults` type (`src/types/index.ts`) and translation keys before
 re-diagnosing — most of the above were naming mismatches, not logic bugs.
 
+## Rotating tips (added 2026-07-31)
+
+`src/lib/tips.ts` (bilingual `Tip[]` bank, tagged by `category`: candles/resin/soap/
+concrete/plaster/multi/general/business) + `src/components/ui/tips-rotator.tsx`
+(`<TipsRotator locale category? resultsKey? compact? intervalMs?>`). This existed in
+the codebase before but was never wired into any calculator — only the sidebar used
+it, with no category (full mixed pool). Now also rendered at the top of the results
+column on all 6 calculator pages, category-themed (own accent color + icon per
+calculator: candles orange, resin sky, soap pink, concrete stone, plaster violet,
+multi emerald) so each calculator's tip card is visually distinct.
+
+- Pool = that calculator's category tips + `general` + `business`, shuffled once per
+  mount so tips don't repeat until the whole pool has cycled.
+- Auto-rotates every ~11s; also jumps to a fresh tip whenever `resultsKey` (pass the
+  `results` object) changes identity — i.e. every time the user presses Calculate —
+  so tips feel tied to the act of calculating, not just a background timer. Manual
+  shuffle button + prev/next arrows also available.
+- **Gotcha**: the pool shuffle (`Math.random()`) must not run inside a `useState`
+  initializer — that executes during SSR too, and the server's random order will
+  differ from the client's on hydration, throwing a hydration-mismatch error on
+  every page that renders it. Fixed by starting `pool` empty (renders nothing,
+  identical on server and first client pass) and shuffling in a client-only
+  `useEffect`. If a future "randomize once per mount" component needs adding,
+  copy this pattern rather than `useState(() => shuffle())`.
+- Sidebar's existing usage (no `category`, full pool) now passes `compact` to fit
+  the narrow collapsed-sidebar width (hides the counter and prev/next arrows).
+
 ## Step-by-step process guides (added 2026-07-30)
 
 `src/components/ui/step-guide.tsx` — `<StepGuide title steps={StepGuideStep[]}>`, a
