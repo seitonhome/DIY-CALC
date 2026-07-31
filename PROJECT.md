@@ -223,6 +223,41 @@ dashboard's "Nuevo cálculo" button and the empty-state "Hacer mi primer cálcul
   calculator field prefill silently reverts to empty, check whether it's a Radix
   Select first before assuming the prefill code itself is wrong.
 
+## Launch blockers closed out (added 2026-07-31)
+
+Owner asked "qué falta para empezar a vender" — three real blockers (no legal pages,
+no analytics, no error monitoring) were identified and fixed the same session:
+
+1. **Terms of Service + Privacy Policy** — `/{locale}/terms` and `/{locale}/privacy`
+   (new public routes, not in `proxy.ts`'s `PROTECTED_PATHS`/`ADMIN_PATHS`, so no
+   login required to read them). Server components using `getLocale()`, bilingual
+   inline like the rest of the app's content-heavy pages. Terms includes an explicit
+   safety-disclaimer section (lye/hot wax/resin/cement dust — user is solely
+   responsible for following safety practices; this app gives instructions, not
+   liability). Privacy explicitly states no payment data is collected here (purchases
+   happen on seitonhome.com) and names Supabase + the Seiton licensing API as the only
+   data processors.
+2. **Register page now requires consent** — new `src/components/ui/checkbox.tsx`
+   (Radix, same `forwardRef`/`cn()` pattern as `select.tsx`), wired via
+   `Controller` (not `register()` — Radix `Checkbox` isn't a native input) into a
+   required `agreeToTerms` boolean on the register form, with links to `/terms` and
+   `/privacy` (`target="_blank"` so the in-progress form isn't lost). Support page
+   also links both for existing users.
+3. **Vercel Analytics + Speed Insights** — `<Analytics />` / `<SpeedInsights />` added
+   to root `layout.tsx`. Zero-config, only activate when actually deployed on Vercel;
+   safe no-op locally.
+4. **Sentry error monitoring, DSN-gated** — `src/instrumentation.ts` (server/edge, via
+   the `register()` hook) and `src/instrumentation-client.ts` (browser), plus
+   `src/app/global-error.tsx` as the root error boundary that reports uncaught render
+   errors. All three check `NEXT_PUBLIC_SENTRY_DSN` and no-op entirely if it's unset —
+   `Sentry.init()` is simply never called, so the app builds and runs identically
+   without it. Set the DSN in `.env.local`/host env to activate (see
+   `.env.local.example`). Deliberately did **not** wrap `next.config.ts` with
+   `withSentryConfig` (that enables source-map upload and needs
+   `SENTRY_AUTH_TOKEN`/org/project) — trade-off is stack traces won't be
+   deobfuscated/won't have release tracking until those credentials are added later;
+   error capture itself works fully without it.
+
 ## Standing preferences
 
 - Auto commit + push every change in this repo without asking first (standing

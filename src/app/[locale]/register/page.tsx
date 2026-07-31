@@ -2,13 +2,14 @@
 import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { CheckCircle } from "lucide-react";
 
@@ -26,6 +27,9 @@ export default function RegisterPage() {
     password: z.string().min(8, tErr("minPassword")),
     confirm: z.string().min(1, tErr("required")),
     code: z.string().min(1, tErr("required")),
+    agreeToTerms: z.boolean().refine((v) => v === true, {
+      message: locale === "es" ? "Debes aceptar los Términos y la Política de Privacidad" : "You must accept the Terms of Service and Privacy Policy",
+    }),
   }).refine((d) => d.password === d.confirm, {
     message: tErr("passwordMatch"),
     path: ["confirm"],
@@ -33,8 +37,9 @@ export default function RegisterPage() {
 
   type FormData = z.infer<typeof schema>;
 
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>({
+  const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm<FormData>({
     resolver: zodResolver(schema),
+    defaultValues: { agreeToTerms: false },
   });
 
   async function onSubmit(data: FormData) {
@@ -108,6 +113,38 @@ export default function RegisterPage() {
                 e.target.value = formatted;
               }}
             />
+
+            <div>
+              <div className="flex items-start gap-2.5">
+                <Controller
+                  control={control}
+                  name="agreeToTerms"
+                  render={({ field }) => (
+                    <Checkbox
+                      id="agreeToTerms"
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                      error={errors.agreeToTerms?.message}
+                      className="mt-0.5"
+                    />
+                  )}
+                />
+                <label htmlFor="agreeToTerms" className="text-sm leading-snug text-stone-600">
+                  {locale === "es" ? "Acepto los " : "I agree to the "}
+                  <Link href={`/${locale}/terms`} target="_blank" className="font-medium text-amber-700 hover:underline">
+                    {locale === "es" ? "Términos de Servicio" : "Terms of Service"}
+                  </Link>
+                  {locale === "es" ? " y la " : " and "}
+                  <Link href={`/${locale}/privacy`} target="_blank" className="font-medium text-amber-700 hover:underline">
+                    {locale === "es" ? "Política de Privacidad" : "Privacy Policy"}
+                  </Link>
+                  .
+                </label>
+              </div>
+              {errors.agreeToTerms && (
+                <p className="mt-1 text-xs text-red-500">{errors.agreeToTerms.message}</p>
+              )}
+            </div>
 
             {error && (
               <div className="rounded-lg bg-red-50 border border-red-100 px-4 py-3 text-sm text-red-600">{error}</div>

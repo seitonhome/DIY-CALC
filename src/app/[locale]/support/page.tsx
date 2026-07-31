@@ -1,16 +1,19 @@
 "use client";
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { useTranslations, useLocale } from "next-intl";
 import { AppLayout } from "@/components/layout/app-layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { LifeBuoy, Mail, ExternalLink, ChevronDown, ChevronUp, Clock } from "lucide-react";
+import { LifeBuoy, Mail, ExternalLink, ChevronDown, ChevronUp, Clock, FileText, ShieldCheck } from "lucide-react";
 
 const SUPPORT_EMAIL = "servicioalcliente@seitonhome.com";
 const TICKET_URL = "https://www.seitonhome.com/apps";
 
 export default function SupportPage() {
   const t = useTranslations("support");
+  const locale = useLocale();
+  const es = locale === "es";
   const [expanded, setExpanded] = useState<number | null>(null);
 
   const faqItems = t.raw("faq.items") as { q: string; a: string }[];
@@ -128,6 +131,31 @@ export default function SupportPage() {
                 </div>
               );
             })}
+          </div>
+        </section>
+
+        {/* Legal */}
+        <section>
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-stone-400 mb-4">
+            {es ? "Legal" : "Legal"}
+          </h2>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <Link
+              href={`/${locale}/terms`}
+              target="_blank"
+              className="flex items-center gap-3 rounded-xl border border-stone-200 bg-white px-4 py-3.5 text-sm font-medium text-stone-700 transition-colors hover:bg-stone-50"
+            >
+              <FileText className="h-4 w-4 flex-shrink-0 text-stone-400" />
+              {es ? "Términos de Servicio" : "Terms of Service"}
+            </Link>
+            <Link
+              href={`/${locale}/privacy`}
+              target="_blank"
+              className="flex items-center gap-3 rounded-xl border border-stone-200 bg-white px-4 py-3.5 text-sm font-medium text-stone-700 transition-colors hover:bg-stone-50"
+            >
+              <ShieldCheck className="h-4 w-4 flex-shrink-0 text-stone-400" />
+              {es ? "Política de Privacidad" : "Privacy Policy"}
+            </Link>
           </div>
         </section>
 
