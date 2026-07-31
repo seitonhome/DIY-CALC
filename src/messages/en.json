@@ -1041,7 +1041,9 @@
       "license": "License",
       "language": "Language",
       "calcs": "Calculations",
-      "joinedAt": "Joined"
+      "joinedAt": "Joined",
+      "exportCsv": "Export CSV",
+      "exportPdf": "Export PDF"
     },
     "codes": {
       "title": "Activation codes",

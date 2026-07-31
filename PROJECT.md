@@ -258,6 +258,37 @@ no analytics, no error monitoring) were identified and fixed the same session:
    deobfuscated/won't have release tracking until those credentials are added later;
    error capture itself works fully without it.
 
+## Customer data protection & export (added 2026-07-31)
+
+Owner asked to confirm customer data (the registered-user list in Admin → Usuarios,
+currently ~10 rows) can't be accidentally deleted, and to be able to export it.
+
+- **Audited deletion risk**: `users_profile` and `licenses` (migration
+  `001_initial_schema.sql`) have RLS policies for `select`/`insert`/`update` only —
+  **no `delete` policy exists for either table**, so RLS denies any delete attempt
+  by default, from any client (anon or authenticated), including the admin UI. The
+  admin panel itself (`admin-client.tsx`) has no delete button/action anywhere. The
+  only way these rows disappear is (a) the `on delete cascade` from `auth.users`,
+  i.e. deleting the actual auth account, which is the correct/expected behavior for
+  account deletion, not an accidental-loss path, or (b) direct DB access with the
+  service-role key or Supabase dashboard, both outside the app's control. If a
+  delete feature is ever added for admins, it needs an explicit RLS `delete` policy
+  first — don't assume table access implies it.
+- **Backup note (outside app code)**: RLS closes the app-level risk, but the real
+  safety net against catastrophic loss (e.g. a bad SQL Editor query) is Supabase's
+  own Point-in-Time Recovery / automatic backups, configured in the Supabase project
+  dashboard, not in this repo — worth the owner confirming it's enabled on the
+  project plan.
+- **Export added**: `src/lib/pdf/export-users.ts` — `exportCustomersCSV()` and
+  `exportCustomersPDF()`, following the exact same dynamic-import `jspdf` +
+  `jspdf-autotable` pattern as the existing per-calculation export
+  (`src/lib/pdf/export.ts`), reusing its brand header/footer styling. Wired into
+  Admin → Usuarios (`admin-client.tsx`) as two buttons in the card header ("Exportar
+  CSV" / "Exportar PDF"), disabled when there are zero users. Both also double as a
+  manual, owner-triggered backup of the customer list independent of the database.
+  CSV is UTF-8 with a BOM (for correct accented-character display when opened
+  directly in Excel) and quotes/escapes any field containing a comma or quote.
+
 ## Standing preferences
 
 - Auto commit + push every change in this repo without asking first (standing

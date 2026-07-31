@@ -1,11 +1,14 @@
 "use client";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { AppLayout } from "@/components/layout/app-layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { StatCard } from "@/components/ui/stat-card";
-import { Shield, Users, BarChart3 } from "lucide-react";
+import { Shield, Users, BarChart3, FileDown, FileText } from "lucide-react";
+import { exportCustomersCSV, exportCustomersPDF } from "@/lib/pdf/export-users";
+import type { Locale } from "@/types";
 
 interface Props {
   users: any[];
@@ -15,6 +18,7 @@ interface Props {
 export function AdminClient({ users, calculations }: Props) {
   const t = useTranslations("admin");
   const tDash = useTranslations("dashboard");
+  const locale = useLocale() as Locale;
 
   const totalCalcs = calculations.length;
   const byCategory = calculations.reduce<Record<string, number>>((acc, c) => {
@@ -64,7 +68,29 @@ export function AdminClient({ users, calculations }: Props) {
 
         <TabsContent value="users">
           <Card>
-            <CardHeader><CardTitle className="text-base">{t("users.title")}</CardTitle></CardHeader>
+            <CardHeader className="flex flex-row items-center justify-between gap-3">
+              <CardTitle className="text-base">{t("users.title")}</CardTitle>
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => exportCustomersCSV(users, locale)}
+                  disabled={users.length === 0}
+                >
+                  <FileDown className="h-3.5 w-3.5" />
+                  {t("users.exportCsv")}
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => exportCustomersPDF(users, locale)}
+                  disabled={users.length === 0}
+                >
+                  <FileText className="h-3.5 w-3.5" />
+                  {t("users.exportPdf")}
+                </Button>
+              </div>
+            </CardHeader>
             <CardContent>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
