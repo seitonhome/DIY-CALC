@@ -12,6 +12,7 @@ import { ResultPanel } from "@/components/ui/result-panel";
 import { RecipeCard } from "@/components/ui/recipe-card";
 import { MoldCalculator } from "@/components/ui/mold-calculator";
 import { StepGuide, type StepGuideStep } from "@/components/ui/step-guide";
+import { TipsRotator } from "@/components/ui/tips-rotator";
 import { calculatePlaster, PLASTER_TYPES } from "@/lib/calculations/plaster";
 import { exportCalculationPDF } from "@/lib/pdf/export";
 import type { Locale } from "@/types";
@@ -254,6 +255,7 @@ export default function PlasterCalculatorPage() {
 
           {/* RIGHT: Results */}
           <div className="space-y-4">
+            <TipsRotator locale={locale} category="plaster" resultsKey={results} />
             {results ? (
               <>
                 {results.warnings?.includes("offWaterRatio") && (

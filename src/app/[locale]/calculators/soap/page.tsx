@@ -13,6 +13,7 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@
 import { ResultPanel } from "@/components/ui/result-panel";
 import { TooltipHelp } from "@/components/ui/tooltip";
 import { StepGuide, type StepGuideStep } from "@/components/ui/step-guide";
+import { TipsRotator } from "@/components/ui/tips-rotator";
 import { calculateSoap, SOAP_TYPES, OIL_PROPERTIES } from "@/lib/calculations/soap";
 import { exportCalculationPDF } from "@/lib/pdf/export";
 import type { SoapInputs, CalculationResults, Locale } from "@/types";
@@ -319,6 +320,7 @@ export default function SoapCalculatorPage() {
           </div>
 
           <div className="space-y-4">
+            <TipsRotator locale={locale} category="soap" resultsKey={results} />
             {results ? (
               <>
                 {results.warnings?.includes("highFragrance") && (

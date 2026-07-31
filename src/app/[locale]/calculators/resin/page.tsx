@@ -13,6 +13,7 @@ import { ResultPanel } from "@/components/ui/result-panel";
 import { RecipeCard } from "@/components/ui/recipe-card";
 import { MoldCalculator } from "@/components/ui/mold-calculator";
 import { StepGuide, type StepGuideStep } from "@/components/ui/step-guide";
+import { TipsRotator } from "@/components/ui/tips-rotator";
 import { calculateResin, RESIN_TYPES, RESIN_TECHNIQUES as TECHNIQUES } from "@/lib/calculations/resin";
 import { exportCalculationPDF } from "@/lib/pdf/export";
 import type { Locale } from "@/types";
@@ -441,6 +442,7 @@ export default function ResinCalculatorPage() {
 
           {/* RIGHT: Results */}
           <div className="space-y-4">
+            <TipsRotator locale={locale} category="resin" resultsKey={results} />
             {results ? (
               <>
                 {/* Warnings */}

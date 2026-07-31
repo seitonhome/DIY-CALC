@@ -187,7 +187,7 @@ export function Sidebar() {
         {/* Tips rotator — only when expanded */}
         {sidebarOpen && (
           <div className="px-3 pb-2 pt-1">
-            <TipsRotator locale={locale} intervalMs={9000} />
+            <TipsRotator locale={locale} intervalMs={9000} compact />
           </div>
         )}
 

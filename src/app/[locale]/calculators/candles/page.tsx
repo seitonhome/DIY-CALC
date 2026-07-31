@@ -15,6 +15,7 @@ import { ResultPanel } from "@/components/ui/result-panel";
 import { RecipeCard } from "@/components/ui/recipe-card";
 import { Badge } from "@/components/ui/badge";
 import { StepGuide, type StepGuideStep } from "@/components/ui/step-guide";
+import { TipsRotator } from "@/components/ui/tips-rotator";
 import { calculateCandles, WAX_TYPES } from "@/lib/calculations/candles";
 import { calculateVolume } from "@/lib/calculations/geometry";
 import { exportCalculationPDF } from "@/lib/pdf/export";
@@ -697,6 +698,7 @@ export default function CandlesCalculatorPage() {
 
           {/* RIGHT: results */}
           <div className="space-y-4">
+            <TipsRotator locale={locale} category="candles" resultsKey={results} />
             {results ? (
               <>
                 {/* Recipe card — PRIMARY */}

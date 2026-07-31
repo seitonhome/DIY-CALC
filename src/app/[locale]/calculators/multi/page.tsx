@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import { ResultPanel } from "@/components/ui/result-panel";
 import { StepGuide, type StepGuideStep } from "@/components/ui/step-guide";
+import { TipsRotator } from "@/components/ui/tips-rotator";
 import { calculateMulti } from "@/lib/calculations/multi";
 import { exportCalculationPDF } from "@/lib/pdf/export";
 import type { MultiInputs, Locale } from "@/types";
@@ -247,6 +248,7 @@ export default function MultiCalculatorPage() {
           </div>
 
           <div className="space-y-4">
+            <TipsRotator locale={locale} category="multi" resultsKey={results} />
             {results ? (
               <>
                 {/* Before-you-start checklist, one reminder per unique material in this set */}

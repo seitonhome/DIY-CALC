@@ -12,6 +12,7 @@ import { ResultPanel } from "@/components/ui/result-panel";
 import { RecipeCard } from "@/components/ui/recipe-card";
 import { MoldCalculator } from "@/components/ui/mold-calculator";
 import { StepGuide, type StepGuideStep } from "@/components/ui/step-guide";
+import { TipsRotator } from "@/components/ui/tips-rotator";
 import { calculateConcrete, CONCRETE_MIX_TYPES } from "@/lib/calculations/concrete";
 import { exportCalculationPDF } from "@/lib/pdf/export";
 import type { Locale } from "@/types";
@@ -326,6 +327,7 @@ export default function ConcreteCalculatorPage() {
 
           {/* RIGHT: Results */}
           <div className="space-y-4">
+            <TipsRotator locale={locale} category="concrete" resultsKey={results} />
             {results ? (
               <>
                 {results.warnings?.includes("tooMuchWater") && (
