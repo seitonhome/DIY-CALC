@@ -16,7 +16,8 @@ import { TipsRotator } from "@/components/ui/tips-rotator";
 import { calculateMulti } from "@/lib/calculations/multi";
 import { exportCalculationPDF } from "@/lib/pdf/export";
 import type { MultiInputs, Locale } from "@/types";
-import { Package, Plus, Trash2, Save, FileDown, RefreshCw, Flame, Droplets, Sparkles, Mountain, Layers3, type LucideIcon } from "lucide-react";
+import { Package, Plus, Trash2, Save, FileDown, RefreshCw, Flame, Droplets, Sparkles, Mountain, Layers3, Info, type LucideIcon } from "lucide-react";
+import { TooltipHelp } from "@/components/ui/tooltip";
 import { saveFormula } from "@/lib/formulas";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from "recharts";
 import { formatCurrency } from "@/lib/utils/format";
@@ -151,6 +152,23 @@ export default function MultiCalculatorPage() {
               </CardContent>
             </Card>
 
+            {/* What is a component */}
+            <div className="rounded-xl bg-emerald-50 border border-emerald-100 p-4">
+              <div className="flex items-start gap-2.5">
+                <Info className="h-4 w-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-xs font-semibold text-emerald-800 mb-1">{t("whatIsComponent.title")}</p>
+                  <p className="text-xs text-emerald-800/80 leading-relaxed">{t("whatIsComponent.description")}</p>
+                </div>
+              </div>
+              <p className="mt-3 text-[11px] font-semibold uppercase tracking-wide text-emerald-700/70">{t("examples.title")}</p>
+              <div className="mt-1.5 flex flex-wrap gap-2">
+                {(t.raw("examples.items") as string[]).map((ex, i) => (
+                  <span key={i} className="inline-flex rounded-full bg-white border border-emerald-200 px-3 py-1 text-xs text-emerald-800">{ex}</span>
+                ))}
+              </div>
+            </div>
+
             {/* Components */}
             <div className="space-y-3">
               {fields.map((field, index) => {
@@ -165,6 +183,7 @@ export default function MultiCalculatorPage() {
                         <div className="flex items-center gap-2">
                           <Icon className={`h-4 w-4 ${iconClass}`} />
                           <CardTitle className="text-sm">{t("component")} {index + 1}</CardTitle>
+                          <TooltipHelp text={t("whatIsComponent.description")} />
                         </div>
                         {fields.length > 1 && (
                           <button type="button" onClick={() => remove(index)} className="text-stone-400 hover:text-red-500 transition-colors">
@@ -211,16 +230,6 @@ export default function MultiCalculatorPage() {
               <Plus className="h-4 w-4" />
               {t("addComponent")}
             </Button>
-
-            {/* Examples */}
-            <div className="rounded-xl bg-amber-50 border border-amber-100 p-4">
-              <p className="text-xs font-semibold text-amber-800 mb-2">{t("examples.title")}</p>
-              <div className="flex flex-wrap gap-2">
-                {(t.raw("examples.items") as string[]).map((ex, i) => (
-                  <span key={i} className="inline-flex rounded-full bg-amber-100 px-3 py-1 text-xs text-amber-800">{ex}</span>
-                ))}
-              </div>
-            </div>
 
             {/* Global costs */}
             <Card>

@@ -744,6 +744,10 @@
       "componentTime": "Tiempo de producción (min)",
       "componentWaste": "Merma (%)",
       "removeComponent": "Eliminar",
+      "whatIsComponent": {
+        "title": "¿Qué es un \"componente\"?",
+        "description": "Cada componente es uno de los productos individuales que forman tu set o kit final — no una materia prima. Por ejemplo, en un kit de \"vela + jabón + base de resina\" hay 3 componentes: la vela, el jabón y la base. Si ya calculaste el costo de esa pieza en su propia calculadora (Velas, Jabón, Resina...), usa ese costo por unidad aquí abajo."
+      },
       "examples": {
         "title": "Ejemplos de productos combinados",
         "items": [

@@ -744,6 +744,10 @@
       "componentTime": "Production time (min)",
       "componentWaste": "Waste (%)",
       "removeComponent": "Remove",
+      "whatIsComponent": {
+        "title": "What's a \"component\"?",
+        "description": "Each component is one of the individual products that make up your final set or kit — not a raw material. For example, in a \"candle + soap + resin base\" kit there are 3 components: the candle, the soap, and the base. If you already calculated that piece's cost in its own calculator (Candles, Soap, Resin...), use that per-unit cost here."
+      },
       "examples": {
         "title": "Examples of combined products",
         "items": [
