@@ -325,7 +325,9 @@ export default function CandlesCalculatorPage() {
                     </div>
 
                     <div className="grid gap-3 sm:grid-cols-3">
-                      <Input label={t("dimensions.capacity")} type="number" min="0" {...register("volumeMl")} suffix="ml" hint={locale === "es" ? "¿No tienes medidas? Llena el molde con agua y mide los ml." : "No dimensions? Fill the mold with water and measure the ml."} />
+                      {moldShape !== "irregular" && (
+                        <Input label={t("dimensions.capacity")} type="number" min="0" {...register("volumeMl")} suffix="ml" hint={locale === "es" ? "Déjalo en 0 para usar las dimensiones de arriba, o ingresa el volumen total si ya lo conoces." : "Leave at 0 to use the dimensions above, or enter the total volume if you already know it."} />
+                      )}
                       <Input label={t("dimensions.fillPct")} type="number" min="1" max="100" {...register("fillPct")} suffix="%" hint={locale === "es" ? "100% = molde lleno" : "100% = full mold"} />
                       <Input label={t("dimensions.targetWeight")} type="number" min="0" {...register("targetWeightG")} suffix="g" hint={locale === "es" ? "Si sabes el peso final deseado" : "If you know the desired final weight"} />
                     </div>

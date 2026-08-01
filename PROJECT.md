@@ -289,6 +289,26 @@ currently ~10 rows) can't be accidentally deleted, and to be able to export it.
   CSV is UTF-8 with a BOM (for correct accented-character display when opened
   directly in Excel) and quotes/escapes any field containing a comma or quote.
 
+## Bugs found & fixed 2026-07-31 (candles mold volume)
+
+Owner asked what "Diferencia de peso (ml/g)" meant and whether it was redundant
+with "Volumen del molde (ml)" — it was a real duplicate-field bug, not just
+confusing copy. In `calculators/candles/page.tsx`, when `moldShape === "irregular"`,
+**two separate `<Input>`s were both bound to the same react-hook-form field**
+(`register("volumeMl")`, lines 322 and 328): the water-displacement instructions
+box's "Diferencia de peso" input, and a second always-rendered "Volumen del molde"
+input right below it whose hint also told the user to fill the mold with water —
+same question asked twice, in different words, writing to the same field. Fixed by
+hiding the second input entirely when shape is irregular (the first one already
+covers it), and rewording its hint for the regular-shape case (it's a manual
+override of the auto-computed-from-dimensions volume, not another water-fill
+prompt) to "Déjalo en 0 para usar las dimensiones de arriba, o ingresa el volumen
+total si ya lo conoces." Checked the other 3 calculators that also do mold-volume
+input (resin/concrete/plaster) — they all use the shared `MoldCalculator` component
+(`src/components/ui/mold-calculator.tsx`), which sets volume through one
+`onVolume()` callback and doesn't have this problem; candles is the only one with
+its own inline geometry UI, which is why it alone had the duplicate binding.
+
 ## Standing preferences
 
 - Auto commit + push every change in this repo without asking first (standing
