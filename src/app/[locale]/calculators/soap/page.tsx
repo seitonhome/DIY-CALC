@@ -14,13 +14,13 @@ import { ResultPanel } from "@/components/ui/result-panel";
 import { TooltipHelp } from "@/components/ui/tooltip";
 import { StepGuide, type StepGuideStep } from "@/components/ui/step-guide";
 import { TipsRotator } from "@/components/ui/tips-rotator";
-import { calculateSoap, SOAP_TYPES, OIL_PROPERTIES } from "@/lib/calculations/soap";
+import { calculateSoap, SOAP_TYPES, OIL_PROPERTIES, type SoapCalculationResult } from "@/lib/calculations/soap";
 import { exportCalculationPDF } from "@/lib/pdf/export";
 import type { SoapInputs, CalculationResults, Locale } from "@/types";
 import { Sparkles, AlertTriangle, Save, FileDown, RefreshCw, ShieldAlert, Scale, FlaskConical, Thermometer, Beaker, Droplets, Clock, Scissors, Flame } from "lucide-react";
 import { saveFormula } from "@/lib/formulas";
 
-function getSoapSteps(locale: Locale, soapType: string, soapData: (typeof SOAP_TYPES)[string], results: any): StepGuideStep[] {
+function getSoapSteps(locale: Locale, soapType: string, soapData: (typeof SOAP_TYPES)[string], results: SoapCalculationResult | null): StepGuideStep[] {
   const es = locale === "es";
   if (!soapData.isSaponified) {
     return [
@@ -102,7 +102,7 @@ export default function SoapCalculatorPage() {
   const t = useTranslations("calculators.soap");
   const tCommon = useTranslations("calculators.common");
   const locale = useLocale() as Locale;
-  const [results, setResults] = useState<any>(null);
+  const [results, setResults] = useState<SoapCalculationResult | null>(null);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
 
@@ -256,6 +256,37 @@ export default function SoapCalculatorPage() {
                     </div>
                     <Input label={t("saponification.lyeConcentration")} type="number" min="20" max="50" {...register("lyeConcentrationPct")} suffix="%" />
                   </div>
+
+                  {results?.warnings?.includes("castorHigh") && (
+                    <div className="flex items-start gap-2 rounded-lg bg-amber-50 border border-amber-200 p-3 text-sm text-amber-800">
+                      <AlertTriangle className="h-4 w-4 flex-shrink-0 mt-0.5" />
+                      <span>
+                        {locale === "es"
+                          ? "Aceite de ricino sobre 15%. En exceso hace el jabón pegajoso y difícil de desmoldar."
+                          : "Castor oil above 15%. In excess it makes the soap sticky and hard to unmold."}
+                      </span>
+                    </div>
+                  )}
+
+                  {results?.warnings?.includes("liquidSoapHighSuperfat") ? (
+                    <div className="flex items-start gap-2 rounded-lg bg-amber-50 border border-amber-200 p-3 text-sm text-amber-800">
+                      <AlertTriangle className="h-4 w-4 flex-shrink-0 mt-0.5" />
+                      <span>
+                        {locale === "es"
+                          ? "Sobregraso sobre 3% en jabón líquido. Puede quedar turbio o separarse con el tiempo — para jabón líquido usa un sobregraso bajo."
+                          : "Superfat above 3% in liquid soap. It can go cloudy or separate over time — keep superfat low for liquid soap."}
+                      </span>
+                    </div>
+                  ) : results?.warnings?.includes("highSuperfat") && (
+                    <div className="flex items-start gap-2 rounded-lg bg-amber-50 border border-amber-200 p-3 text-sm text-amber-800">
+                      <AlertTriangle className="h-4 w-4 flex-shrink-0 mt-0.5" />
+                      <span>
+                        {locale === "es"
+                          ? "Sobregraso sobre 10%. El jabón puede quedar blando y ponerse rancio (DOS) antes de tiempo."
+                          : "Superfat above 10%. The soap can turn out soft and go rancid (DOS) early."}
+                      </span>
+                    </div>
+                  )}
 
                   {results?.isSaponified && (
                     <div className="rounded-lg bg-sky-50 border border-sky-100 p-4 grid grid-cols-2 gap-4 text-sm">

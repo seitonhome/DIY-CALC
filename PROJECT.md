@@ -309,6 +309,58 @@ input (resin/concrete/plaster) — they all use the shared `MoldCalculator` comp
 `onVolume()` callback and doesn't have this problem; candles is the only one with
 its own inline geometry UI, which is why it alone had the duplicate binding.
 
+## Full-app audit for silent/dead-warning bugs (added 2026-07-31)
+
+After the candles mold-volume duplicate-field bug, owner asked for a detailed pass
+across the whole app for "this type of error" — not just that one instance. Did two
+systematic checks across all 6 calculators, not just a manual look:
+
+1. **Duplicate form-field bindings** — grepped every `page.tsx`/`*-client.tsx` for a
+   `register("x")` (or `Controller name="x"`) name used more than once in the same
+   file, then manually checked each hit for whether the two inputs can actually render
+   simultaneously. Only candles' `volumeMl` was a real bug (already fixed). Resin's
+   `layers`/`resinType` duplicates are safe — mutually exclusive ternary branches
+   (`!isCoating ? ... : ...`), not simultaneous. Materials/molds/formulas library forms
+   (plain `useState`, not RHF) have no duplicate `value={form.x}` bindings either.
+2. **Dead warnings** — cross-referenced every `warnings.push("x")` in
+   `src/lib/calculations/*.ts` against what each calculator's `page.tsx` actually
+   renders. Found **9 warnings computed by the engine but never shown to the user**:
+   - Candles: `highWaste` (wastePct > 15%) — translation key existed, was never
+     rendered anywhere. Added next to the waste-% field in the Producción tab.
+   - Resin: `highWaste` (mixLossPct > 15%) — added next to the "Merma por mezcla %"
+     field, inline bilingual box matching this file's existing style.
+   - Soap: `castorHigh` (>15%), `highSuperfat` (>10%), `liquidSoapHighSuperfat`
+     (liquid soap + superfat >3%) — none were rendered at all. Added all three next
+     to the oils/superfat fields (`oilPctOver100`/`oilPctUnder100` were **not** dead —
+     already covered by the live "Total aceites" indicator that computes the same
+     threshold from `watch()` in real time).
+   - Concrete & Plaster: `noVolume` (submitted with no mold volume and no manual dry-
+     mix/weight entered, so the results below are silently all zero) — added a warning
+     box to both explaining why the numbers are 0 and what to do about it.
+   - Candles' `stearicLow`/`stearicHigh`/`vybarHigh`/`vybarLow`/`noStearicMoldWax`
+     looked dead by the same grep but are **not** — verified the live "% indicator"
+     boxes under those fields (`isLow`/`isHigh` computed straight from `watch()`)
+     use the exact same thresholds as the engine, just via a parallel client-side
+     calc instead of reading `results.warnings`. Left as-is.
+3. **Root cause of the original bug class** — all 6 calculators typed their `results`
+   state as `useState<any>(null)`, which is exactly why a field-name mismatch (like
+   the `costPerUnit`/`totalCostPerUnit` bug in `compare/page.tsx`, fixed 2026-07-30)
+   or a duplicate/dead field can compile clean and only surface at runtime. Changed
+   all 6 to their real engine return type (`useState<CandleCalculationResult | null>`,
+   etc. — each `extends CalculationResults` so passing them to `<ResultPanel>` still
+   type-checks) and tightened the `get*Steps()` helper function signatures the same
+   way. This turned up one genuine null-safety gap in `getResinSteps` (`results?.recommendedPours > 1`
+   comparing a possibly-`undefined` number) that `tsc` now catches — fixed with
+   `(results?.recommendedPours ?? 0) > 1` and `results!.` on the branch guaranteed
+   non-null. **Going forward, a typo'd `results.wrongFieldName` in any of these 6
+   files will fail the build instead of silently rendering `undefined`/`NaN`.**
+4. Verified manually in-browser (throwaway test accounts, deleted after): soap's
+   3 new warnings, concrete's and plaster's `noVolume`, and candles' `highWaste` all
+   render correctly on submit. Resin's `highWaste` could not be confirmed live in this
+   session (browser automation environment was unreliable for that one field — see
+   session notes) but the code is structurally identical to the already-verified
+   candles version and passes `tsc`/`next build` clean.
+
 ## Standing preferences
 
 - Auto commit + push every change in this repo without asking first (standing

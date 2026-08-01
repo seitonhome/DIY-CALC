@@ -14,13 +14,13 @@ import { RecipeCard } from "@/components/ui/recipe-card";
 import { MoldCalculator } from "@/components/ui/mold-calculator";
 import { StepGuide, type StepGuideStep } from "@/components/ui/step-guide";
 import { TipsRotator } from "@/components/ui/tips-rotator";
-import { calculateResin, RESIN_TYPES, RESIN_TECHNIQUES as TECHNIQUES } from "@/lib/calculations/resin";
+import { calculateResin, RESIN_TYPES, RESIN_TECHNIQUES as TECHNIQUES, type ResinCalculationResult } from "@/lib/calculations/resin";
 import { exportCalculationPDF } from "@/lib/pdf/export";
 import type { Locale } from "@/types";
 import { Droplets, Save, FileDown, RefreshCw, AlertTriangle, Info, ShieldAlert, Scale, Beaker, Flame, Clock } from "lucide-react";
 import { saveFormula } from "@/lib/formulas";
 
-function getResinSteps(locale: Locale, typeProps: (typeof RESIN_TYPES)[string], partAPct: number, partBPct: number, results: any): StepGuideStep[] {
+function getResinSteps(locale: Locale, typeProps: (typeof RESIN_TYPES)[string], partAPct: number, partBPct: number, results: ResinCalculationResult | null): StepGuideStep[] {
   const es = locale === "es";
   const cureStr = typeProps.cureTimeH < 1 ? `${typeProps.cureTimeH * 60} min` : `${typeProps.cureTimeH}h`;
   const steps: StepGuideStep[] = [
@@ -30,8 +30,8 @@ function getResinSteps(locale: Locale, typeProps: (typeof RESIN_TYPES)[string], 
         : (es ? `Respeta la proporción ${partAPct}:${partBPct} (A:B) al gramo — es la causa #1 de que la resina no cure bien.` : `Stick to the ${partAPct}:${partBPct} (A:B) ratio to the gram — the #1 cause of resin that never fully cures.`) },
     { icon: Beaker, title: es ? "Mezcla lento, 3-4 minutos" : "Mix slowly, 3-4 minutes", description: es ? "Remueve raspando bien el fondo y las paredes del recipiente — la resina que quede sin mezclar ahí se queda pegajosa para siempre." : "Scrape the bottom and sides of the container well as you stir — any unmixed resin left there stays tacky forever." },
     { icon: Flame, title: es ? "Elimina las burbujas" : "Pop the air bubbles", description: es ? "Pasa un soplete o encendedor rápidamente sobre la superficie después de verter, sin acercarte demasiado." : "Quickly pass a torch or lighter over the surface after pouring, without lingering too close." },
-    { icon: Droplets, title: es ? "Vierte en el molde" : "Pour into the mold", description: results?.recommendedPours > 1
-        ? (es ? `Divide en ${results.recommendedPours} coladas de ~${results.resinPerLayerG?.toFixed(0)}g cada una, esperando ${cureStr} de curado entre cada una.` : `Split into ${results.recommendedPours} pours of ~${results.resinPerLayerG?.toFixed(0)}g each, waiting ${cureStr} of cure time between pours.`)
+    { icon: Droplets, title: es ? "Vierte en el molde" : "Pour into the mold", description: (results?.recommendedPours ?? 0) > 1
+        ? (es ? `Divide en ${results!.recommendedPours} coladas de ~${results!.resinPerLayerG?.toFixed(0)}g cada una, esperando ${cureStr} de curado entre cada una.` : `Split into ${results!.recommendedPours} pours of ~${results!.resinPerLayerG?.toFixed(0)}g each, waiting ${cureStr} of cure time between pours.`)
         : (es ? "Vierte despacio y por el centro del molde para evitar burbujas." : "Pour slowly through the center of the mold to avoid bubbles.") },
     { icon: Clock, title: es ? `Cura ${cureStr} antes de desmoldar` : `Cure for ${cureStr} before demolding`, description: es ? "No lo muevas ni lo destapes mientras cura — el polvo y las vibraciones arruinan el acabado." : "Don't move it or uncover it while curing — dust and vibration ruin the finish." },
   ];
@@ -82,7 +82,7 @@ type FormValues = z.infer<typeof schema>;
 export default function ResinCalculatorPage() {
   const locale = useLocale() as Locale;
   const es = locale === "es";
-  const [results, setResults] = useState<any>(null);
+  const [results, setResults] = useState<ResinCalculationResult | null>(null);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [moldVolFromShape, setMoldVolFromShape] = useState(0);
@@ -394,6 +394,14 @@ export default function ResinCalculatorPage() {
                   </>
                 )}
                 <Input label={es ? "Merma por mezcla %" : "Mix waste %"} type="number" min="0" max="30" {...register("mixLossPct")} suffix="%" hint={es ? "Lo que queda en el recipiente al mezclar" : "Amount left in mixing container"} />
+                {results?.warnings?.includes("highWaste") && (
+                  <div style={{ background: "#FFFBEB", border: "1px solid #FDE68A", borderRadius: 12, padding: "12px 16px", display: "flex", gap: 10 }}>
+                    <AlertTriangle size={16} style={{ color: "#B45309", flexShrink: 0 }} />
+                    <p style={{ fontSize: 12, color: "#92400E", margin: 0 }}>
+                      {es ? "Merma muy alta (>15%). Revisa tu técnica de mezcla y vaciado — estás perdiendo mucha resina." : "Waste too high (>15%). Check your mixing and pouring technique — you're losing a lot of resin."}
+                    </p>
+                  </div>
+                )}
               </CardContent>
             </Card>
 

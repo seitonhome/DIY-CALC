@@ -13,13 +13,13 @@ import { RecipeCard } from "@/components/ui/recipe-card";
 import { MoldCalculator } from "@/components/ui/mold-calculator";
 import { StepGuide, type StepGuideStep } from "@/components/ui/step-guide";
 import { TipsRotator } from "@/components/ui/tips-rotator";
-import { calculateConcrete, CONCRETE_MIX_TYPES } from "@/lib/calculations/concrete";
+import { calculateConcrete, CONCRETE_MIX_TYPES, type ConcreteCalculationResult } from "@/lib/calculations/concrete";
 import { exportCalculationPDF } from "@/lib/pdf/export";
 import type { Locale } from "@/types";
 import { Mountain, AlertTriangle, Save, FileDown, RefreshCw, ShieldAlert, Scale, Layers, Droplets, Waves, Clock, Paintbrush } from "lucide-react";
 import { saveFormula } from "@/lib/formulas";
 
-function getConcreteSteps(locale: Locale, concreteType: string, results: any): StepGuideStep[] {
+function getConcreteSteps(locale: Locale, concreteType: string, results: ConcreteCalculationResult | null): StepGuideStep[] {
   const es = locale === "es";
   const dustStep: StepGuideStep = { icon: ShieldAlert, critical: true, title: es ? "Protégete del polvo" : "Protect yourself from dust", description: es ? "Mascarilla y guantes al manipular cemento y arena secos — el polvo de sílice es dañino si lo respiras repetidamente." : "Mask and gloves when handling dry cement and sand — silica dust is harmful if inhaled repeatedly." };
 
@@ -104,7 +104,7 @@ type FormValues = z.infer<typeof schema>;
 export default function ConcreteCalculatorPage() {
   const locale = useLocale() as Locale;
   const es = locale === "es";
-  const [results, setResults] = useState<any>(null);
+  const [results, setResults] = useState<ConcreteCalculationResult | null>(null);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [moldShape, setMoldShape] = useState("");
@@ -344,6 +344,15 @@ export default function ConcreteCalculatorPage() {
                     <AlertTriangle size={16} style={{ color: "#B45309", flexShrink: 0 }} />
                     <p style={{ fontSize: 12, color: "#92400E", margin: 0 }}>
                       {es ? "Relación agua/cemento muy baja (<0.30). La mezcla fraguará demasiado rápido para trabajarla bien." : "Water/cement ratio too low (<0.30). The mix will set too fast to work with properly."}
+                    </p>
+                  </div>
+                )}
+
+                {results.warnings?.includes("noVolume") && (
+                  <div style={{ background: "#FFFBEB", border: "1px solid #FDE68A", borderRadius: 12, padding: "12px 16px", display: "flex", gap: 10 }}>
+                    <AlertTriangle size={16} style={{ color: "#B45309", flexShrink: 0 }} />
+                    <p style={{ fontSize: 12, color: "#92400E", margin: 0 }}>
+                      {es ? "No ingresaste el volumen del molde ni la cantidad de mezcla seca — los resultados de abajo están en cero. Usa la calculadora de volumen o ingresa un valor manual." : "You didn't enter the mold volume or the dry mix amount — the results below are zero. Use the volume calculator or enter a value manually."}
                     </p>
                   </div>
                 )}

@@ -13,13 +13,13 @@ import { RecipeCard } from "@/components/ui/recipe-card";
 import { MoldCalculator } from "@/components/ui/mold-calculator";
 import { StepGuide, type StepGuideStep } from "@/components/ui/step-guide";
 import { TipsRotator } from "@/components/ui/tips-rotator";
-import { calculatePlaster, PLASTER_TYPES } from "@/lib/calculations/plaster";
+import { calculatePlaster, PLASTER_TYPES, type PlasterCalculationResult } from "@/lib/calculations/plaster";
 import { exportCalculationPDF } from "@/lib/pdf/export";
 import type { Locale } from "@/types";
 import { Layers3, Save, FileDown, RefreshCw, AlertTriangle, ShieldAlert, Scale, Waves, Droplets, Clock } from "lucide-react";
 import { saveFormula } from "@/lib/formulas";
 
-function getPlasterSteps(locale: Locale, typeProps: (typeof PLASTER_TYPES)[string], results: any): StepGuideStep[] {
+function getPlasterSteps(locale: Locale, typeProps: (typeof PLASTER_TYPES)[string], results: PlasterCalculationResult | null): StepGuideStep[] {
   const es = locale === "es";
   const workTime = Math.max(typeProps.cureTimeMin - 5, 5);
   return [
@@ -75,7 +75,7 @@ type FormValues = z.infer<typeof schema>;
 export default function PlasterCalculatorPage() {
   const locale = useLocale() as Locale;
   const es = locale === "es";
-  const [results, setResults] = useState<any>(null);
+  const [results, setResults] = useState<PlasterCalculationResult | null>(null);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [moldShape, setMoldShape] = useState("");
@@ -271,6 +271,15 @@ export default function PlasterCalculatorPage() {
                           : `The recommended ratio for ${typeProps.label_en} is ${typeProps.wpr} parts water per 1 part plaster. Too much water weakens the piece; too little sets before you can work it.`}
                       </p>
                     </div>
+                  </div>
+                )}
+
+                {results.warnings?.includes("noVolume") && (
+                  <div style={{ background: "#FFFBEB", border: "1px solid #FDE68A", borderRadius: 12, padding: "12px 16px", display: "flex", gap: 10 }}>
+                    <AlertTriangle size={16} style={{ color: "#B45309", flexShrink: 0, marginTop: 1 }} />
+                    <p style={{ fontSize: 12, color: "#92400E", margin: 0 }}>
+                      {es ? "No ingresaste el volumen del molde, la cantidad de yeso ni el peso final — los resultados de abajo están en cero. Usa la calculadora de volumen o ingresa un valor manual." : "You didn't enter the mold volume, plaster amount, or final weight — the results below are zero. Use the volume calculator or enter a value manually."}
+                    </p>
                   </div>
                 )}
 

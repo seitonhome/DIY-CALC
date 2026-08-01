@@ -16,14 +16,14 @@ import { RecipeCard } from "@/components/ui/recipe-card";
 import { Badge } from "@/components/ui/badge";
 import { StepGuide, type StepGuideStep } from "@/components/ui/step-guide";
 import { TipsRotator } from "@/components/ui/tips-rotator";
-import { calculateCandles, WAX_TYPES } from "@/lib/calculations/candles";
+import { calculateCandles, WAX_TYPES, type CandleCalculationResult } from "@/lib/calculations/candles";
 import { calculateVolume } from "@/lib/calculations/geometry";
 import { exportCalculationPDF } from "@/lib/pdf/export";
 import type { CandleInputs, CalculationResults, Locale, MoldShape } from "@/types";
 import { AlertTriangle, Flame, Save, FileDown, RefreshCw, Scale, Thermometer, Droplets, Clock, Scissors } from "lucide-react";
 import { saveFormula } from "@/lib/formulas";
 
-function getCandleSteps(locale: Locale, waxType: string, isMW: boolean, results: any): StepGuideStep[] {
+function getCandleSteps(locale: Locale, waxType: string, isMW: boolean, results: CandleCalculationResult | null): StepGuideStep[] {
   const es = locale === "es";
   const wax = WAX_TYPES[waxType] ?? WAX_TYPES.soy;
   const steps: StepGuideStep[] = [
@@ -109,7 +109,7 @@ export default function CandlesCalculatorPage() {
   const tGeo = useTranslations("geometry");
   const locale = useLocale() as Locale;
 
-  const [results, setResults] = useState<any>(null);
+  const [results, setResults] = useState<CandleCalculationResult | null>(null);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
 
@@ -496,8 +496,8 @@ export default function CandlesCalculatorPage() {
                       </div>
 
                       {/* Live % indicator for stearic */}
-                      {results && (results as any).waxAmountG > 0 && ((stearicAcidPct || 0) > 0 || (stearicAcidAmount || 0) > 0) && (() => {
-                        const pct = (results as any).stearicAcidPct as number;
+                      {results && results.waxAmountG > 0 && ((stearicAcidPct || 0) > 0 || (stearicAcidAmount || 0) > 0) && (() => {
+                        const pct = results.stearicAcidPct as number;
                         const isNone = pct === 0 && isMoldWax;
                         const isLow = isMoldWax && pct > 0 && pct < 5;
                         const isHigh = pct > 20;
@@ -560,8 +560,8 @@ export default function CandlesCalculatorPage() {
                       </div>
 
                       {/* Live % indicator (shown after first calculation) */}
-                      {results && (results as any).waxAmountG > 0 && (vybarAmount || 0) > 0 && (() => {
-                        const pct = ((vybarAmount || 0) / (results as any).waxAmountG * 100);
+                      {results && results.waxAmountG > 0 && (vybarAmount || 0) > 0 && (() => {
+                        const pct = ((vybarAmount || 0) / results.waxAmountG * 100);
                         const isHigh = pct > 1.5;
                         const isLow = pct < 0.5;
                         const isGood = !isHigh && !isLow;
@@ -640,6 +640,12 @@ export default function CandlesCalculatorPage() {
                         <Input type="number" min="0" max="50" {...register("wastePct")} suffix="%" />
                       </div>
                     </div>
+                    {results?.warnings?.includes("highWaste") && (
+                      <div className="flex items-start gap-2 rounded-lg bg-amber-50 border border-amber-200 p-3 text-sm text-amber-800">
+                        <AlertTriangle className="h-4 w-4 flex-shrink-0 mt-0.5" />
+                        <span>{t("warnings.highWaste")}</span>
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
               </TabsContent>

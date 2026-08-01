@@ -13,7 +13,7 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@
 import { ResultPanel } from "@/components/ui/result-panel";
 import { StepGuide, type StepGuideStep } from "@/components/ui/step-guide";
 import { TipsRotator } from "@/components/ui/tips-rotator";
-import { calculateMulti } from "@/lib/calculations/multi";
+import { calculateMulti, type MultiCalculationResult } from "@/lib/calculations/multi";
 import { exportCalculationPDF } from "@/lib/pdf/export";
 import type { MultiInputs, Locale } from "@/types";
 import { Package, Plus, Trash2, Save, FileDown, RefreshCw, Flame, Droplets, Sparkles, Mountain, Layers3, Info, type LucideIcon } from "lucide-react";
@@ -78,7 +78,7 @@ export default function MultiCalculatorPage() {
   const tCommon = useTranslations("calculators.common");
   const tDash = useTranslations("dashboard");
   const locale = useLocale() as Locale;
-  const [results, setResults] = useState<any>(null);
+  const [results, setResults] = useState<MultiCalculationResult | null>(null);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
 
