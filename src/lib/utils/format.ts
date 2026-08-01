@@ -6,11 +6,11 @@ export function formatCurrency(
   locale: Locale = "es"
 ): string {
   const localeStr = locale === "es" ? "es-MX" : "en-US";
+  // No forced fraction digits: currencies like CLP/PYG have 0 decimals by
+  // convention, so let Intl apply each currency's own default precision.
   return new Intl.NumberFormat(localeStr, {
     style: "currency",
     currency,
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
   }).format(value);
 }
 

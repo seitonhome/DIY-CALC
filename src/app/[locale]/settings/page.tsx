@@ -11,7 +11,8 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@
 import { createClient } from "@/lib/supabase/client";
 import { useAppStore } from "@/store";
 import type { License, Locale } from "@/types";
-import { Settings, Globe, Key, Check } from "lucide-react";
+import { Settings, Globe, Key, Check, Coins } from "lucide-react";
+import { CURRENCIES } from "@/lib/currencies";
 
 export default function SettingsPage() {
   const t = useTranslations("settings");
@@ -22,6 +23,7 @@ export default function SettingsPage() {
   const [license, setLicense] = useState<License | null>(null);
   const [savedMsg, setSavedMsg] = useState(false);
   const [selectedLang, setSelectedLang] = useState<Locale>(locale);
+  const [selectedCurrency, setSelectedCurrency] = useState("USD");
 
   useEffect(() => {
     async function load() {
@@ -34,6 +36,8 @@ export default function SettingsPage() {
       // setLicense), so fetch it directly here instead of relying on it.
       const { data: lic } = await supabase.from("licenses").select("*").eq("user_id", user.id).single();
       if (lic) setLicense(lic);
+      const { data: prefs } = await supabase.from("user_preferences").select("preferred_currency").eq("user_id", user.id).single();
+      if (prefs?.preferred_currency) setSelectedCurrency(prefs.preferred_currency);
     }
     load();
   }, []);
@@ -43,7 +47,7 @@ export default function SettingsPage() {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
     await supabase.from("users_profile").update({ full_name: name }).eq("user_id", user.id);
-    await supabase.from("user_preferences").upsert({ user_id: user.id, preferred_language: selectedLang }, { onConflict: "user_id" });
+    await supabase.from("user_preferences").upsert({ user_id: user.id, preferred_language: selectedLang, preferred_currency: selectedCurrency }, { onConflict: "user_id" });
     setLocale(selectedLang);
     localStorage.setItem("diy-calc-locale", selectedLang);
     if (selectedLang !== locale) {
@@ -89,6 +93,33 @@ export default function SettingsPage() {
                 <SelectItem value="en">🇺🇸 English</SelectItem>
               </SelectContent>
             </Select>
+          </CardContent>
+        </Card>
+
+        {/* Currency */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base flex items-center gap-2">
+              <Coins className="h-4 w-4" />
+              {t("currency")}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Select value={selectedCurrency} onValueChange={setSelectedCurrency}>
+              <SelectTrigger><SelectValue /></SelectTrigger>
+              <SelectContent>
+                {CURRENCIES.map((c) => (
+                  <SelectItem key={c.code} value={c.code}>
+                    {c.flag} {c.code} — {locale === "es" ? c.label_es : c.label_en}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <p className="mt-2 text-xs text-stone-400">
+              {locale === "es"
+                ? "Esta es la moneda por defecto en tus calculadoras. Puedes cambiarla para un cálculo específico dentro de cada calculadora."
+                : "This is the default currency in your calculators. You can change it for a specific calculation inside each calculator."}
+            </p>
           </CardContent>
         </Card>
 

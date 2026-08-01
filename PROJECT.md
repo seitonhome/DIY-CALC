@@ -361,6 +361,43 @@ systematic checks across all 6 calculators, not just a manual look:
    session notes) but the code is structurally identical to the already-verified
    candles version and passes `tsc`/`next build` clean.
 
+## Currency selection (added 2026-07-31)
+
+Owner (in Spanish locale) asked why prices only showed in USD with no way to switch to
+COP or another Latin American currency. Investigation found the infrastructure was
+already half-built: every calculator's zod schema had a `currency` field defaulting to
+`"USD"` and `user_preferences.preferred_currency` already existed in the DB schema
+(migration `001_initial_schema.sql`), but **nothing ever rendered a selector for either
+one** — `formatCurrency()`/`Intl.NumberFormat` already handled any ISO currency code
+correctly, the UI to choose one just didn't exist.
+
+- `src/lib/currencies.ts` (new) — `CURRENCIES` array of 15 codes: USD/EUR plus 13 Latin
+  American currencies (COP, MXN, ARS, CLP, PEN, BRL, UYU, BOB, PYG, GTQ, CRC, DOP, PAB),
+  each with a flag emoji + bilingual label.
+- `src/lib/preferences.ts` (new) — `getPreferredCurrency()`, a one-line Supabase helper
+  (same pattern as `saveFormula` in `lib/formulas.ts`) that the 6 calculators call.
+- **Settings page** (`settings/page.tsx`) — new "Moneda" card (same pattern as the
+  existing Language card), persists to `user_preferences.preferred_currency` via the
+  same `upsert` call as `preferred_language`.
+- **All 6 calculators** — added a currency `<Select>` in the Costos/costs section
+  (first field, via `Controller` since it's a Radix Select), and a `useEffect` on mount
+  that calls `getPreferredCurrency()` and `setValue("currency", pref)` if the user has
+  one saved. This is deliberately a **global default + per-calculation override**, not
+  a single global-only setting — an artisan quoting one specific job in USD for export
+  shouldn't have to go change their whole account setting first. concrete/plaster
+  needed `Controller` + `control` added to their `useForm()` destructure since they
+  previously only used plain `register()` (no other Select fields existed there yet).
+- **`formatCurrency()`/PDF export `fmt()`** — removed the hardcoded
+  `minimumFractionDigits: 2`/`maximumFractionDigits: 2`. CLP and PYG don't use decimal
+  subunits by convention; forcing 2 decimals on them would show e.g. "CLP 50.000,00"
+  instead of the correct "CLP 50.000". `Intl.NumberFormat` already knows each currency's
+  real decimal precision when you don't override it — no need to hardcode per-currency
+  rules ourselves.
+- **Known gap, not fixed here**: saved formulas/calculations (`formulas`/`calculations`
+  tables, and their display in the dashboard/library) don't store which currency was
+  used — they'd need their own `currency` column to redisplay correctly later. Out of
+  scope for this pass, which was about the live calculators only.
+
 ## Standing preferences
 
 - Auto commit + push every change in this repo without asking first (standing

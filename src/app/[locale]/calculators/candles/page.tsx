@@ -22,6 +22,8 @@ import { exportCalculationPDF } from "@/lib/pdf/export";
 import type { CandleInputs, CalculationResults, Locale, MoldShape } from "@/types";
 import { AlertTriangle, Flame, Save, FileDown, RefreshCw, Scale, Thermometer, Droplets, Clock, Scissors } from "lucide-react";
 import { saveFormula } from "@/lib/formulas";
+import { getPreferredCurrency } from "@/lib/preferences";
+import { CURRENCIES } from "@/lib/currencies";
 
 function getCandleSteps(locale: Locale, waxType: string, isMW: boolean, results: CandleCalculationResult | null): StepGuideStep[] {
   const es = locale === "es";
@@ -143,6 +145,11 @@ export default function CandlesCalculatorPage() {
     if (!type) return;
     const timer = setTimeout(() => setValue("candleType", type), 50);
     return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    getPreferredCurrency().then((c) => c && setValue("currency", c));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -656,6 +663,16 @@ export default function CandlesCalculatorPage() {
                   <CardHeader><CardTitle className="text-base">{locale === "es" ? "Costos adicionales" : "Additional costs"}</CardTitle></CardHeader>
                   <CardContent className="space-y-4">
                     <div className="grid gap-3 sm:grid-cols-2">
+                      <Controller control={control} name="currency" render={({ field }) => (
+                        <Select onValueChange={field.onChange} value={field.value}>
+                          <SelectTrigger label={tCommon("currency")}><SelectValue /></SelectTrigger>
+                          <SelectContent>
+                            {CURRENCIES.map((c) => (
+                              <SelectItem key={c.code} value={c.code}>{c.flag} {c.code} — {locale === "es" ? c.label_es : c.label_en}</SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      )} />
                       <div>
                         <div className="flex items-center gap-1.5 mb-1.5">
                           <label className="text-sm font-medium text-stone-700">{tCommon("laborCost")}</label>

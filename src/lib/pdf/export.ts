@@ -65,7 +65,6 @@ function fmt(value: number, currency: string, locale: Locale): string {
   return new Intl.NumberFormat(localeStr, {
     style: "currency",
     currency,
-    minimumFractionDigits: 2,
   }).format(value);
 }
 

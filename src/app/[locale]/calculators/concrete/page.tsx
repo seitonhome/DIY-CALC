@@ -1,13 +1,14 @@
 "use client";
 import { useState, useCallback, useEffect } from "react";
 import { useLocale } from "next-intl";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { AppLayout } from "@/components/layout/app-layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import { ResultPanel } from "@/components/ui/result-panel";
 import { RecipeCard } from "@/components/ui/recipe-card";
 import { MoldCalculator } from "@/components/ui/mold-calculator";
@@ -18,6 +19,8 @@ import { exportCalculationPDF } from "@/lib/pdf/export";
 import type { Locale } from "@/types";
 import { Mountain, AlertTriangle, Save, FileDown, RefreshCw, ShieldAlert, Scale, Layers, Droplets, Waves, Clock, Paintbrush } from "lucide-react";
 import { saveFormula } from "@/lib/formulas";
+import { getPreferredCurrency } from "@/lib/preferences";
+import { CURRENCIES } from "@/lib/currencies";
 
 function getConcreteSteps(locale: Locale, concreteType: string, results: ConcreteCalculationResult | null): StepGuideStep[] {
   const es = locale === "es";
@@ -111,7 +114,7 @@ export default function ConcreteCalculatorPage() {
   const [moldDims, setMoldDims] = useState<Record<string, number>>({});
   const [moldVolume, setMoldVolume] = useState(0);
 
-  const { register, handleSubmit, watch, reset, setValue } = useForm<FormValues>({
+  const { register, handleSubmit, control, watch, reset, setValue } = useForm<FormValues>({
     resolver: zodResolver(schema) as any,
     defaultValues: {
       concreteType: "decorative", waterCementRatio: 0.45,
@@ -123,6 +126,11 @@ export default function ConcreteCalculatorPage() {
   useEffect(() => {
     const type = new URLSearchParams(window.location.search).get("type");
     if (type && CONCRETE_MIX_TYPES[type]) setValue("concreteType", type);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    getPreferredCurrency().then((c) => c && setValue("currency", c));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -299,6 +307,16 @@ export default function ConcreteCalculatorPage() {
               </CardHeader>
               <CardContent>
                 <div className="grid gap-3 sm:grid-cols-2">
+                  <Controller control={control} name="currency" render={({ field }) => (
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <SelectTrigger label={es ? "Moneda" : "Currency"}><SelectValue /></SelectTrigger>
+                      <SelectContent>
+                        {CURRENCIES.map((c) => (
+                          <SelectItem key={c.code} value={c.code}>{c.flag} {c.code} — {es ? c.label_es : c.label_en}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  )} />
                   <Input label={es ? "Cemento ($/kg)" : "Cement ($/kg)"} type="number" min="0" step="0.01" {...register("cementCostPerKg")} prefix="$" />
                   <Input label={es ? "Arena ($/kg)" : "Sand ($/kg)"} type="number" min="0" step="0.01" {...register("sandCostPerKg")} prefix="$" />
                   <Input label={es ? "Pigmento ($/kg)" : "Pigment ($/kg)"} type="number" min="0" step="0.01" {...register("pigmentCostPerKg")} prefix="$" />

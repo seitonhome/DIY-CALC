@@ -19,6 +19,8 @@ import { exportCalculationPDF } from "@/lib/pdf/export";
 import type { SoapInputs, CalculationResults, Locale } from "@/types";
 import { Sparkles, AlertTriangle, Save, FileDown, RefreshCw, ShieldAlert, Scale, FlaskConical, Thermometer, Beaker, Droplets, Clock, Scissors, Flame } from "lucide-react";
 import { saveFormula } from "@/lib/formulas";
+import { getPreferredCurrency } from "@/lib/preferences";
+import { CURRENCIES } from "@/lib/currencies";
 
 function getSoapSteps(locale: Locale, soapType: string, soapData: (typeof SOAP_TYPES)[string], results: SoapCalculationResult | null): StepGuideStep[] {
   const es = locale === "es";
@@ -119,6 +121,11 @@ export default function SoapCalculatorPage() {
     if (!type || !SOAP_TYPES[type]) return;
     const timer = setTimeout(() => setValue("soapType", type), 50);
     return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    getPreferredCurrency().then((c) => c && setValue("currency", c));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -330,6 +337,16 @@ export default function SoapCalculatorPage() {
             <Card>
               <CardContent className="pt-4">
                 <div className="grid gap-3 sm:grid-cols-3">
+                  <Controller control={control} name="currency" render={({ field }) => (
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <SelectTrigger label={tCommon("currency")}><SelectValue /></SelectTrigger>
+                      <SelectContent>
+                        {CURRENCIES.map((c) => (
+                          <SelectItem key={c.code} value={c.code}>{c.flag} {c.code} — {locale === "es" ? c.label_es : c.label_en}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  )} />
                   <Input label={tCommon("units")} type="number" min="1" {...register("units")} />
                   <Input label={tCommon("laborCost")} type="number" min="0" step="0.01" {...register("laborCostPerHour")} prefix="$" />
                   <Input label={tCommon("desiredMarginPct")} type="number" min="1" max="100" {...register("desiredMarginPct")} suffix="%" />

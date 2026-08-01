@@ -19,6 +19,8 @@ import { exportCalculationPDF } from "@/lib/pdf/export";
 import type { Locale } from "@/types";
 import { Droplets, Save, FileDown, RefreshCw, AlertTriangle, Info, ShieldAlert, Scale, Beaker, Flame, Clock } from "lucide-react";
 import { saveFormula } from "@/lib/formulas";
+import { getPreferredCurrency } from "@/lib/preferences";
+import { CURRENCIES } from "@/lib/currencies";
 
 function getResinSteps(locale: Locale, typeProps: (typeof RESIN_TYPES)[string], partAPct: number, partBPct: number, results: ResinCalculationResult | null): StepGuideStep[] {
   const es = locale === "es";
@@ -103,6 +105,11 @@ export default function ResinCalculatorPage() {
     if (type && TECHNIQUES.some(t => t.value === type)) {
       setValue("resinCategory", type);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    getPreferredCurrency().then((c) => c && setValue("currency", c));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -429,6 +436,16 @@ export default function ResinCalculatorPage() {
                   <Input label={es ? "Sellador final" : "Top coat sealant"} type="number" min="0" step="0.01" {...register("sealantCost")} prefix="$" />
                 </div>
                 <div className="grid gap-3 sm:grid-cols-3">
+                  <Controller control={control} name="currency" render={({ field }) => (
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <SelectTrigger label={es ? "Moneda" : "Currency"}><SelectValue /></SelectTrigger>
+                      <SelectContent>
+                        {CURRENCIES.map((c) => (
+                          <SelectItem key={c.code} value={c.code}>{c.flag} {c.code} — {es ? c.label_es : c.label_en}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  )} />
                   <Input label={es ? "Mano de obra $/h" : "Labor $/h"} type="number" min="0" step="0.01" {...register("laborCostPerHour")} prefix="$" />
                   <Input label={es ? "Horas de trabajo" : "Labor hours"} type="number" min="0" step="0.5" {...register("laborHours")} />
                   <Input label={es ? "Margen deseado %" : "Desired margin %"} type="number" min="1" max="100" {...register("desiredMarginPct")} suffix="%" />

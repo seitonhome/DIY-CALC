@@ -19,6 +19,8 @@ import type { MultiInputs, Locale } from "@/types";
 import { Package, Plus, Trash2, Save, FileDown, RefreshCw, Flame, Droplets, Sparkles, Mountain, Layers3, Info, type LucideIcon } from "lucide-react";
 import { TooltipHelp } from "@/components/ui/tooltip";
 import { saveFormula } from "@/lib/formulas";
+import { getPreferredCurrency } from "@/lib/preferences";
+import { CURRENCIES } from "@/lib/currencies";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from "recharts";
 import { formatCurrency } from "@/lib/utils/format";
 import { v4 as uuidv4 } from "uuid";
@@ -104,6 +106,11 @@ export default function MultiCalculatorPage() {
       setValue("components.0.type", type as FormValues["components"][number]["type"]);
     }, 50);
     return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    getPreferredCurrency().then((c) => c && setValue("currency", c));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -236,6 +243,16 @@ export default function MultiCalculatorPage() {
               <CardHeader><CardTitle className="text-base">{locale === "es" ? "Costos generales del set" : "Set general costs"}</CardTitle></CardHeader>
               <CardContent>
                 <div className="grid gap-3 sm:grid-cols-3">
+                  <Controller control={control} name="currency" render={({ field }) => (
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <SelectTrigger label={tCommon("currency")}><SelectValue /></SelectTrigger>
+                      <SelectContent>
+                        {CURRENCIES.map((c) => (
+                          <SelectItem key={c.code} value={c.code}>{c.flag} {c.code} — {locale === "es" ? c.label_es : c.label_en}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  )} />
                   <Input label={tCommon("units")} type="number" min="1" {...register("units")} />
                   <Input label={tCommon("laborCost")} type="number" min="0" step="0.01" {...register("laborCostPerHour")} prefix="$" />
                   <Input label={tCommon("laborHours")} type="number" min="0" step="0.5" {...register("laborHours")} />
