@@ -398,6 +398,34 @@ correctly, the UI to choose one just didn't exist.
   used — they'd need their own `currency` column to redisplay correctly later. Out of
   scope for this pass, which was about the live calculators only.
 
+## Wax type dropdown jargon (fixed 2026-08-03)
+
+Owner asked what "Cera de soja — contenedor (464, GB464)" meant, then pushed further:
+"si yo no entendí, los clientes tampoco — ¿no les cuesta poder escoger?" Checked the
+other 11 wax options in `WAX_TYPES` (`src/lib/calculations/candles.ts`) and found the
+same problem across most of them — manufacturer product codes and lab specs
+(`GB464`, `CB-135`, `Coconut 83, CX`, `MP 52–54 °C`, `76°F`) baked directly into the
+`label_es`/`label_en` strings, i.e. the text a first-time user reads while **scanning
+the closed dropdown list to decide which wax to pick** — before they've selected
+anything or seen any explanation. The explanatory description card
+(`desc_es`/`desc_en`, shown below the dropdown once a wax is selected) already existed
+and was fine; the problem was purely the list-item text.
+
+Fixed by rewriting all 11 non-custom `label_es`/`label_en` pairs to lead with plain
+language: wax family → container type (`vela en vaso` / `vela sin envase` — the
+practical thing that actually determines which one to pick) → one short practical
+benefit in parentheses (e.g. "la más fácil para empezar", "necesita ácido esteárico",
+"100% natural"). Moved the manufacturer codes and lab specs into the `desc_*` strings
+instead ("Conocida comercialmente como 464 o GB464..."), where they're still available
+for people who already recognize them from a supplier's catalog, but only after
+they've already selected an option, not while still deciding.
+
+Left `src/lib/pdf/guide.ts`'s wax comparison table (in the downloadable PDF guide)
+alone — codes belong there, it's a spec-sheet appendix for lookup, not a live decision
+UI a beginner has to parse under time pressure. Same distinction as the "componente"
+wording fix in the multi-material calculator (2026-07-31): jargon is fine once the
+user already has context, not before.
+
 ## Standing preferences
 
 - Auto commit + push every change in this repo without asking first (standing
