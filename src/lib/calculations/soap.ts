@@ -80,10 +80,10 @@ export const SOAP_TYPES: Record<string, {
     isSaponified: true, curingDays: 7, maxFragrancePct: 2,
   },
   syndet: {
-    label_es: "Champú sólido / barra sin sosa (syndet)",
-    label_en: "Solid Shampoo / No-lye Bar (syndet)",
-    desc_es: "Base sintética de pH neutro (5.5–6.5), sin sosa. Ideal para cabello y piel sensible. Se trabaja igual que la glicerina: derrite y vierte. Ingredientes activos: SCI, SCS, betaína de coco.",
-    desc_en: "Synthetic pH-neutral base (5.5–6.5), no lye. Ideal for hair and sensitive skin. Works like glycerin: melt and pour. Active ingredients: SCI, SCS, cocamidopropyl betaine.",
+    label_es: "Champú sólido sin sosa (pH suave para el cabello)",
+    label_en: "Solid Shampoo, No Lye (gentle pH for hair)",
+    desc_es: "Conocida en la industria como base 'syndet'. Base sintética de pH neutro (5.5–6.5), sin sosa. Ideal para cabello y piel sensible. Se trabaja igual que la glicerina: derrite y vierte. Ingredientes activos: SCI, SCS, betaína de coco.",
+    desc_en: "Known in the industry as a 'syndet' base. Synthetic pH-neutral base (5.5–6.5), no lye. Ideal for hair and sensitive skin. Works like glycerin: melt and pour. Active ingredients: SCI, SCS, cocamidopropyl betaine.",
     isSaponified: false, curingDays: 0, maxFragrancePct: 2,
   },
   shampooBar: {

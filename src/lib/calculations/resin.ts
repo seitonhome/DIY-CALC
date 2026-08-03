@@ -34,8 +34,8 @@ export const RESIN_TYPES: Record<string, {
   polyester: {
     density: 1.13, maxPourMm: 30, cureTimeH: 6,
     defaultRatioA: 98, defaultRatioB: 2,
-    label_es: "Poliéster + catalizador MEKP",
-    label_en: "Polyester + MEKP catalyst",
+    label_es: "Resina de poliéster (necesita catalizador)",
+    label_en: "Polyester Resin (needs a catalyst)",
   },
   // Ultra-clear 1:1 epoxy popular in LatAm craft market ("resina cristal")
   cristal: {
@@ -48,8 +48,8 @@ export const RESIN_TYPES: Record<string, {
   flexible: {
     density: 1.05, maxPourMm: 10, cureTimeH: 24,
     defaultRatioA: 50, defaultRatioB: 50,
-    label_es: "Resina flexible (Shore A ~60)",
-    label_en: "Flexible Resin (Shore A ~60)",
+    label_es: "Resina flexible (se dobla sin romperse)",
+    label_en: "Flexible Resin (bends without breaking)",
   },
   // High-solids floor coating — decorative floors with metallic pigments
   floorCoating: {

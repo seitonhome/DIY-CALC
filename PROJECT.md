@@ -426,6 +426,54 @@ UI a beginner has to parse under time pressure. Same distinction as the "compone
 wording fix in the multi-material calculator (2026-07-31): jargon is fine once the
 user already has context, not before.
 
+## Full-app jargon sweep (fixed 2026-08-03)
+
+Follow-up to the wax type fix above — owner said "acuérdate que quiero que los
+clientes la entiendan, que no haya términos técnicos raros" as a standing rule, not
+a one-off. Went through every material-type catalog across all 6 calculators
+(`src/lib/calculations/*.ts`) plus `es.json`/`en.json` looking for the same pattern:
+manufacturer codes, chemistry acronyms, or untranslated English words sitting in the
+label a user reads while still deciding, with no context yet. Fixed:
+
+- **concrete.ts** `gfrc`: "GFRC — Concreto reforzado con fibra de vidrio" → led with
+  the acronym before its own expansion. Reordered to "Concreto reforzado con fibra de
+  vidrio (GFRC)".
+- **plaster.ts** `stone`: "Hydrocal / Ultracal 30 (muy duro)" was the only plaster
+  option with *no* plain-Spanish name at all, just two US brand names. Now "Yeso
+  industrial ultra-duro (Hydrocal / Ultracal 30)".
+- **resin.ts** `polyester`: "Poliéster + catalizador MEKP" — dropped the bare acronym
+  (resin types have no description field to relocate it into, unlike wax/soap), now
+  "Resina de poliéster (necesita catalizador)".
+- **resin.ts** `flexible`: "Resina flexible (Shore A ~60)" — a hardness-scale number
+  means nothing to a first-timer. Now "Resina flexible (se dobla sin romperse)".
+- **soap.ts** `syndet`: "Champú sólido / barra sin sosa (syndet)" → "Champú sólido sin
+  sosa (pH suave para el cabello)"; moved "conocida en la industria como base
+  'syndet'" into `desc_es` (soap already had a description card, like wax).
+- **candles typeDescriptions** (`es.json`, `calculators.candles.types`): `waxMelt` was
+  the literal untranslated English string `"Wax melt"` sitting alone in an otherwise
+  all-Spanish list, and `embeds` was `"Vela con embeds"` — an English word with no
+  Spanish gloss at all. Fixed to "Cubo de cera para difusor (wax melt)" and "Vela con
+  objetos incrustados". Also added a gloss to `tealight`: "Vela tealight (veladora
+  pequeña)".
+- **Cleanup**: found and removed a dead, stale `calculators.candles.wax.types.*` block
+  in both message files — leftover translation keys nobody reads anymore (the wax
+  dropdown gets its labels from `WAX_TYPES` in `candles.ts` directly), but still had
+  the *old* pre-fix jargon-heavy text. Left as dead code it would have silently
+  drifted out of sync with the real labels again next time someone touched wax types.
+
+**Deliberately left alone**: Vybar (`additives.vybar*` in candles) — it's the actual,
+only name for that additive (no simpler synonym exists), and its `vybar103Desc`/
+`vybar260Desc` already explain what it does in plain language right next to the
+selector. `src/lib/pdf/guide.ts`'s wax comparison table — a spec-sheet appendix in the
+downloadable PDF, not a live decision UI. Material category names in the
+Materials/Molds library (`library.materials.fields.categories`) and wick types were
+already clean, no changes needed.
+
+**Standing rule going forward** (see `[[feedback_avoid_jargon]]` in memory): any new
+label, `SelectItem`, or category name goes through this same test — plain language
+first, technical/brand terms only in a description shown *after* the user has already
+selected something, never in the text they read while still deciding.
+
 ## Standing preferences
 
 - Auto commit + push every change in this repo without asking first (standing

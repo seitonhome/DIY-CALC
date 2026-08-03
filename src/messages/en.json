@@ -423,19 +423,6 @@
       "wax": {
         "title": "Main wax",
         "type": "Wax type",
-        "types": {
-          "soy": "Soy Wax — container (464, GB464)",
-          "soyPillar": "Soy Wax — pillar/votive (415, CB-135)",
-          "coconut": "Pure Coconut Wax (76°F)",
-          "coconutApricot": "Coconut-Apricot Blend (Coconut 83, CX)",
-          "palm": "Palm Wax (pillar)",
-          "paraffin": "Standard Paraffin (MP 52–54 °C)",
-          "moldWax": "Mold Wax / Pillar Paraffin (MP 60–68 °C)",
-          "beeswax": "Pure Beeswax (natural)",
-          "gel": "Translucent Gel Wax",
-          "soyParaffin": "Soy-Paraffin Blend (50:50 or 60:40)",
-          "custom": "Custom Wax / Own blend"
-        },
         "costPerKg": "Cost per kg of wax",
         "mixPct": "Blend percentage (%)"
       },

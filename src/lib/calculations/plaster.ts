@@ -30,8 +30,8 @@ export const PLASTER_TYPES: Record<string, {
   },
   stone: {
     wpr: 0.38, mixDensityGml: 1.80, cureTimeMin: 45,
-    label_es: "Hydrocal / Ultracal 30 (muy duro)",
-    label_en: "Hydrocal / Ultracal 30 (very hard)",
+    label_es: "Yeso industrial ultra-duro (Hydrocal / Ultracal 30)",
+    label_en: "Ultra-Hard Industrial Plaster (Hydrocal / Ultracal 30)",
     use_es: "Piezas de alta resistencia, bases y soportes",
     use_en: "High-strength pieces, bases and supports",
   },

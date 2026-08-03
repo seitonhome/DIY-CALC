@@ -371,12 +371,12 @@
         "molded": "Vela moldeada",
         "decorative": "Vela decorativa",
         "pillar": "Vela pilar",
-        "waxMelt": "Wax melt",
-        "tealight": "Vela tealight",
+        "waxMelt": "Cubo de cera para difusor (wax melt)",
+        "tealight": "Vela tealight (veladora pequeña)",
         "votive": "Vela votiva",
         "sculptural": "Vela escultórica",
         "multilayer": "Vela multicapa",
-        "embeds": "Vela con embeds",
+        "embeds": "Vela con objetos incrustados",
         "aromatic": "Vela aromática",
         "unscented": "Vela sin aroma"
       },
@@ -423,19 +423,6 @@
       "wax": {
         "title": "Cera principal",
         "type": "Tipo de cera",
-        "types": {
-          "soy": "Cera de soja — contenedor (464, GB464)",
-          "soyPillar": "Cera de soja — pilar/votive (415, CB-135)",
-          "coconut": "Cera de coco pura (76°F)",
-          "coconutApricot": "Mezcla coco-albaricoque (Coconut 83, CX)",
-          "palm": "Cera de palma (pilar)",
-          "paraffin": "Parafina estándar (MP 52–54 °C)",
-          "moldWax": "Cera de molde / Pillar (MP 60–68 °C)",
-          "beeswax": "Cera de abeja pura (natural)",
-          "gel": "Gel translúcido (mineral oil gel)",
-          "soyParaffin": "Mezcla soya-parafina (50:50 o 60:40)",
-          "custom": "Cera personalizada / Mezcla propia"
-        },
         "costPerKg": "Costo por kg de cera",
         "mixPct": "Porcentaje en la mezcla (%)"
       },

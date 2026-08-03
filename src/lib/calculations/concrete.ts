@@ -24,8 +24,8 @@ export const CONCRETE_MIX_TYPES: Record<string, {
   },
   gfrc: {
     cementPct: 40, sandPct: 60, aggregatePct: 0, densityGml: 1.90, glassFiberPct: 5,
-    label_es: "GFRC — Concreto reforzado con fibra de vidrio",
-    label_en: "GFRC — Glass Fiber Reinforced Concrete",
+    label_es: "Concreto reforzado con fibra de vidrio (GFRC)",
+    label_en: "Glass Fiber Reinforced Concrete (GFRC)",
     use_es: "Piezas delgadas resistentes, encimeras, fachadas",
     use_en: "Thin durable pieces, countertops, facades",
   },
