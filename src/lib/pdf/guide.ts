@@ -1,4 +1,4 @@
-type GuideLocale = "es" | "en" | "fr";
+type GuideLocale = "es" | "en";
 
 interface GuideContent {
   filename: string;
@@ -61,6 +61,18 @@ interface GuideContent {
   };
   page7: {
     header: string;
+    title: string;
+    body: string;
+    stepsTitle: string;
+    steps: string[];
+    examplesTitle: string;
+    examplesTableHead: string[];
+    examplesTableBody: string[][];
+    tipTitle: string;
+    tipBody: string;
+  };
+  page8: {
+    header: string;
     plasterTitle: string;
     plasterBody: string;
     plasterTableHead: string[];
@@ -72,7 +84,7 @@ interface GuideContent {
     tipTitle: string;
     tipBody: string;
   };
-  page8: {
+  page9: {
     header: string;
     activationTitle: string;
     activationSteps: [string, string][];
@@ -98,8 +110,9 @@ const CONTENT: Record<GuideLocale, GuideContent> = {
         { num: "02", title: "Beneficios completos", desc: "Todo lo que incluye y cómo te ayuda" },
         { num: "03", title: "Calculadora de Velas", desc: "10 tipos de cera con temperaturas exactas" },
         { num: "04", title: "Calculadora de Jabones", desc: "13 métodos — glicerina, sosa, sal, leche" },
-        { num: "05", title: "Calculadora de Resina", desc: "8 tipos según técnica — geoda, joyería, pisos" },
-        { num: "06", title: "Concreto, Yeso y Precios", desc: "Mezclas, hypertufa, microcemento, precio justo" },
+        { num: "05", title: "Resina y Concreto", desc: "8 tipos de resina y 8 mezclas de concreto" },
+        { num: "06", title: "Yeso y Precio de Venta", desc: "5 tipos de yeso y cómo calcular tu precio justo" },
+        { num: "07", title: "Calculadora Multimaterial", desc: "Combina velas, jabón, resina y más en un solo producto" },
       ],
       footerCopy: "© 2026 Seiton Home · Todos los derechos reservados",
     },
@@ -153,25 +166,25 @@ const CONTENT: Record<GuideLocale, GuideContent> = {
         "de fusión, colada y adición de fragancia.",
       tableHead: ["Tipo de cera", "Fusión", "Colada", "FO a", "FO máx", "2ª colada"],
       tableBody: [
-        ["Soja contenedor (464, GB464)", "49°C", "54°C", "57°C", "12%", "No"],
-        ["Soja pilar (415, CB-135)", "58°C", "65°C", "68°C", "8%", "Sí"],
-        ["Coco pura (76°F)", "45°C", "50°C", "54°C", "10%", "No"],
-        ["Coco-Albaricoque (Coconut 83)", "46°C", "52°C", "55°C", "12%", "No"],
-        ["Palma pilar", "54°C", "82°C", "82°C", "10%", "Sí"],
-        ["Parafina estándar (MP 52°C)", "52°C", "68°C", "72°C", "10%", "Sí"],
-        ["Cera de molde (MP 62°C)", "62°C", "75°C", "78°C", "8%", "Sí — requiere estearina 5–15%"],
-        ["Cera de abeja pura", "63°C", "74°C", "74°C", "6%", "No"],
-        ["Gel translúcido", "75°C", "88°C", "88°C", "5%", "No — solo vidrio"],
-        ["Mezcla soya-parafina (50:50)", "51°C", "63°C", "66°C", "10%", "No"],
+        ["Soja — vaso (464, GB464)", "49°C", "54°C", "57°C", "12%", "No"],
+        ["Soja — sin envase (415, CB-135)", "58°C", "65°C", "68°C", "8%", "Sí"],
+        ["Coco pura — vaso (76°F)", "45°C", "50°C", "54°C", "10%", "No"],
+        ["Coco-albaricoque — vaso (Coconut 83)", "46°C", "52°C", "55°C", "12%", "No"],
+        ["Palma — sin envase", "54°C", "82°C", "82°C", "10%", "Sí"],
+        ["Parafina — vaso o sin envase", "52°C", "68°C", "72°C", "10%", "Sí"],
+        ["Cera de molde — sin envase", "62°C", "75°C", "78°C", "8%", "Sí — requiere estearina 5–15%"],
+        ["Abeja pura — vaso o sin envase", "63°C", "74°C", "74°C", "6%", "No"],
+        ["Gel translúcido — vaso", "75°C", "88°C", "88°C", "5%", "No — solo vidrio"],
+        ["Soya-parafina — vaso (50:50)", "51°C", "63°C", "66°C", "10%", "No"],
       ],
       stepsTitle: "Paso a paso — Velas",
       steps: [
         "Selecciona el tipo de vela (contenedor, molde, pilar, wax melt, tealight...)",
-        "Elige el tipo de cera → aparece la ficha técnica con todas las temperaturas automáticamente",
+        "Elige el tipo de cera -> aparece la ficha técnica con todas las temperaturas automáticamente",
         "Ingresa el volumen del molde en ml (o el peso final deseado en gramos)",
         "Agrega el % de fragancia — la app avisa si superas el máximo recomendado para esa cera",
         "Agrega colorante, estearina (para parafina de molde), Vybar e inhibidor UV si aplica",
-        "Presiona Calcular → obtienes los gramos exactos de cada ingrediente",
+        "Presiona Calcular -> obtienes los gramos exactos de cada ingrediente",
         "Completa los costos y exporta la ficha en PDF",
       ],
       tipTitle: "Aditivos importantes para parafina de molde:",
@@ -196,7 +209,7 @@ const CONTENT: Record<GuideLocale, GuideContent> = {
         ["Jabón líquido (KOH)", "KOH", "7 días", "Sosa potásica — pasta que se diluye en agua"],
         ["Jabón de Castilla", "NaOH", "180 días", "100% oliva — el más suave — curado largo"],
         ["Jabón de sal marina", "NaOH", "7 días", "80–100% coco + sal — cortar en 30–60 min"],
-        ["Syndet / sin sosa", "No", "0 días", "pH neutro 5.5–6.5 — SCI, SCS, betaína"],
+        ["Champú sin sosa (syndet)", "No", "0 días", "pH neutro 5.5–6.5, suave con el cabello"],
         ["Champú sólido glicerina", "No", "0 días", "Para cabello — se derrite y vierte"],
         ["Champú sólido CP", "NaOH", "28 días", "Ricino 15–20% — superfat bajo 0–3%"],
       ],
@@ -205,7 +218,7 @@ const CONTENT: Record<GuideLocale, GuideContent> = {
       oilsTableBody: [
         ["Aceite de oliva", "0.134", "Suavidad, acondicionador, poca espuma", "30–70%"],
         ["Aceite de coco", "0.190", "Espuma dura y abundante, dureza", "20–35%"],
-        ["Aceite de ricino ★", "0.128", "Espuma cremosa y estable — CLAVE", "5–15%"],
+        ["Aceite de ricino *", "0.128", "Espuma cremosa y estable — CLAVE", "5–15%"],
         ["Aceite de palma", "0.141", "Dureza, estabilidad, espuma cremosa", "15–30%"],
         ["Manteca de karité", "0.128", "Acondicionador premium, cremosidad", "5–15%"],
         ["Manteca de cacao", "0.137", "Dureza, suavidad", "5–15%"],
@@ -216,7 +229,7 @@ const CONTENT: Record<GuideLocale, GuideContent> = {
         ["Almendra dulce", "0.136", "Suavidad suave para pieles delicadas", "10–20%"],
         ["Salvado de arroz", "0.128", "Vitamina E, antioxidante", "10–25%"],
       ],
-      safetyLabel: "⚠ SEGURIDAD:",
+      safetyLabel: "SEGURIDAD:",
       safetyBody: "NaOH y KOH son corrosivos. Usa guantes y gafas. SIEMPRE agrega la sosa al agua fría (o leche fría), NUNCA al revés.",
     },
     page6: {
@@ -244,7 +257,7 @@ const CONTENT: Record<GuideLocale, GuideContent> = {
       concreteTableBody: [
         ["Decorativo (cemento:arena)", "1:2", "1.80 g/ml", "Macetas, esculturas, arte — sin grava"],
         ["Estándar (cemento:arena:grava)", "1:2:3", "2.20 g/ml", "Piezas estructurales, encimeras gruesas"],
-        ["GFRC — Fibra de vidrio", "1:1.5 + fibra", "1.90 g/ml", "Piezas delgadas, fachadas, encimeras resistentes"],
+        ["Fibra de vidrio (GFRC)", "1:1.5 + fibra", "1.90 g/ml", "Piezas delgadas, fachadas, encimeras resistentes"],
         ["Fino (cemento:arena fina)", "1:1", "1.70 g/ml", "Detalles finos, moldes pequeños, azulejos"],
         ["Liviano (cemento + perlita)", "1:0.75 perlita", "1.20 g/ml", "Macetas grandes, piezas colgantes — muy liviano"],
         ["Cemento blanco decorativo", "1:2", "1.75 g/ml", "Piezas coloreadas con pigmentos y óxidos"],
@@ -253,6 +266,37 @@ const CONTENT: Record<GuideLocale, GuideContent> = {
       ],
     },
     page7: {
+      header: "Guía — Calculadora Multimaterial",
+      title: "Calculadora Multimaterial — el diferencial de DIY Calc Pro",
+      body:
+        "Combina piezas hechas con distintas técnicas en un solo producto o set — por ejemplo, un kit de regalo " +
+        "con una vela, un jabón y una base de resina. Cada pieza (\"componente\") se cuesta usando el mismo " +
+        "costo por unidad que ya calculaste en su propia calculadora, y la app suma todo más empaque, mano de " +
+        "obra y margen para darte el precio final del combo.",
+      stepsTitle: "Paso a paso — Multimaterial",
+      steps: [
+        "Dale un nombre a tu producto combinado (ej: \"Set regalo vela + concreto\")",
+        "Agrega un componente por cada pieza del set — elige su tipo de material (velas, jabón, resina, concreto o yeso)",
+        "Ingresa el costo por unidad de esa pieza (el mismo que ya calculaste en su calculadora dedicada)",
+        "Repite para cada componente adicional del set",
+        "Completa los costos generales: mano de obra, empaque, comisión de plataforma y margen deseado",
+        "Presiona Calcular -> obtienes el costo total del combo, el componente más costoso y el más lento de producir",
+      ],
+      examplesTitle: "Ejemplos de productos combinados",
+      examplesTableHead: ["Producto combinado", "Componentes"],
+      examplesTableBody: [
+        ["Vela en base de concreto", "Vela + pieza de concreto"],
+        ["Set de difusor de yeso + aceite", "Pieza de yeso + aceite aromático"],
+        ["Bandeja de resina + portavelas", "Pieza de resina + vela"],
+        ["Kit de regalo", "Jabón + vela + soporte de concreto"],
+      ],
+      tipTitle: "Antes de combinar técnicas:",
+      tipBody:
+        "No mezcles en la misma sesión de trabajo el manejo de sosa cáustica (jabón) con cera o resina caliente — " +
+        "termina cada técnica y deja curar/enfriar esa pieza antes de empezar la siguiente. Guarda cada componente " +
+        "como fórmula individual primero; así puedes reutilizarlo en otros combos sin recalcular.",
+    },
+    page8: {
       header: "Guía — Yeso y Cálculo de Precios",
       plasterTitle: "Calculadora de Yeso y Escayola",
       plasterBody:
@@ -263,7 +307,7 @@ const CONTENT: Record<GuideLocale, GuideContent> = {
         ["Yeso estándar", "0.65–0.75", "20–30 min", "Figuras decorativas, piezas básicas"],
         ["Escayola / Gypsum", "0.55–0.65", "15–25 min", "Alta resistencia, blancura superior, detalles finos"],
         ["Yeso cerámico", "0.70–0.80", "25–35 min", "Alta porosidad para absorción de esmaltes"],
-        ["Yeso piedra / Hydrocal", "0.30–0.40", "30–45 min", "Máxima dureza — modelos de alta precisión"],
+        ["Yeso ultra-duro (Hydrocal / Ultracal 30)", "0.30–0.40", "30–45 min", "Máxima dureza — modelos de alta precisión"],
         ["Yeso dental / Fuerte", "0.22–0.30", "8–15 min", "Dureza extrema — detalles ultra finos"],
       ],
       pricingTitle: "Cómo calcular el precio de venta correcto",
@@ -282,11 +326,11 @@ const CONTENT: Record<GuideLocale, GuideContent> = {
         "Multiplicar el costo de materiales por 2 o 3 no es suficiente. Si no incluyes mano de obra, merma y comisiones, " +
         "puedes estar vendiendo con pérdida sin saberlo. DIY Calc Pro incluye todas estas variables automáticamente.",
     },
-    page8: {
+    page9: {
       header: "Activación y soporte",
       activationTitle: "Cómo activar tu licencia",
       activationSteps: [
-        ["1. Compra en Hotmart", "Recibes un correo de confirmación con tu código de compra con formato XXXX-XXXX-XXXX-XXXX."],
+        ["1. Compra en seitonhome.com/diy-calc-pro", "Pagas a través de Hotmart y recibes un correo de confirmación con tu código de compra con formato XXXX-XXXX-XXXX-XXXX."],
         ["2. Crea tu cuenta", "Ve a la app, haz clic en Registrarse e ingresa tu correo, contraseña y el código del correo."],
         ["3. Acceso completo", "Tu licencia queda activada de inmediato — sin pasos adicionales — con acceso a todas las calculadoras, exportaciones y biblioteca de materiales."],
       ],
@@ -298,7 +342,7 @@ const CONTENT: Record<GuideLocale, GuideContent> = {
         ["¿Puedo exportar mis cálculos?", "Sí. Cada calculadora tiene un botón para exportar la ficha en PDF profesional."],
         ["¿Hay actualizaciones incluidas?", "Sí. Pago único incluye todas las actualizaciones futuras sin costo adicional."],
         ["¿La sosa / KOH se vende en la app?", "No. La app calcula cuánto necesitas. Los materiales los consigues en tu proveedor local."],
-        ["¿Funciona para Colombia y LatAm?", "Sí. Está optimizada para artesanos de habla hispana. Moneda y unidades ajustables."],
+        ["¿Funciona para Colombia y LatAm?", "Sí. Está optimizada para artesanos de habla hispana, con moneda ajustable (COP, MXN, ARS y más)."],
         ["¿Está en inglés?", "Sí. La app completa está disponible en español e inglés con un solo clic."],
         ["¿Cómo contacto soporte?", "Escribe a servicioalcliente@seitonhome.com. Respuesta en 24–48 horas hábiles."],
       ],
@@ -320,8 +364,9 @@ const CONTENT: Record<GuideLocale, GuideContent> = {
         { num: "02", title: "Full benefits", desc: "Everything it includes and how it helps you" },
         { num: "03", title: "Candle Calculator", desc: "10 wax types with exact temperatures" },
         { num: "04", title: "Soap Calculator", desc: "13 methods — melt & pour, lye, salt, milk" },
-        { num: "05", title: "Resin Calculator", desc: "8 types by technique — geode, jewelry, floors" },
-        { num: "06", title: "Concrete, Plaster & Pricing", desc: "Mixes, hypertufa, microcement, fair pricing" },
+        { num: "05", title: "Resin & Concrete", desc: "8 resin types and 8 concrete mixes" },
+        { num: "06", title: "Plaster & Selling Price", desc: "5 plaster types and how to price fairly" },
+        { num: "07", title: "Multi-Material Calculator", desc: "Combine candles, soap, resin and more in one product" },
       ],
       footerCopy: "© 2026 Seiton Home · All rights reserved",
     },
@@ -375,25 +420,25 @@ const CONTENT: Record<GuideLocale, GuideContent> = {
         "pouring, and fragrance-adding temperatures.",
       tableHead: ["Wax type", "Melt", "Pour", "Fragrance at", "Max fragrance", "2nd pour"],
       tableBody: [
-        ["Container soy (464, GB464)", "49°C", "54°C", "57°C", "12%", "No"],
-        ["Pillar soy (415, CB-135)", "58°C", "65°C", "68°C", "8%", "Yes"],
-        ["Pure coconut (76°F)", "45°C", "50°C", "54°C", "10%", "No"],
-        ["Coconut-Apricot (Coconut 83)", "46°C", "52°C", "55°C", "12%", "No"],
-        ["Pillar palm", "54°C", "82°C", "82°C", "10%", "Yes"],
-        ["Standard paraffin (MP 52°C)", "52°C", "68°C", "72°C", "10%", "Yes"],
-        ["Molding wax (MP 62°C)", "62°C", "75°C", "78°C", "8%", "Yes — requires 5–15% stearic acid"],
-        ["Pure beeswax", "63°C", "74°C", "74°C", "6%", "No"],
-        ["Translucent gel", "75°C", "88°C", "88°C", "5%", "No — glass only"],
-        ["Soy-paraffin blend (50:50)", "51°C", "63°C", "66°C", "10%", "No"],
+        ["Soy — container (464, GB464)", "49°C", "54°C", "57°C", "12%", "No"],
+        ["Soy — freestanding (415, CB-135)", "58°C", "65°C", "68°C", "8%", "Yes"],
+        ["Pure coconut — container (76°F)", "45°C", "50°C", "54°C", "10%", "No"],
+        ["Coconut-apricot — container (Coconut 83)", "46°C", "52°C", "55°C", "12%", "No"],
+        ["Palm — freestanding", "54°C", "82°C", "82°C", "10%", "Yes"],
+        ["Paraffin — container or freestanding", "52°C", "68°C", "72°C", "10%", "Yes"],
+        ["Mold wax — freestanding", "62°C", "75°C", "78°C", "8%", "Yes — requires 5–15% stearic acid"],
+        ["Beeswax — container or freestanding", "63°C", "74°C", "74°C", "6%", "No"],
+        ["Translucent gel — container", "75°C", "88°C", "88°C", "5%", "No — glass only"],
+        ["Soy-paraffin — container (50:50)", "51°C", "63°C", "66°C", "10%", "No"],
       ],
       stepsTitle: "Step by step — Candles",
       steps: [
         "Select the candle type (container, mold, pillar, wax melt, tealight...)",
-        "Choose the wax type → the technical sheet with all temperatures appears automatically",
+        "Choose the wax type -> the technical sheet with all temperatures appears automatically",
         "Enter the mold volume in ml (or the desired final weight in grams)",
         "Add the fragrance % — the app warns you if you exceed the recommended maximum for that wax",
         "Add dye, stearic acid (for molding paraffin), Vybar, and UV inhibitor if applicable",
-        "Press Calculate → get the exact grams of each ingredient",
+        "Press Calculate -> get the exact grams of each ingredient",
         "Fill in the costs and export the sheet as a PDF",
       ],
       tipTitle: "Important additives for molding paraffin:",
@@ -418,7 +463,7 @@ const CONTENT: Record<GuideLocale, GuideContent> = {
         ["Liquid soap (KOH)", "KOH", "7 days", "Potassium hydroxide — a paste diluted in water"],
         ["Castile soap", "NaOH", "180 days", "100% olive oil — the gentlest — long cure"],
         ["Sea salt soap", "NaOH", "7 days", "80–100% coconut + salt — cut within 30–60 min"],
-        ["Syndet / no lye", "No", "0 days", "Neutral pH 5.5–6.5 — SCI, SCS, betaine"],
+        ["No-lye shampoo (syndet)", "No", "0 days", "Neutral pH 5.5–6.5, gentle on hair"],
         ["Glycerin solid shampoo", "No", "0 days", "For hair — melt and pour"],
         ["Cold process solid shampoo", "NaOH", "28 days", "Castor oil 15–20% — low superfat 0–3%"],
       ],
@@ -427,7 +472,7 @@ const CONTENT: Record<GuideLocale, GuideContent> = {
       oilsTableBody: [
         ["Olive oil", "0.134", "Gentleness, conditioning, low lather", "30–70%"],
         ["Coconut oil", "0.190", "Big, fluffy lather, hardness", "20–35%"],
-        ["Castor oil ★", "0.128", "Creamy, stable lather — KEY", "5–15%"],
+        ["Castor oil *", "0.128", "Creamy, stable lather — KEY", "5–15%"],
         ["Palm oil", "0.141", "Hardness, stability, creamy lather", "15–30%"],
         ["Shea butter", "0.128", "Premium conditioning, creaminess", "5–15%"],
         ["Cocoa butter", "0.137", "Hardness, softness", "5–15%"],
@@ -438,7 +483,7 @@ const CONTENT: Record<GuideLocale, GuideContent> = {
         ["Sweet almond oil", "0.136", "Gentle softness for delicate skin", "10–20%"],
         ["Rice bran oil", "0.128", "Vitamin E, antioxidant", "10–25%"],
       ],
-      safetyLabel: "⚠ SAFETY:",
+      safetyLabel: "SAFETY:",
       safetyBody: "NaOH and KOH are corrosive. Wear gloves and goggles. ALWAYS add the lye to cold water (or cold milk), NEVER the other way around.",
     },
     page6: {
@@ -466,7 +511,7 @@ const CONTENT: Record<GuideLocale, GuideContent> = {
       concreteTableBody: [
         ["Decorative (cement:sand)", "1:2", "1.80 g/ml", "Planters, sculptures, art — no gravel"],
         ["Standard (cement:sand:gravel)", "1:2:3", "2.20 g/ml", "Structural pieces, thick countertops"],
-        ["GFRC — Fiberglass", "1:1.5 + fiber", "1.90 g/ml", "Thin pieces, facades, durable countertops"],
+        ["Fiberglass (GFRC)", "1:1.5 + fiber", "1.90 g/ml", "Thin pieces, facades, durable countertops"],
         ["Fine (cement:fine sand)", "1:1", "1.70 g/ml", "Fine details, small molds, tiles"],
         ["Lightweight (cement + perlite)", "1:0.75 perlite", "1.20 g/ml", "Large planters, hanging pieces — very light"],
         ["White decorative cement", "1:2", "1.75 g/ml", "Pieces colored with pigments and oxides"],
@@ -475,6 +520,37 @@ const CONTENT: Record<GuideLocale, GuideContent> = {
       ],
     },
     page7: {
+      header: "Guide — Multi-Material Calculator",
+      title: "Multi-Material Calculator — DIY Calc Pro's key feature",
+      body:
+        "Combine pieces made with different techniques into a single product or set — for example, a gift kit " +
+        "with a candle, a soap, and a resin base. Each piece (\"component\") is costed using the same per-unit " +
+        "cost you already calculated in its own calculator, and the app adds packaging, labor, and margin to " +
+        "give you the final price for the combo.",
+      stepsTitle: "Step by step — Multi-Material",
+      steps: [
+        "Name your combined product (e.g. \"Gift set candle + concrete\")",
+        "Add one component per piece in the set — choose its material type (candles, soap, resin, concrete, or plaster)",
+        "Enter that piece's per-unit cost (the same one you already calculated in its own dedicated calculator)",
+        "Repeat for each additional component in the set",
+        "Fill in the overall costs: labor, packaging, platform fee, and desired margin",
+        "Press Calculate -> get the combo's total cost, its most expensive component, and its slowest to produce",
+      ],
+      examplesTitle: "Examples of combined products",
+      examplesTableHead: ["Combined product", "Components"],
+      examplesTableBody: [
+        ["Candle on a concrete base", "Candle + concrete piece"],
+        ["Plaster diffuser set + oil", "Plaster piece + scented oil"],
+        ["Resin tray + candle holder", "Resin piece + candle"],
+        ["Gift kit", "Soap + candle + concrete stand"],
+      ],
+      tipTitle: "Before combining techniques:",
+      tipBody:
+        "Don't handle lye (soap) and hot wax or resin in the same work session — finish one technique and let " +
+        "that piece cure or cool before starting the next. Save each component as its own formula first, so " +
+        "you can reuse it in other combos without recalculating.",
+    },
+    page8: {
       header: "Guide — Plaster and Price Calculation",
       plasterTitle: "Plaster Calculator",
       plasterBody:
@@ -485,7 +561,7 @@ const CONTENT: Record<GuideLocale, GuideContent> = {
         ["Standard plaster", "0.65–0.75", "20–30 min", "Decorative figures, basic pieces"],
         ["Gypsum plaster", "0.55–0.65", "15–25 min", "High strength, superior whiteness, fine details"],
         ["Ceramic plaster", "0.70–0.80", "25–35 min", "High porosity for glaze absorption"],
-        ["Stone plaster / Hydrocal", "0.30–0.40", "30–45 min", "Maximum hardness — high-precision models"],
+        ["Ultra-hard plaster (Hydrocal / Ultracal 30)", "0.30–0.40", "30–45 min", "Maximum hardness — high-precision models"],
         ["Dental / high-strength plaster", "0.22–0.30", "8–15 min", "Extreme hardness — ultra-fine details"],
       ],
       pricingTitle: "How to calculate the correct selling price",
@@ -504,11 +580,11 @@ const CONTENT: Record<GuideLocale, GuideContent> = {
         "Multiplying material cost by 2 or 3 is not enough. If you don't include labor, waste, and fees, " +
         "you might be selling at a loss without knowing it. DIY Calc Pro automatically includes all these variables.",
     },
-    page8: {
+    page9: {
       header: "Activation and support",
       activationTitle: "How to activate your license",
       activationSteps: [
-        ["1. Purchase on Hotmart", "You receive a confirmation email with your purchase code in the format XXXX-XXXX-XXXX-XXXX."],
+        ["1. Purchase at seitonhome.com/diy-calc-pro", "Checkout runs through Hotmart. You receive a confirmation email with your purchase code in the format XXXX-XXXX-XXXX-XXXX."],
         ["2. Create your account", "Go to the app, click Register, and enter your email, password, and the code from the email."],
         ["3. Full access", "Your license is activated immediately — no extra steps — with access to all calculators, exports, and the materials library."],
       ],
@@ -520,234 +596,11 @@ const CONTENT: Record<GuideLocale, GuideContent> = {
         ["Can I export my calculations?", "Yes. Every calculator has a button to export the sheet as a professional PDF."],
         ["Are updates included?", "Yes. The one-time payment includes all future updates at no extra cost."],
         ["Does the app sell lye / KOH?", "No. The app calculates how much you need. You get the materials from your local supplier."],
-        ["Does it work for Latin America?", "Yes. It's optimized for Spanish-speaking makers too. Currency and units are adjustable."],
+        ["Does it work for Latin America?", "Yes. It's optimized for Spanish-speaking makers too, with adjustable currency (COP, MXN, ARS, and more)."],
         ["Is it available in Spanish?", "Yes. The full app is available in Spanish and English with a single click."],
         ["How do I contact support?", "Email servicioalcliente@seitonhome.com. Response within 24–48 business hours."],
       ],
       ctaSubtitle: "The complete calculator for DIY makers",
-      ctaFooter: "by Seiton Home  ·  servicioalcliente@seitonhome.com  ·  © 2026 Seiton Home",
-    },
-  },
-
-  fr: {
-    filename: "DIY-Calc-Pro-Guide-Complet.pdf",
-    footerTag: "Guide d'utilisation complet",
-    footerCopy: "© 2026 Seiton Home. Tous droits réservés.",
-    cover: {
-      subtitle: "Le calculateur complet pour les créateurs DIY",
-      tagline: "Guide d'utilisation  ·  Avantages  ·  Référence technique",
-      indexHeading: "Que trouverez-vous dans ce guide ?",
-      indexCards: [
-        { num: "01", title: "Qu'est-ce que DIY Calc Pro ?", desc: "Description du produit et à qui il s'adresse" },
-        { num: "02", title: "Avantages complets", desc: "Tout ce qu'il inclut et comment il vous aide" },
-        { num: "03", title: "Calculateur de Bougies", desc: "10 types de cire avec températures exactes" },
-        { num: "04", title: "Calculateur de Savons", desc: "13 méthodes — glycérine, soude, sel, lait" },
-        { num: "05", title: "Calculateur de Résine", desc: "8 types selon la technique — géode, bijoux, sols" },
-        { num: "06", title: "Béton, Plâtre et Prix", desc: "Mélanges, hypertufa, microciment, juste prix" },
-      ],
-      footerCopy: "© 2026 Seiton Home · Tous droits réservés",
-    },
-    page2: {
-      header: "Description du produit",
-      whatIsTitle: "Qu'est-ce que DIY Calc Pro ?",
-      whatIsBody:
-        "DIY Calc Pro est l'outil de calcul spécialisé pour les artisans qui fabriquent des bougies, des savons, " +
-        "des objets en résine époxy, du béton décoratif et du plâtre. Il vous donne les proportions exactes de " +
-        "chaque ingrédient, les paramètres techniques de chaque matériau, le coût réel de production et le prix " +
-        "de vente avec la marge que vous choisissez — le tout en quelques secondes, sans connaissances techniques avancées.",
-      forWhoTitle: "À qui s'adresse-t-il ?",
-      forWho: [
-        "Les artisans qui fabriquent des bougies et veulent savoir quelle quantité de parfum utiliser selon le type de cire et à quelle température travailler",
-        "Les personnes qui travaillent avec la glycérine et veulent des résultats cohérents et professionnels",
-        "Les artistes de résine époxy qui doivent savoir quel type utiliser selon la technique (géode, bijoux, sols, tableaux)",
-        "Les entrepreneurs de savon artisanal qui doivent calculer la soude exacte pour ne rien gaspiller",
-        "Les artisans qui créent des objets en béton décoratif, hypertufa, microciment ou plâtre",
-        "Les entreprises qui doivent calculer le coût réel et le juste prix de vente avant de lancer un produit",
-      ],
-      problemTitle: "Quel problème résout-il ?",
-      problems: [
-        { title: "Sans proportions exactes", desc: "Ne pas savoir quelle quantité de chaque ingrédient utiliser entraîne du gaspillage de matériaux et des résultats incohérents d'un lot à l'autre." },
-        { title: "Sans coût réel", desc: "Fixer les prix sans calculer tous les coûts — pertes, main-d'œuvre, emballage, commissions — génère des ventes à perte réelle." },
-        { title: "Sans référence technique", desc: "Ne pas avoir accès aux fiches techniques des matériaux oblige à expérimenter à chaque fois depuis le début, ce qui fait perdre du temps et de l'argent." },
-      ],
-    },
-    page3: {
-      header: "Avantages du produit",
-      title: "Tous les avantages de DIY Calc Pro",
-      benefits: [
-        ["Proportions exactes par matériau", "Calcule les grammes, pourcentages et températures corrects pour chaque type de cire, résine, savon ou mélange de béton. Sans deviner, sans gaspiller."],
-        ["Recommandation de matériaux", "Si vous faites une géode, l'application recommande la résine cristal. Si vous faites un shampoing solide à la soude, elle vous explique le processus. Aucune expérience préalable requise."],
-        ["Calcul de soude sans erreur", "Pour le savon artisanal, calcule la quantité exacte de NaOH ou KOH en utilisant les valeurs SAP de 12 huiles et beurres. Inclut le suif, le ricin, le karité et plus."],
-        ["Coût réel de production", "Inclut matières premières, pertes, main-d'œuvre, emballage, étiquette et commissions de plateforme. Rien n'est laissé de côté."],
-        ["Prix de vente suggéré", "Calcule le prix de vente selon la marge que vous voulez — pas celle imposée par le marché. Calcule aussi automatiquement le prix de gros."],
-        ["Fiches techniques en PDF", "Exportez des fiches de coûts et de production dans un format professionnel, prêtes à imprimer ou à partager avec votre équipe et vos clients."],
-        ["Bibliothèque de matériaux", "Enregistrez vos fournisseurs, coûts actualisés et stock de chaque matériau. Se relie directement aux calculateurs."],
-        ["Bibliothèque de formules", "Enregistrez vos meilleures recettes avec des versions pour comparer quelle formule donne le meilleur résultat au meilleur coût."],
-        ["Comparateur de scénarios", "Comparez formules, matériaux ou stratégies de prix côte à côte en une seule vue."],
-        ["Disponible en espagnol et en anglais", "L'application complète — calculateurs, exports et tableau de bord — fonctionne dans les deux langues en un clic."],
-        ["Paiement unique — sans abonnement", "Accès à vie avec toutes les mises à jour incluses. Pas de frais mensuels, pas de surprises."],
-      ],
-    },
-    page4: {
-      header: "Guide — Calculateur de Bougies",
-      title: "Calculateur de Bougies",
-      body:
-        "Calcule la quantité exacte de cire, parfum, colorant et additifs pour tout type de bougie. " +
-        "Chaque fois que vous sélectionnez un type de cire, sa fiche technique apparaît automatiquement " +
-        "avec les températures de fusion, de coulée et d'ajout du parfum.",
-      tableHead: ["Type de cire", "Fusion", "Coulée", "Parfum à", "Parfum max", "2e coulée"],
-      tableBody: [
-        ["Soja pour contenant (464, GB464)", "49°C", "54°C", "57°C", "12%", "Non"],
-        ["Soja pour pilier (415, CB-135)", "58°C", "65°C", "68°C", "8%", "Oui"],
-        ["Coco pure (76°F)", "45°C", "50°C", "54°C", "10%", "Non"],
-        ["Coco-Abricot (Coconut 83)", "46°C", "52°C", "55°C", "12%", "Non"],
-        ["Palme pour pilier", "54°C", "82°C", "82°C", "10%", "Oui"],
-        ["Paraffine standard (PF 52°C)", "52°C", "68°C", "72°C", "10%", "Oui"],
-        ["Cire à moule (PF 62°C)", "62°C", "75°C", "78°C", "8%", "Oui — nécessite 5–15% d'acide stéarique"],
-        ["Cire d'abeille pure", "63°C", "74°C", "74°C", "6%", "Non"],
-        ["Gel translucide", "75°C", "88°C", "88°C", "5%", "Non — verre uniquement"],
-        ["Mélange soja-paraffine (50:50)", "51°C", "63°C", "66°C", "10%", "Non"],
-      ],
-      stepsTitle: "Étape par étape — Bougies",
-      steps: [
-        "Sélectionnez le type de bougie (contenant, moule, pilier, fondant, chauffe-plat...)",
-        "Choisissez le type de cire → la fiche technique avec toutes les températures apparaît automatiquement",
-        "Saisissez le volume du moule en ml (ou le poids final souhaité en grammes)",
-        "Ajoutez le % de parfum — l'application vous avertit si vous dépassez le maximum recommandé pour cette cire",
-        "Ajoutez colorant, acide stéarique (pour la paraffine à moule), Vybar et inhibiteur UV si applicable",
-        "Appuyez sur Calculer → obtenez les grammes exacts de chaque ingrédient",
-        "Complétez les coûts et exportez la fiche en PDF",
-      ],
-      tipTitle: "Additifs importants pour la paraffine à moule :",
-      tipBody: "Acide stéarique 5–15% (dureté et opacité)  ·  Vybar 0.5–1% (rétention du parfum)  ·  Inhibiteur UV 0.1–0.5% (évite le jaunissement)",
-    },
-    page5: {
-      header: "Guide — Calculateur de Savons",
-      title: "Calculateur de Savons — 13 méthodes",
-      body:
-        "Couvre toutes les méthodes de fabrication, de la glycérine (sans soude, facile) au procédé à froid, " +
-        "à chaud, au savon liquide au KOH, au savon au lait, au sel marin et au shampoing solide. " +
-        "Pour les méthodes à la soude, calcule automatiquement la quantité exacte de NaOH ou KOH.",
-      soapTableHead: ["Type de savon", "Soude", "Cure", "Caractéristiques principales"],
-      soapTableBody: [
-        ["Glycérine en bloc", "Non", "0 jour", "Fond et se verse — prêt en 1–2 heures"],
-        ["Glycérine transparente (crystal)", "Non", "0 jour", "Effet cristallin pour inclusions et couches"],
-        ["Glycérine au lait de chèvre", "Non", "0 jour", "pH doux — idéal peau sensible et bébés"],
-        ["Glycérine avec exfoliant", "Non", "0 jour", "Avoine, café, sel, sucre, sable volcanique"],
-        ["Procédé à froid (CP)", "NaOH", "28 jours", "À froid — saponification naturelle — qualité max"],
-        ["Procédé à chaud (HP)", "NaOH", "7 jours", "Cuit à la marmite — prêt plus tôt — plus rustique"],
-        ["Savon au lait (CP)", "NaOH", "28 jours", "Lait congelé à la place de l'eau — très crémeux"],
-        ["Savon liquide (KOH)", "KOH", "7 jours", "Potasse caustique — pâte diluée dans l'eau"],
-        ["Savon de Castille", "NaOH", "180 jours", "100% olive — le plus doux — longue cure"],
-        ["Savon au sel marin", "NaOH", "7 jours", "80–100% coco + sel — à couper en 30–60 min"],
-        ["Syndet / sans soude", "Non", "0 jour", "pH neutre 5,5–6,5 — SCI, SCS, bétaïne"],
-        ["Shampoing solide glycérine", "Non", "0 jour", "Pour cheveux — fond et se verse"],
-        ["Shampoing solide CP", "NaOH", "28 jours", "Ricin 15–20% — surgraissage bas 0–3%"],
-      ],
-      oilsTitle: "Huiles pour procédé à froid / à chaud",
-      oilsTableHead: ["Huile / Beurre", "SAP NaOH", "Rôle dans le savon", "% recommandé"],
-      oilsTableBody: [
-        ["Huile d'olive", "0.134", "Douceur, soin, peu de mousse", "30–70%"],
-        ["Huile de coco", "0.190", "Mousse abondante et ferme, dureté", "20–35%"],
-        ["Huile de ricin ★", "0.128", "Mousse crémeuse et stable — CLÉ", "5–15%"],
-        ["Huile de palme", "0.141", "Dureté, stabilité, mousse crémeuse", "15–30%"],
-        ["Beurre de karité", "0.128", "Soin premium, onctuosité", "5–15%"],
-        ["Beurre de cacao", "0.137", "Dureté, douceur", "5–15%"],
-        ["Saindoux", "0.140", "Savon ferme, mousse crémeuse dense", "20–50%"],
-        ["Suif de bœuf", "0.140", "Dureté extrême, mousse abondante", "20–50%"],
-        ["Huile de tournesol", "0.134", "Douceur légère, soin économique", "10–20%"],
-        ["Huile d'avocat", "0.133", "Nutrition profonde pour peaux sèches", "5–20%"],
-        ["Amande douce", "0.136", "Douceur délicate pour peaux sensibles", "10–20%"],
-        ["Son de riz", "0.128", "Vitamine E, antioxydant", "10–25%"],
-      ],
-      safetyLabel: "⚠ SÉCURITÉ :",
-      safetyBody: "NaOH et KOH sont corrosifs. Portez des gants et des lunettes. Ajoutez TOUJOURS la soude à l'eau froide (ou au lait froid), JAMAIS l'inverse.",
-    },
-    page6: {
-      header: "Guide — Résine et Béton",
-      resinTitle: "Calculateur de Résine Époxy",
-      resinBody:
-        "Sélectionnez la technique que vous allez réaliser et l'application recommande automatiquement le type " +
-        "de résine idéal. Calcule les quantités exactes de Partie A et Partie B, le volume du moule et le coût " +
-        "des pigments et finitions.",
-      resinTableHead: ["Type de résine", "Ratio", "Couche max", "Durcissement", "Utilisations principales"],
-      resinTableBody: [
-        ["Résine cristal", "1:1", "4 mm", "36 h", "Géode, art décoratif, tableaux — la plus utilisée en Amérique latine"],
-        ["Résine standard", "2:1", "6 mm", "24 h", "Plateaux, plans de travail, tables rivière, usage général"],
-        ["Résine UV", "1:1", "3 mm", "5 min", "Bijouterie fine, sceaux — durcissement par lumière UV"],
-        ["Coulage / moulage", "1:1", "10 cm", "48 h", "Pièces épaisses, figurines, lettres — coulées profondes"],
-        ["Résine flexible", "1:1", "10 mm", "24 h", "Accessoires, tapis — se plie sans se casser"],
-        ["Revêtement de sol", "2:1", "4 mm", "24 h", "Art sur sols et surfaces — haute résistance"],
-        ["Polyuréthane", "1:1", "5 mm", "4 h", "Encapsulation, prototypes, production rapide"],
-        ["Stratification", "3:1", "2 mm", "12 h", "Fibre de verre, bateaux, surfaces haute performance"],
-      ],
-      concreteTitle: "Calculateur de Béton Décoratif",
-      concreteBody:
-        "Entrez les dimensions du moule et l'application calcule le volume automatiquement. " +
-        "Choisissez le type de mélange et obtenez les grammes exacts de ciment, sable et eau.",
-      concreteTableHead: ["Type de mélange", "Ratio", "Densité", "Usage idéal"],
-      concreteTableBody: [
-        ["Décoratif (ciment:sable)", "1:2", "1,80 g/ml", "Pots, sculptures, art — sans gravier"],
-        ["Standard (ciment:sable:gravier)", "1:2:3", "2,20 g/ml", "Pièces structurelles, plans de travail épais"],
-        ["GFRC — Fibre de verre", "1:1.5 + fibre", "1,90 g/ml", "Pièces fines, façades, plans de travail résistants"],
-        ["Fin (ciment:sable fin)", "1:1", "1,70 g/ml", "Détails fins, petits moules, carreaux"],
-        ["Léger (ciment + perlite)", "1:0,75 perlite", "1,20 g/ml", "Grands pots, pièces suspendues — très léger"],
-        ["Ciment blanc décoratif", "1:2", "1,75 g/ml", "Pièces colorées avec pigments et oxydes"],
-        ["Hypertufa", "1:1.5:1.5", "0,90 g/ml", "Art de jardin, pierres ornementales, faux troncs"],
-        ["Microciment / Microtopping", "1:0.67", "1,60 g/ml", "Couches 1–3 mm sur murs, sols et meubles"],
-      ],
-    },
-    page7: {
-      header: "Guide — Plâtre et Calcul des Prix",
-      plasterTitle: "Calculateur de Plâtre",
-      plasterBody:
-        "Calcule le rapport eau/plâtre correct pour chaque type de plâtre. " +
-        "Entrez les dimensions du moule et obtenez les grammes exacts de plâtre et d'eau pour ne pas gaspiller de matériau.",
-      plasterTableHead: ["Type de plâtre", "Ratio eau:plâtre", "Temps de prise", "Usage recommandé"],
-      plasterTableBody: [
-        ["Plâtre standard", "0,65–0,75", "20–30 min", "Figurines décoratives, pièces de base"],
-        ["Plâtre de moulage / Gypse", "0,55–0,65", "15–25 min", "Haute résistance, blancheur supérieure, détails fins"],
-        ["Plâtre céramique", "0,70–0,80", "25–35 min", "Haute porosité pour l'absorption des émaux"],
-        ["Plâtre pierre / Hydrocal", "0,30–0,40", "30–45 min", "Dureté maximale — modèles de haute précision"],
-        ["Plâtre dentaire / dur", "0,22–0,30", "8–15 min", "Dureté extrême — détails ultra-fins"],
-      ],
-      pricingTitle: "Comment calculer le juste prix de vente",
-      pricingBody: "DIY Calc Pro calcule le prix en se basant sur TOUS vos coûts réels — pas sur une simple multiplication qui laisse des variables de côté.",
-      pricingTableHead: ["Variable de coût", "Qu'est-ce que ça inclut ?", "Pourquoi est-ce important ?"],
-      pricingTableBody: [
-        ["Coût des matériaux", "Cire, résine, savon, ciment, parfum, pigments...", "Le coût le plus visible, mais pas le seul"],
-        ["Pertes estimées", "Matériau perdu, pièces imparfaites", "Recommandé 3–8%. Ne pas l'ignorer."],
-        ["Main-d'œuvre", "Votre coût horaire × heures de production", "Ce qu'on oublie le plus souvent d'inclure"],
-        ["Emballage", "Boîte, papier, étiquette, ruban, sacs de présentation", "Peut représenter 10–25% du coût total"],
-        ["Commission de plateforme", "Etsy, Amazon, Instagram, marketplaces", "5–15% perdus si non calculés"],
-        ["Marge souhaitée", "Votre profit en % sur le prix de vente", "Minimum recommandé : 30–35%"],
-      ],
-      tipTitle: "Important :",
-      tipBody:
-        "Multiplier le coût des matériaux par 2 ou 3 ne suffit pas. Si vous n'incluez pas la main-d'œuvre, les pertes " +
-        "et les commissions, vous pourriez vendre à perte sans le savoir. DIY Calc Pro inclut automatiquement toutes ces variables.",
-    },
-    page8: {
-      header: "Activation et assistance",
-      activationTitle: "Comment activer votre licence",
-      activationSteps: [
-        ["1. Achat sur Hotmart", "Vous recevez un e-mail de confirmation avec votre code d'achat au format XXXX-XXXX-XXXX-XXXX."],
-        ["2. Créez votre compte", "Allez sur l'application, cliquez sur S'inscrire et entrez votre e-mail, mot de passe et le code reçu."],
-        ["3. Accès complet", "Votre licence est activée immédiatement — sans étape supplémentaire — avec accès à tous les calculateurs, exports et à la bibliothèque de matériaux."],
-      ],
-      faqTitle: "Questions fréquentes",
-      faqTableHead: ["Question", "Réponse"],
-      faqRows: [
-        ["Puis-je utiliser l'application sur plusieurs appareils ?", "Oui. Avec votre compte, vous pouvez vous connecter depuis n'importe quel ordinateur ou téléphone avec internet."],
-        ["L'application fonctionne-t-elle sans internet ?", "Elle nécessite une connexion pour charger et enregistrer les données."],
-        ["Puis-je exporter mes calculs ?", "Oui. Chaque calculateur dispose d'un bouton pour exporter la fiche en PDF professionnel."],
-        ["Les mises à jour sont-elles incluses ?", "Oui. Le paiement unique inclut toutes les futures mises à jour sans frais supplémentaires."],
-        ["La soude / le KOH est-il vendu dans l'application ?", "Non. L'application calcule la quantité dont vous avez besoin. Vous vous procurez les matériaux chez votre fournisseur local."],
-        ["Fonctionne-t-elle pour l'Amérique latine ?", "Oui. Elle est aussi optimisée pour les artisans hispanophones. Devise et unités ajustables."],
-        ["Est-elle disponible en espagnol ?", "Oui. L'application complète est disponible en espagnol et en anglais en un clic."],
-        ["Comment contacter le support ?", "Écrivez à servicioalcliente@seitonhome.com. Réponse sous 24 à 48 heures ouvrables."],
-      ],
-      ctaSubtitle: "Le calculateur complet pour les créateurs DIY",
       ctaFooter: "by Seiton Home  ·  servicioalcliente@seitonhome.com  ·  © 2026 Seiton Home",
     },
   },
@@ -848,8 +701,9 @@ export async function exportGuidePDF(locale: GuideLocale = "es") {
     doc.setTextColor(...DARK);
     doc.setFont("helvetica", "normal");
     doc.setFontSize(9);
-    doc.text(text, 26, y);
-    return y + 8;
+    const lines = doc.splitTextToSize(text, W - 26 - 14);
+    doc.text(lines, 26, y);
+    return y + (lines as string[]).length * 5 + 3.5;
   }
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -1148,20 +1002,64 @@ export async function exportGuidePDF(locale: GuideLocale = "es") {
   pageFooter();
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // PAGE 7 — PLASTER + PRICING
+  // PAGE 7 — MULTI-MATERIAL CALCULATOR
   // ═══════════════════════════════════════════════════════════════════════════
   newPage();
   pageHeader(c.page7.header);
 
   y = 30;
-  y = sectionTitle(c.page7.plasterTitle, y);
-  y = bodyText(c.page7.plasterBody, y);
+  y = sectionTitle(c.page7.title, y);
+  y = bodyText(c.page7.body, y);
+
+  y += 6;
+  y = sectionTitle(c.page7.stepsTitle, y);
+  for (let i = 0; i < c.page7.steps.length; i++) { y = numberedStep(i + 1, c.page7.steps[i], y); }
+
+  y += 6;
+  y = sectionTitle(c.page7.examplesTitle, y);
+  autoTable(doc, {
+    startY: y,
+    head: [c.page7.examplesTableHead],
+    body: c.page7.examplesTableBody,
+    theme: "striped",
+    headStyles: { fillColor: GOLD_DARK, textColor: WHITE, fontStyle: "bold", fontSize: 8 },
+    styles: { fontSize: 8, cellPadding: 3 },
+    columnStyles: { 0: { fontStyle: "bold", cellWidth: 60 } },
+    margin: { left: 14, right: 14 },
+  });
+
+  y = (doc as any).lastAutoTable?.finalY + 8;
+  doc.setFillColor(...WARM_BG);
+  doc.roundedRect(14, y, W - 28, 22, 3, 3, "F");
+  doc.setFillColor(...GOLD);
+  doc.rect(14, y, 3, 22, "F");
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(9);
+  doc.setTextColor(...GOLD_DARK);
+  doc.text(c.page7.tipTitle, 22, y + 7);
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(8);
+  doc.setTextColor(...DARK);
+  const mmTip = doc.splitTextToSize(c.page7.tipBody, W - 44);
+  doc.text(mmTip, 22, y + 13);
+
+  pageFooter();
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // PAGE 8 — PLASTER + PRICING
+  // ═══════════════════════════════════════════════════════════════════════════
+  newPage();
+  pageHeader(c.page8.header);
+
+  y = 30;
+  y = sectionTitle(c.page8.plasterTitle, y);
+  y = bodyText(c.page8.plasterBody, y);
 
   y += 6;
   autoTable(doc, {
     startY: y,
-    head: [c.page7.plasterTableHead],
-    body: c.page7.plasterTableBody,
+    head: [c.page8.plasterTableHead],
+    body: c.page8.plasterTableBody,
     theme: "grid",
     headStyles: { fillColor: GOLD_DARK, textColor: WHITE, fontStyle: "bold", fontSize: 8 },
     styles: { fontSize: 8, cellPadding: 3 },
@@ -1174,14 +1072,14 @@ export async function exportGuidePDF(locale: GuideLocale = "es") {
   });
 
   y = (doc as any).lastAutoTable?.finalY + 12;
-  y = sectionTitle(c.page7.pricingTitle, y);
-  y = bodyText(c.page7.pricingBody, y);
+  y = sectionTitle(c.page8.pricingTitle, y);
+  y = bodyText(c.page8.pricingBody, y);
 
   y += 6;
   autoTable(doc, {
     startY: y,
-    head: [c.page7.pricingTableHead],
-    body: c.page7.pricingTableBody,
+    head: [c.page8.pricingTableHead],
+    body: c.page8.pricingTableBody,
     theme: "striped",
     headStyles: { fillColor: GOLD_DARK, textColor: WHITE, fontStyle: "bold", fontSize: 8 },
     styles: { fontSize: 8, cellPadding: 3 },
@@ -1197,25 +1095,25 @@ export async function exportGuidePDF(locale: GuideLocale = "es") {
   doc.setFont("helvetica", "bold");
   doc.setFontSize(9);
   doc.setTextColor(...GOLD_DARK);
-  doc.text(c.page7.tipTitle, 22, y + 7);
+  doc.text(c.page8.tipTitle, 22, y + 7);
   doc.setFont("helvetica", "normal");
   doc.setFontSize(8.5);
   doc.setTextColor(...DARK);
-  const tip = doc.splitTextToSize(c.page7.tipBody, W - 44);
+  const tip = doc.splitTextToSize(c.page8.tipBody, W - 44);
   doc.text(tip, 22, y + 13);
 
   pageFooter();
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // PAGE 8 — ACTIVATION + SUPPORT
+  // PAGE 9 — ACTIVATION + SUPPORT
   // ═══════════════════════════════════════════════════════════════════════════
   newPage();
-  pageHeader(c.page8.header);
+  pageHeader(c.page9.header);
 
   y = 30;
-  y = sectionTitle(c.page8.activationTitle, y);
+  y = sectionTitle(c.page9.activationTitle, y);
 
-  for (const [step, desc] of c.page8.activationSteps) {
+  for (const [step, desc] of c.page9.activationSteps) {
     doc.setFillColor(...CREAM_D);
     doc.roundedRect(14, y - 2, W - 28, 18, 2, 2, "F");
     doc.setFillColor(...GOLD_DARK);
@@ -1238,12 +1136,12 @@ export async function exportGuidePDF(locale: GuideLocale = "es") {
   }
 
   y += 6;
-  y = sectionTitle(c.page8.faqTitle, y);
+  y = sectionTitle(c.page9.faqTitle, y);
 
   autoTable(doc, {
     startY: y,
-    head: [c.page8.faqTableHead],
-    body: c.page8.faqRows,
+    head: [c.page9.faqTableHead],
+    body: c.page9.faqRows,
     theme: "grid",
     headStyles: { fillColor: GOLD_DARK, textColor: WHITE, fontStyle: "bold", fontSize: 8 },
     styles: { fontSize: 8, cellPadding: 3 },
@@ -1265,10 +1163,10 @@ export async function exportGuidePDF(locale: GuideLocale = "es") {
   doc.setFont("helvetica", "normal");
   doc.setFontSize(9);
   doc.setTextColor(...CREAM_D);
-  doc.text(c.page8.ctaSubtitle, W / 2, y + 18, { align: "center" });
+  doc.text(c.page9.ctaSubtitle, W / 2, y + 18, { align: "center" });
   doc.setFontSize(8.5);
   doc.setTextColor(GOLD[0], GOLD[1], GOLD[2]);
-  doc.text(c.page8.ctaFooter, W / 2, y + 27, { align: "center" });
+  doc.text(c.page9.ctaFooter, W / 2, y + 27, { align: "center" });
 
   pageFooter();
 

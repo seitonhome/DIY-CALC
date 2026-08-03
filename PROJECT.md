@@ -474,6 +474,54 @@ label, `SelectItem`, or category name goes through this same test — plain lang
 first, technical/brand terms only in a description shown *after* the user has already
 selected something, never in the text they read while still deciding.
 
+## PDF user guide overhaul (updated 2026-08-03)
+
+Owner asked to review and update the downloadable "Guía completa en PDF"
+(`src/lib/pdf/guide.ts`, triggered from the dashboard's "Descargar guía" card) for
+clarity and completeness. Found and fixed several real issues, not just copy:
+
+- **Missing calculator**: the guide covered velas/jabón/resina/concreto/yeso but had
+  **no section on Multimaterial** — the app's own marketed "Diferencial" feature. Added
+  a full new page (steps + examples table + cross-material safety tip, mirroring the
+  in-app wizard's content) as `page7`. Required renumbering the old `page7`
+  (plaster+pricing) to `page8` and `page8` (activation+FAQ) to `page9`, in the
+  `GuideContent` interface, both `es`/`en` content objects, and the render function —
+  all three had to move together or TS/the render silently gets the wrong content on
+  the wrong page.
+- **Inaccurate FAQ claim**: "Moneda y unidades ajustables" — currency wasn't
+  adjustable until the same day's currency-selector feature, and the unit system
+  (metric/imperial) still isn't (the `user_preferences.preferred_units` column exists
+  but has no UI anywhere, same as currency didn't before today). Fixed to only claim
+  currency, which is now true.
+- **Activation step 1 clarified** (owner-confirmed): purchase happens at
+  `seitonhome.com/diy-calc-pro`, checkout runs through Hotmart. Previously just said
+  "1. Compra en Hotmart" with no mention of the actual landing page.
+- **Jargon consistency with the app**: applied the same 2026-08-03 jargon fix (see
+  above) to the guide's reference tables — wax table, concrete's GFRC row, soap's
+  syndet row now lead with plain language before the brand/acronym, matching what the
+  live calculators now show. Also added "Ultracal 30" next to Hydrocal in the plaster
+  table for parity.
+- **Two real PDF rendering bugs**, not just wording: (1) `numberedStep()` (used for
+  every "paso a paso" step across the guide) called `doc.text(text, 26, y)` with no
+  `splitTextToSize` — any step text wider than the page silently ran off the edge and
+  got clipped, visible in the exported PDF as truncated/overlapping text on multiple
+  candle steps. Fixed to wrap like `bodyText()`/`bullet()` already did. (2) The
+  Unicode arrow `→` and the `⚠`/`★` symbols aren't in jsPDF's default "helvetica" font
+  (WinAnsi encoding) and rendered as garbled `!'`/`&` in the actual exported file —
+  confirmed by downloading and reading the generated PDF, not just guessing. Replaced
+  `→` with `->`, dropped the `⚠` icon (the box's red fill already signals danger),
+  and `★` with a plain `*`. **If a future PDF template needs a checkmark, arrow, or
+  other symbol, verify it renders in an actual exported file — jsPDF's standard fonts
+  only support WinAnsi/Latin-1, not general Unicode.**
+- **Removed dead code**: the `GuideLocale` type included `"fr"` and there was a full
+  French `CONTENT.fr` block (~220 lines) — but `exportGuidePDF` is only ever called
+  with `"es" | "en"` from `dashboard-client.tsx`, confirmed via grep. Rather than also
+  writing French Multimaterial content for a locale nothing invokes, deleted it and
+  narrowed `GuideLocale` to `"es" | "en"`.
+- Verified by actually downloading and reading the generated PDF (not just
+  eyeballing the source) — confirmed 10 pages (cover + 9), all content and page
+  order correct, before finding the rendering bugs above from the real file.
+
 ## Standing preferences
 
 - Auto commit + push every change in this repo without asking first (standing
